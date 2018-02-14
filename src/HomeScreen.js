@@ -22,7 +22,22 @@ class HomeScreen extends Component {
                 {
                     name: 'Accessoies',
                     url: require('./icons/access.png')
-                }]
+                }],
+            offerFlag: false
+        }
+    }
+
+    renderOffer() {
+        if (this.state.offerFlag) {
+            return (
+                <View>
+                    <Image
+                        style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width }}
+                        source={require('./icons/sport.png')}
+                        resizeMode = "contain"
+                   />
+                </View>
+            )
         }
     }
 
@@ -39,7 +54,8 @@ class HomeScreen extends Component {
         }
         return (
             <View>
-                <Text style={{ fontSize: 20, textAlign: 'center' }}>Catagories</Text>
+                {this.renderOffer()}
+                <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     horizontal={false}
@@ -89,7 +105,7 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
-        color : '#46454d'
+        color: '#46454d'
     }
 })
 
