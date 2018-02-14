@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
 import ScreenSize from './ScreenSize'
 
 class HomeScreen extends Component {
@@ -27,6 +27,13 @@ class HomeScreen extends Component {
         }
     }
 
+    static navigationOptions = {
+        title: `online shop`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        }
+    }
     renderOffer() {
         if (this.state.offerFlag) {
             return (
@@ -34,26 +41,27 @@ class HomeScreen extends Component {
                     <Image
                         style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width }}
                         source={require('./icons/sport.png')}
-                        resizeMode = "contain"
-                   />
+                        resizeMode="contain"
+                    />
                 </View>
             )
         }
     }
 
     render() {
+        const { navigate } = this.props.navigation
         let width = ScreenSize.width
         let height = ScreenSize.height
         if (width > height) {
             //tablet
-            width = height * 0.40
+            width = height * 0.37
 
         } else {
             //normal phone
             width = width * 0.37
         }
         return (
-            <View>
+            <ScrollView style={{ flex: 1 }}>
                 {this.renderOffer()}
                 <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                 <FlatList
@@ -86,7 +94,7 @@ class HomeScreen extends Component {
                                     borderWidth: 1,
                                     backgroundColor: '#6DB0FF'
                                 }}
-                                onPress={() => alert(width + 'sss' + height)}>
+                                onPress={() => navigate('CatagoryScreen', { name: item.name })}>
                                 <Image
                                     style={{ height: '100%', width: '100%', borderRadius: 100 }}
                                     source={item.url}
@@ -97,7 +105,7 @@ class HomeScreen extends Component {
                         </View>
                     }
                 />
-            </View>
+            </ScrollView>
         )
     }
 }
