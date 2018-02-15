@@ -12,19 +12,19 @@ class HomeScreen extends Component {
             data: [
                 {
                     name: 'Sport',
-                    url: require('./icons/sport.png')
+                    icon: 'ios-walk-outline'
                 },
                 {
                     name: 'Male',
-                    url: require('./icons/man.png')
+                    icon: 'ios-man'
                 },
                 {
                     name: 'Female',
-                    url: require('./icons/women.png')
+                    icon: 'ios-woman'
                 },
                 {
                     name: 'Accessoies',
-                    url: require('./icons/access.png')
+                    icon: 'md-watch'
                 }],
             offerFlag: true
         }
@@ -67,11 +67,11 @@ class HomeScreen extends Component {
         if (this.state.offerFlag) {
             return (
                 <View style={{
-                    borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
-                    elevation: 5,
+                    margin: 5, backgroundColor: '#FFFFFF',
+                    elevation: 5, borderRadius: 5
                 }}>
                     <Image
-                        style={{ height: height * 0.5, width: ScreenSize.width }}
+                        style={{ height: height * 0.5, width: '100%', borderRadius: 5 }}
                         source={{ uri: 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg' }}
                         resizeMode="cover"
                     />
@@ -127,17 +127,16 @@ class HomeScreen extends Component {
                                             width: width,
                                             justifyContent: 'center',
                                             alignItems: 'center',
-                                            borderRadius: 100,
-                                            borderColor: '#FFFFFF',
-                                            borderWidth: 1,
+                                            borderRadius: 5,
+                                            borderColor: '#6DB0FF',
+                                            borderRadius : 100,
                                             elevation: 15,
-                                            backgroundColor: '#6DB0FF'
+                                            backgroundColor: '#FFFFFF'
                                         }}
                                         onPress={() => navigate('CatagoryScreen', { name: item.name })}>
-                                        <Image
-                                            style={{ height: '100%', width: '100%', borderRadius: 100 }}
-                                            source={item.url}
-                                            resizeMode="cover"
+                                        <Icon
+                                            name={item.icon}
+                                            style={{fontSize : 120, color : '#46454d'}}
                                         />
                                     </TouchableOpacity>
                                     <Text style={styles.textStyle}>{item.name}</Text>

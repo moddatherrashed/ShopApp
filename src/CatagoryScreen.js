@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
 import ScreenSize from './ScreenSize'
+import ItemScreen from './ItemScreen';
 
 class CatagoryScreen extends Component {
     constructor(props) {
@@ -8,19 +9,19 @@ class CatagoryScreen extends Component {
         this.state = {
             data: [
                 {
-                    name: 'Sport',
+                    name: 'Gray Jacket',
                     url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
                 },
                 {
-                    name: 'Male',
+                    name: 'Adidas Jacket',
                     url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
                 },
                 {
-                    name: 'Female',
+                    name: 'Water Prof Jacket',
                     url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
                 },
                 {
-                    name: 'Accessoies',
+                    name: 'White T-shirt',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }]
         }
@@ -55,10 +56,10 @@ class CatagoryScreen extends Component {
             <ScrollView>
                 <View style={{
                     borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
-                    elevation: 5,
+                    elevation: 15,borderRadius : 5,
                 }}>
                     <Image
-                        style={{ height: ScreenSize.height * 0.4, width: ScreenSize.width }}
+                        style={{ height: ScreenSize.height * 0.4,borderRadius : 5, width: '100%' }}
                         source={{ uri: 'http://s1.picswalls.com/wallpapers/2014/07/24/sports-desktop-background_113128110_89.jpg' }}
                         resizeMode="cover"
                     />
@@ -88,7 +89,7 @@ class CatagoryScreen extends Component {
                                     elevation: 15,
                                     backgroundColor: '#FFFFFF'
                                 }}
-                                onPress={() => alert('hello')}>
+                                onPress={() => navigate("ItemScreen",{name : item.name , url : item.url})}>
                                 <Image
                                     style={{ height: '80%', width: '100%', margin: 3 }}
                                     source={item.url}
