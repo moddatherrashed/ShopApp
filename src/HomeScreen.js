@@ -26,7 +26,7 @@ class HomeScreen extends Component {
                     name: 'Accessoies',
                     url: require('./icons/access.png')
                 }],
-            offerFlag: false
+            offerFlag: true
         }
     }
     closeDrawer() {
@@ -72,8 +72,8 @@ class HomeScreen extends Component {
                 }}>
                     <Image
                         style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width }}
-                        source={require('./icons/sport.png')}
-                        resizeMode="contain"
+                        source={{uri : 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg'}}
+                        resizeMode="cover"
                     />
                 </View>
             )
