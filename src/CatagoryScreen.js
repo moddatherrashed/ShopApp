@@ -10,16 +10,16 @@ class CatagoryScreen extends Component {
         }
     }
 
-    static navigationOptions = ({navigation}) => ({
+    static navigationOptions = ({ navigation }) => ({
+
+        title: `${navigation.state.params.name}`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        },
         
-            title: `${navigation.state.params.name}`,
-            headerTintColor: '#FFFFFF',
-            headerStyle: {
-                backgroundColor: '#363A57',
-            
-    }
-})
-    
+    })
+
     render() {
         const { params } = this.props.navigation.state
         return (

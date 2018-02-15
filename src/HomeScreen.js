@@ -26,7 +26,7 @@ class HomeScreen extends Component {
                     name: 'Accessoies',
                     url: require('./icons/access.png')
                 }],
-            offerFlag: true
+            offerFlag: false
         }
     }
     closeDrawer() {
@@ -44,7 +44,7 @@ class HomeScreen extends Component {
             backgroundColor: '#363A57',
         },
         headerRight: <Button transparent>
-            <Image source={require('./icons/cart.png')} style={{ height: 40, width: 40, margin: 4 }} />
+            <Icon name='cart' style={{ color: '#FFFFFF' }} />
         </Button>,
         headerLeft: <Button transparent
             onPress={() => {
@@ -56,7 +56,7 @@ class HomeScreen extends Component {
                     openFlag = 0
                 }
             }}>
-            <Icon name='menu' style={{ color: '#6db0ff' }} />
+            <Icon name='menu' style={{ color: '#FFFFFF' }} />
         </Button>
     }
     componentDidMount() {
@@ -66,7 +66,10 @@ class HomeScreen extends Component {
     renderOffer() {
         if (this.state.offerFlag) {
             return (
-                <View>
+                <View style={{
+                    borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#6DB0FF',
+                    elevation: 5,
+                }}>
                     <Image
                         style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width }}
                         source={require('./icons/sport.png')}
@@ -113,7 +116,7 @@ class HomeScreen extends Component {
                                     style={{
                                         justifyContent: 'center',
                                         alignItems: 'center',
-                                        width: ScreenSize.width * 0.5
+                                        width: ScreenSize.width * 0.5,
                                     }}
                                 >
                                     <TouchableOpacity
@@ -127,6 +130,7 @@ class HomeScreen extends Component {
                                             borderRadius: 100,
                                             borderColor: '#FFFFFF',
                                             borderWidth: 1,
+                                            elevation: 15,
                                             backgroundColor: '#6DB0FF'
                                         }}
                                         onPress={() => navigate('CatagoryScreen', { name: item.name })}>
