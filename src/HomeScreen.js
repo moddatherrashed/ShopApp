@@ -59,19 +59,19 @@ class HomeScreen extends Component {
             <Icon name='menu' style={{ color: '#FFFFFF' }} />
         </Button>
     }
-    componentDidMount() {
+    componentDidMount(width,height) {
         _this = this
 
     }
-    renderOffer() {
+    renderOffer(width,height) {
         if (this.state.offerFlag) {
             return (
                 <View style={{
-                    borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#6DB0FF',
+                    borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
                     elevation: 5,
                 }}>
                     <Image
-                        style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width}}
+                        style={{ height: height * 0.5, width: ScreenSize.width}}
                         source={{uri : 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg'}}
                         resizeMode="cover"
                     />
@@ -100,7 +100,7 @@ class HomeScreen extends Component {
                 <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })} />
                 <Content >
                     <ScrollView style={{ flex: 1 }}>
-                        {this.renderOffer()}
+                        {this.renderOffer(width,height)}
                         <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                         <FlatList
                             contentContainerStyle={{ margin: 2 }}

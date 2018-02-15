@@ -59,8 +59,8 @@ class CatagoryScreen extends Component {
                 }}>
                     <Image
                         style={{ height: ScreenSize.height * 0.4, width: ScreenSize.width }}
-                        source={{ uri: 'https://wallpaperscraft.com/image/adidas_sport_style_clothes_42702_2048x1152.jpg' }}
-                        resizeMode="stretch"
+                        source={{ uri: 'http://s1.picswalls.com/wallpapers/2014/07/24/sports-desktop-background_113128110_89.jpg' }}
+                        resizeMode="cover"
                     />
                 </View>
                 <FlatList
@@ -70,7 +70,7 @@ class CatagoryScreen extends Component {
                     keyExtractor={item => item.name}
                     contentContainerStyle={{
                         justifyContent: 'center',
-                        alignItems : 'center'
+                        alignItems: 'center'
                     }}
                     data={this.state.data}
                     renderItem={({ item, index }) =>
