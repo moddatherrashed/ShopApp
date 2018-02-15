@@ -5,7 +5,7 @@ import CatagoryScreen from './src/CatagoryScreen';
 
 const App = StackNavigator({
   HomeScreen: { screen: HomeScreen },
-  CatagoryScreen : {screen : CatagoryScreen}
+  CatagoryScreen: { screen: CatagoryScreen }
 })
 
 export default App
