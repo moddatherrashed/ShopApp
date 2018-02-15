@@ -59,11 +59,11 @@ class HomeScreen extends Component {
             <Icon name='menu' style={{ color: '#FFFFFF' }} />
         </Button>
     }
-    componentDidMount(width,height) {
+    componentDidMount(width, height) {
         _this = this
 
     }
-    renderOffer(width,height) {
+    renderOffer(width, height) {
         if (this.state.offerFlag) {
             return (
                 <View style={{
@@ -71,8 +71,8 @@ class HomeScreen extends Component {
                     elevation: 5,
                 }}>
                     <Image
-                        style={{ height: height * 0.5, width: ScreenSize.width}}
-                        source={{uri : 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg'}}
+                        style={{ height: height * 0.5, width: ScreenSize.width }}
+                        source={{ uri: 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg' }}
                         resizeMode="cover"
                     />
                 </View>
@@ -100,7 +100,7 @@ class HomeScreen extends Component {
                 <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })} />
                 <Content >
                     <ScrollView style={{ flex: 1 }}>
-                        {this.renderOffer(width,height)}
+                        {this.renderOffer(width, height)}
                         <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                         <FlatList
                             contentContainerStyle={{ margin: 2 }}
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
         color: '#46454d',
-        marginBottom : 10
+        marginBottom: 10
     }
 })
 
