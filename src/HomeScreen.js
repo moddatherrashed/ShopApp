@@ -71,7 +71,7 @@ class HomeScreen extends Component {
                     elevation: 5,
                 }}>
                     <Image
-                        style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width }}
+                        style={{ height: ScreenSize.height * 0.3, width: ScreenSize.width}}
                         source={{uri : 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg'}}
                         resizeMode="cover"
                     />
@@ -154,7 +154,8 @@ class HomeScreen extends Component {
 const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
-        color: '#46454d'
+        color: '#46454d',
+        marginBottom : 10
     }
 })
 

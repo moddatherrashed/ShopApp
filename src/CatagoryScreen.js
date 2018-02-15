@@ -44,10 +44,12 @@ class CatagoryScreen extends Component {
         if (width > height) {
             //tablet
             width = height * 0.37
+            colNum = 3
 
         } else {
             //normal phone
             width = width * 0.37
+            colNum = 2
         }
         return (
             <ScrollView>
@@ -64,10 +66,11 @@ class CatagoryScreen extends Component {
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     horizontal={false}
-                    numColumns={2}
+                    numColumns={colNum}
                     keyExtractor={item => item.name}
                     contentContainerStyle={{
                         justifyContent: 'center',
+                        alignItems : 'center'
                     }}
                     data={this.state.data}
                     renderItem={({ item, index }) =>
