@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
-import { Drawer, Content, Body, Button, Icon } from 'native-base';
+import { Drawer, Content, Body, Button, Icon, Badge } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
 import SideBar from './components/SideBar'
@@ -43,8 +43,9 @@ class HomeScreen extends Component {
         headerStyle: {
             backgroundColor: '#FFFFFF',
         },
-        headerRight: <Button transparent>
-            <Icon name='cart' style={{ color: '#363A57' }} />
+        headerRight: <Button vertical transparent>
+            <Badge style={{height : '45%' ,width :'100%'}}><Text style={{color : '#FFFFFF'}}>5</Text></Badge>
+            <Icon name='cart' style={{ color: '#363A57'}} />
         </Button>,
         headerLeft: <Button transparent
             onPress={() => {
@@ -99,7 +100,7 @@ class HomeScreen extends Component {
                 onClose={() => this.closeDrawer()} >
                 <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })} />
                 <Content >
-                    <ScrollView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
+                    <ScrollView style={{ flex: 1 }}>
                         {this.renderOffer(width, height)}
                         <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                         <FlatList
