@@ -39,12 +39,12 @@ class HomeScreen extends Component {
     }
     static navigationOptions = {
         title: `online shop`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: '#363A57',
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: '#FFFFFF',
         },
         headerRight: <Button transparent>
-            <Icon name='cart' style={{ color: '#FFFFFF' }} />
+            <Icon name='cart' style={{ color: '#363A57' }} />
         </Button>,
         headerLeft: <Button transparent
             onPress={() => {
@@ -56,7 +56,7 @@ class HomeScreen extends Component {
                     openFlag = 0
                 }
             }}>
-            <Icon name='menu' style={{ color: '#FFFFFF' }} />
+            <Icon name='menu' style={{ color: '#363A57' }} />
         </Button>
     }
     componentDidMount(width, height) {
@@ -99,7 +99,7 @@ class HomeScreen extends Component {
                 onClose={() => this.closeDrawer()} >
                 <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })} />
                 <Content >
-                    <ScrollView style={{ flex: 1 }}>
+                    <ScrollView style={{ flex: 1, backgroundColor: '#FFFFFF' }}>
                         {this.renderOffer(width, height)}
                         <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
                         <FlatList
@@ -127,16 +127,15 @@ class HomeScreen extends Component {
                                             width: width,
                                             justifyContent: 'center',
                                             alignItems: 'center',
-                                            borderRadius: 5,
+                                            borderRadius: 100,
                                             borderColor: '#6DB0FF',
-                                            borderRadius : 100,
-                                            elevation: 15,
+                                            elevation: 25,
                                             backgroundColor: '#FFFFFF'
                                         }}
                                         onPress={() => navigate('CatagoryScreen', { name: item.name })}>
                                         <Icon
                                             name={item.icon}
-                                            style={{fontSize : 120, color : '#46454d'}}
+                                            style={{ fontSize: 120, color: '#46454d' }}
                                         />
                                     </TouchableOpacity>
                                     <Text style={styles.textStyle}>{item.name}</Text>

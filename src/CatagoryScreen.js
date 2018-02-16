@@ -53,10 +53,10 @@ class CatagoryScreen extends Component {
             colNum = 2
         }
         return (
-            <ScrollView>
+            <ScrollView style={{backgroundColor : '#FFFFFF'}}>
                 <View style={{
                     borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
-                    elevation: 15,borderRadius : 5,
+                    elevation: 15,borderRadius : 5
                 }}>
                     <Image
                         style={{ height: ScreenSize.height * 0.4,borderRadius : 5, width: '100%' }}
