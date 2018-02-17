@@ -4,8 +4,8 @@ import {Icon} from 'native-base'
 
 const SearchBar = (props) => {
     return (
-        <View style={{ flexDirection: 'row', backgroundColor: '#FFFFFF', margin : 5 , elevation: 5,borderRadius : 10}}>
-            <Icon name='search' style={{ color: '#46454d',padding :7,elevation: 15 }} />
+        <View style={{ flexDirection: 'row', backgroundColor: '#FFFFFF', margin : 5 , elevation: 5,borderRadius : 10, width : '75%'}}>
+            <Icon name='search'style={{ color: '#46454d',padding :7,elevation: 15 }} />
             <TextInput
                 style={{ height: 40, width: '85%' }}
                 onChangeText={props.onChangeText}

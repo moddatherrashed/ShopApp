@@ -38,29 +38,9 @@ class HomeScreen extends Component {
         this.openFlag = 1
     }
     static navigationOptions = {
-        title: `online shop`,
-        headerTintColor: '#363A57',
-        headerStyle: {
-            backgroundColor: '#FFFFFF',
-        },
-        headerRight: <Button vertical transparent>
-            <Badge style={{height : '45%' ,width :'100%'}}><Text style={{color : '#FFFFFF'}}>5</Text></Badge>
-            <Icon name='cart' style={{ color: '#363A57'}} />
-        </Button>,
-        headerLeft: <Button transparent
-            onPress={() => {
-                if (_this.openFlag == 0) {
-                    _this.openDrawer()
-                    openFlag = 1
-                } else {
-                    _this.closeDrawer()
-                    openFlag = 0
-                }
-            }}>
-            <Icon name='menu' style={{ color: '#363A57' }} />
-        </Button>
+        header: null
     }
-    componentDidMount(width, height) {
+    componentDidMount() {
         _this = this
 
     }
@@ -98,7 +78,26 @@ class HomeScreen extends Component {
                 ref={(ref) => { this.drawer = ref }}
                 content={<SideBar />}
                 onClose={() => this.closeDrawer()} >
-                <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })} />
+                <View style={{ flexDirection: 'row' ,height : width*.37,justifyContent : 'center'}}>
+                    <Button transparent
+                        onPress={() => {
+                            if (_this.openFlag == 0) {
+                                _this.openDrawer()
+                                openFlag = 1
+                            } else {
+                                _this.closeDrawer()
+                                openFlag = 0
+                            }
+                        }}>
+                        <Icon name='menu' style={{ color: '#363A57'}} />
+                    </Button>
+                    <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })}/>
+                    <Button vertical transparent>
+                        <Badge style={{ height : '50%'}}><Text style={{ color: '#FFFFFF' }}>5</Text></Badge>
+                        <Icon name='cart' style={{ color: '#363A57' }} />
+                    </Button>
+                </View>
+
                 <Content >
                     <ScrollView style={{ flex: 1 }}>
                         {this.renderOffer(width, height)}
