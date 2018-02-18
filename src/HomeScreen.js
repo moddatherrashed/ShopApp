@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, Text, FlatList, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
 import { Content, Container, Body, Button, Icon, Badge } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
-import SideBar from './components/SideBar'
 import SearchHeader from 'react-native-search-header'
 import { StackNavigator } from 'react-navigation'
 import CatagoryScreen from './CatagoryScreen'
@@ -34,8 +33,8 @@ class HomeScreen extends Component {
         }
     }
     static navigationOptions = {
-        drawerIcon : (
-            <Icon name = 'home' style={{color :'#363A57'}}/>
+        drawerIcon: (
+            <Icon name='home' style={{ color: '#363A57' }} />
         ),
         title: `Home`,
         headerTintColor: '#363A57',
@@ -92,6 +91,10 @@ class HomeScreen extends Component {
         return (
 
             <Container>
+                <StatusBar
+                    backgroundColor="#363A57"
+                    barStyle="light-content"
+                />
                 <Content>
                     <SearchHeader
                         ref={(searchHeader) => {
@@ -102,7 +105,7 @@ class HomeScreen extends Component {
                     <ImageBackground
                         source={{ uri: 'http://www.tokkoro.com/picsup/3063936-blue-jeans_blur_clothes_cold_couple_fashion_girl_jacket_leisure_love_man_model_outdoors_path_pathway_pavement_people_photoshoot_romance_romantic_scarf_shoes_style_stylish_together_togetherness_wa.jpg' }}
                         style={{
-                            height: ScreenSize.height*0.88,
+                            height: ScreenSize.height * 0.88,
                             width: '100%',
                             justifyContent: 'center'
                         }}>
