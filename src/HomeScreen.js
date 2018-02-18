@@ -45,7 +45,7 @@ class HomeScreen extends Component {
         </Button>,
         headerLeft: <Button transparent
             onPress={() => {
-                _this.props.navigation.navigate('OpenDrawer')
+                _this.props.navigation.navigate('DrawerOpen')
             }}>
             <Icon name='menu' style={{ color: '#363A57' }} />
         </Button>
