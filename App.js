@@ -2,9 +2,12 @@ import React from 'react'
 import { DrawerItems, DrawerNavigator } from 'react-navigation'
 import HomeScreen from './src/HomeScreen'
 import AccountScreen from './src/AccountScreen'
-import { Image,Text } from 'react-native'
+import { Image, Text, View } from 'react-native'
 import { Container, Header, Body, Content } from 'native-base'
-
+import OrdersScreen from './src/OrdersScreen'
+import FavoritesScreen from './src/FavoritesScreen'
+import LanguageScreen from './src/LanguageScreen'
+import ConnectScreen from './src/ConnectScreen'
 
 const CustomDrawerComponent = (props) => (
   <Container>
@@ -19,19 +22,25 @@ const CustomDrawerComponent = (props) => (
     </Header>
     <Content>
       <DrawerItems {...props} />
-      <Text>Powered by STTS</Text>
     </Content>
   </Container>
 )
 const App = DrawerNavigator({
   HomeScreen: { screen: HomeScreen },
-  AccountScreen: { screen: AccountScreen }
+  Account: { screen: AccountScreen },
+  Orders: { screen: OrdersScreen },
+  Favorites: { screen: FavoritesScreen },
+  Language: { screen: LanguageScreen }
+
 }, {
     initialRouteName: 'HomeScreen',
     contentComponent: CustomDrawerComponent,
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
-    drawerRoggleRoute: 'DrawerToggle'
+    drawerRoggleRoute: 'DrawerToggle',
+    contentOptions: {
+      activeTintColor: '#363a57'
+    }
   })
 
 

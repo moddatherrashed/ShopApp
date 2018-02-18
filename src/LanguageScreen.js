@@ -5,14 +5,15 @@ import { Container, Content, Icon } from 'native-base'
 class AccountScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
-            <Icon name='list' style={{ color: '#363A57' }} />
+            <Icon name='settings' style={{ color: '#363A57' }} />
         )
     }
+
     render() {
         return (
             <Container>
                 <Content>
-                    <Text>here is orders Screen</Text>
+                    <Text>here is language Screen</Text>
                 </Content>
             </Container>
         )
