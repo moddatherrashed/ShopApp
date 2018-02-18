@@ -92,8 +92,7 @@ class HomeScreen extends Component {
 
             <Container>
                 <StatusBar
-                    backgroundColor="#363A57"
-                    barStyle="light-content"
+                    hidden
                 />
                 <Content>
                     <SearchHeader
