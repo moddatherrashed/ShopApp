@@ -1,13 +1,12 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, DrawerNavigator } from 'react-navigation'
 import HomeScreen from './src/HomeScreen'
-import CatagoryScreen from './src/CatagoryScreen';
-import ItemScreen from './src/ItemScreen';
+import AccountScreen from './src/AccountScreen'
 
-const App = StackNavigator({
+const App = DrawerNavigator({
   HomeScreen: { screen: HomeScreen },
-  CatagoryScreen: { screen: CatagoryScreen },
-  ItemScreen : {screen : ItemScreen},
+  AccountScreen : {screen : AccountScreen}
 })
-
+/*CatagoryScreen: { screen: CatagoryScreen },
+  ItemScreen : {screen : ItemScreen}, */
 export default App

@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
-import { Drawer, Content, Body, Button, Icon, Badge } from 'native-base';
+import { View, Text, FlatList, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
+import { Content, Container, Body, Button, Icon, Badge } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
 import SideBar from './components/SideBar'
+import SearchHeader from 'react-native-search-header'
+import { StackNavigator } from 'react-navigation'
+import CatagoryScreen from './CatagoryScreen'
+import ItemScreen from './ItemScreen'
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -12,51 +16,60 @@ class HomeScreen extends Component {
             data: [
                 {
                     name: 'Sport',
-                    icon: 'ios-walk-outline'
+                    image: { uri: 'http://www.jeffbaynes.co.uk/images/large/jeffbaynes.co/6e537634efa75a047035907c3725ce48_LRG.jpg' }
                 },
                 {
                     name: 'Male',
-                    icon: 'ios-man'
+                    image: { uri: 'https://www.billboard.com/files/stylus/103009-jason_derulo2_617_409.jpg' }
                 },
                 {
                     name: 'Female',
-                    icon: 'ios-woman'
+                    image: { uri: 'http://wallpaperscraft.ru/image/blondinka_devushka_tatuirovka_volosy_mayka_63855_2560x1600.jpg' }
                 },
                 {
                     name: 'Accessoies',
-                    icon: 'md-watch'
+                    image: { uri: 'https://ae01.alicdn.com/kf/HTB1guoRKVXXXXXCXFXXq6xXFXXXz/Yunkingdom-Nepal-Bracelets-Colorful-Antique-Silver-Color-Bracelets-Nice-Accessories-Women-s-Vintage-Bracelets-YUN0568.jpg' }
                 }],
-            offerFlag: true
+            offerFlag: false
         }
     }
-    closeDrawer() {
-        this.drawer._root.close()
-        this.openFlag = 0
-    }
-    openDrawer() {
-        this.drawer._root.open()
-        this.openFlag = 1
-    }
     static navigationOptions = {
-        header: null
+        title: `online shop`,
+        headerTintColor: '#363A57',
+        headerStyle: {
+            backgroundColor: '#FFFFFF',
+        },
+        headerRight: <Button transparent
+            onPress={() => _this.searchHeader.show()}>
+            <Icon name='cart' style={{ color: '#363A57' }} />
+        </Button>,
+        headerLeft: <Button transparent
+            onPress={() => {
+                _this.props.navigation.navigate('OpenDrawer')
+            }}>
+            <Icon name='menu' style={{ color: '#363A57' }} />
+        </Button>
     }
+
     componentDidMount() {
         _this = this
 
     }
-    renderOffer(width, height) {
+    renderOffer(width, height, context) {
         if (this.state.offerFlag) {
             return (
-                <View style={{
+                <TouchableOpacity style={{
                     margin: 5, backgroundColor: '#FFFFFF',
                     elevation: 5, borderRadius: 5
-                }}>
+                }}
+
+                >
                     <Image
                         style={{ height: height * 0.5, width: '100%', borderRadius: 5 }}
                         source={{ uri: 'https://static.pexels.com/photos/428338/pexels-photo-428338.jpeg' }}
                         resizeMode="cover"
                     />
-                </View>
+                </TouchableOpacity>
             )
         }
     }
@@ -74,87 +87,52 @@ class HomeScreen extends Component {
             width = width * 0.37
         }
         return (
-            <Drawer
-                ref={(ref) => { this.drawer = ref }}
-                content={<SideBar />}
-                onClose={() => this.closeDrawer()} >
-                <View style={{ flexDirection: 'row' ,height : width*.37,justifyContent : 'center'}}>
-                    <Button transparent
-                        onPress={() => {
-                            if (_this.openFlag == 0) {
-                                _this.openDrawer()
-                                openFlag = 1
-                            } else {
-                                _this.closeDrawer()
-                                openFlag = 0
-                            }
-                        }}>
-                        <Icon name='menu' style={{ color: '#363A57'}} />
-                    </Button>
-                    <SearchBar value={this.state.text} onChangeText={(text) => this.setState({ text })}/>
-                    <Button vertical transparent>
-                        <Badge style={{ height : '50%'}}><Text style={{ color: '#FFFFFF' }}>5</Text></Badge>
-                        <Icon name='cart' style={{ color: '#363A57' }} />
-                    </Button>
-                </View>
 
-                <Content >
-                    <ScrollView style={{ flex: 1 }}>
-                        {this.renderOffer(width, height)}
-                        <Text style={{ fontSize: 20, textAlign: 'center', color: '#46454d' }}>Catagories</Text>
-                        <FlatList
-                            contentContainerStyle={{ margin: 2 }}
-                            horizontal={false}
-                            numColumns={2}
-                            keyExtractor={item => item.name}
-                            contentContainerStyle={{
-                                justifyContent: 'center',
-                            }}
-                            data={this.state.data}
-                            renderItem={({ item, index }) =>
-                                <View
-                                    style={{
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        width: ScreenSize.width * 0.5,
-                                    }}
-                                >
-                                    <TouchableOpacity
-                                        style={{
-                                            flex: 1,
-                                            margin: 5,
-                                            height: width,
-                                            width: width,
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            borderRadius: 100,
-                                            borderColor: '#6DB0FF',
-                                            elevation: 25,
-                                            backgroundColor: '#FFFFFF'
-                                        }}
-                                        onPress={() => navigate('CatagoryScreen', { name: item.name })}>
-                                        <Icon
-                                            name={item.icon}
-                                            style={{ fontSize: 120, color: '#46454d' }}
-                                        />
-                                    </TouchableOpacity>
-                                    <Text style={styles.textStyle}>{item.name}</Text>
-                                </View>
-                            }
-                        />
-                    </ScrollView>
+            <Container>
+                <Content>
+                    <SearchHeader
+                        ref={(searchHeader) => {
+                            this.searchHeader = searchHeader;
+                        }}
+                        headerBgColor='#363A57'
+                    />
+                    <ImageBackground
+                        source={{ uri: 'http://www.tokkoro.com/picsup/3063936-blue-jeans_blur_clothes_cold_couple_fashion_girl_jacket_leisure_love_man_model_outdoors_path_pathway_pavement_people_photoshoot_romance_romantic_scarf_shoes_style_stylish_together_togetherness_wa.jpg' }}
+                        style={{
+                            height: ScreenSize.height * 0.9,
+                            width: '100%',
+                            justifyContent: 'center'
+                        }}>
+                        <Button full style={{ marginLeft: 50, marginRight: 50, marginBottom: 30, backgroundColor: '#FFFFFF' }}
+                            onPress={() => this.props.navigation.navigate('OpenDrawer')} >
+                            <Text style={styles.textStyle}>Women</Text>
+                        </Button>
+                        <Button full style={{ marginLeft: 50, marginRight: 50, marginBottom: 30, backgroundColor: '#FFFFFF' }} >
+                            <Text style={styles.textStyle}>Man</Text>
+                        </Button>
+                        <Button full style={{ marginLeft: 50, marginRight: 50, marginBottom: 30, backgroundColor: '#FFFFFF' }} >
+                            <Text style={styles.textStyle}>Accessoies</Text>
+                        </Button>
+                    </ImageBackground>
                 </Content>
-            </Drawer>
+            </Container>
         )
     }
 }
 
+const StackNavigation = StackNavigator({
+    HomeScreen: { screen: HomeScreen },
+    CatagoryScreen: { screen: CatagoryScreen },
+    ItemScreen: { screen: ItemScreen },
+})
+
 const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
-        color: '#46454d',
-        marginBottom: 10
+        color: '#363A57',
+        fontWeight: 'bold',
+        fontSize: 18
     }
 })
 
-export default HomeScreen
+export default StackNavigation
