@@ -134,7 +134,7 @@ class ItemScreen extends Component {
                             </TouchableOpacity>
                         </View>
                         <View style={{ flexDirection: 'row', flex: 2 }}>
-                            
+
                             <Button full style={{ backgroundColor: '#363A57', height: '100%', flex: 1, borderWidth: 0.5, borderColor: '#FFFFFF' }}
                                 onPress={() => this.setState({ isModalVisible: false })}>
                                 <Text style={{ color: '#FFFFFF' }} >cancel</Text>

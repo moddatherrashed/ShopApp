@@ -11,7 +11,10 @@ import ConnectScreen from './src/ConnectScreen'
 
 const CustomDrawerComponent = (props) => (
   <Container>
-    <Header style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#363a57' }}>
+    <Content style={{backgroundColor : '#363a57'}}>
+      <DrawerItems {...props} />
+    </Content>
+    <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#363a57' }}>
       <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image
           style={{ height: 150, width: 150 }}
@@ -19,10 +22,7 @@ const CustomDrawerComponent = (props) => (
           resizeMode='contain'
         />
       </Body>
-    </Header>
-    <Content>
-      <DrawerItems {...props} />
-    </Content>
+    </View>
   </Container>
 )
 const App = DrawerNavigator({
@@ -39,7 +39,10 @@ const App = DrawerNavigator({
     drawerCloseRoute: 'DrawerClose',
     drawerRoggleRoute: 'DrawerToggle',
     contentOptions: {
-      activeTintColor: '#363a57'
+      activeTintColor: '#FFFFFF',
+      labelStyle : {
+        color :'#FFFFFF'
+      }
     }
   })
 

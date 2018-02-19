@@ -17,7 +17,7 @@ class HomeScreen extends Component {
     }
     static navigationOptions = {
         drawerIcon: (
-            <Icon name='home' style={{ color: '#363A57' }} />
+            <Icon name='home' style={{ color: '#FFFFFF' }} />
         ),
         title: `Home`,
         headerTintColor: '#363A57',

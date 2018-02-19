@@ -5,7 +5,7 @@ import { Container, Content, Icon } from 'native-base'
 class AccountScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
-            <Icon name='settings' style={{ color: '#363A57' }} />
+            <Icon name='settings' style={{ color: '#FFFFFF' }} />
         )
     }
 
