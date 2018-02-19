@@ -10,7 +10,8 @@ class ItemScreen extends Component {
         super(props)
         this.state = {
             isModalVisible: false,
-            size: 'Select Size'
+            size: 'Select Size',
+            favBtn: 'ios-star-outline'
         }
     }
     _toggleModal = () =>
@@ -43,11 +44,11 @@ class ItemScreen extends Component {
                             resizeMode='contain'
                         />
                         <View style={{ flexDirection: 'row', flex: 4, alignItems: 'center', justifyContent: 'center' }}>
-                            <View style={{ flexDirection: 'column', flex: 2 }}>
+                            <View style={{ flexDirection: 'column', flex: 1.5 }}>
                                 <Text style={{ padding: 5, flex: 1, textAlign: 'left', fontWeight: 'bold' }}>{params.name}</Text>
                                 <Text style={{ padding: 10, textAlign: 'left', flex: 1, fontWeight: 'bold', fontSize: 20 }}>50 JD</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', flex: 1 }}>
+                            <View style={{ flexDirection: 'row', flex: 1.5 }}>
                                 <Button bordered style={{ borderColor: '#363A57', justifyContent: 'center', width: '100%' }}
                                     onPress={() => {
                                         this.setState({
@@ -58,10 +59,23 @@ class ItemScreen extends Component {
                                     <Text style={{ padding: 5, color: '#363A57', textAlign: 'center' }}>{this.state.size}</Text>
                                 </Button>
                             </View>
-                            <Icon name='ios-star-outline' style={{ color: 'gray', padding: 10, flex: 1, textAlign: 'right' }} />
+                            <TouchableOpacity style={{ padding: 10, flex: 1 }}
+                                onPress={() => {
+                                    if (this.state.favBtn === 'ios-star-outline') {
+                                        this.setState({
+                                            favBtn: 'ios-star'
+                                        })
+                                    } else {
+                                        this.setState({
+                                            favBtn: 'ios-star-outline'
+                                        })
+                                    }
+                                }}>
+                                <Icon name={this.state.favBtn} style={{ color: '#363A57', padding: 10, flex: 1, textAlign: 'right' }} />
+                            </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={{ padding: 5, fontWeight: 'bold' }}>Descrption</Text>
+                    <Text style={{ padding: 5, fontWeight: 'bold', color: '#363A57' }}>Descrption</Text>
                     <View style={{ backgroundColor: '#FFFFFF', elevation: 25, margin: 5, borderRadius: 5, marginBottom: 10 }}>
                         <Text style={{ padding: 20, fontSize: 15 }}>
                             asdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwf
