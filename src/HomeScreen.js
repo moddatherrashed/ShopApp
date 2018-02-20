@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Animated, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { View, Text, FlatList, Animated, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
 import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
@@ -8,6 +8,8 @@ import { StackNavigator } from 'react-navigation'
 import CatagoryScreen from './CatagoryScreen'
 import ItemScreen from './ItemScreen'
 import Badge from './components/Badge'
+import Modal from 'react-native-modal'
+
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -29,9 +31,11 @@ class HomeScreen extends Component {
                     name: 'White T-shirt',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }],
-            offerFalg: false,
+            offerFalg: true,
             badgeScale: new Animated.Value(0),
-            textValue: 0
+            textValue: 0,
+            isModalVisible: false,
+            searchText: ''
         }
     }
     animateBadge() {
@@ -41,7 +45,7 @@ class HomeScreen extends Component {
         Animated.timing(this.state.badgeScale, {
             toValue: 1,
             duration: 500
-        }).start() 
+        }).start()
     }
     static navigationOptions = {
         drawerIcon: (
@@ -110,8 +114,10 @@ class HomeScreen extends Component {
                         <Title>Header</Title>
                     </Body>
                     <Right>
-                    <Button transparent
-                            onPress={() => this.searchHeader.show()}>
+                        <Button transparent
+                            onPress={() => this.setState({
+                                isModalVisible: true
+                            })}>
                             <Icon name='search' style={{ color: '#FFFFFF' }} />
                         </Button>
                         <Button transparent
@@ -154,7 +160,7 @@ class HomeScreen extends Component {
                                         elevation: 15,
                                         backgroundColor: '#FFFFFF'
                                     }}
-                                    onPress={() => navigate('CatagoryScreen', {name : item.name})}>
+                                    onPress={() => navigate('CatagoryScreen', { name: item.name })}>
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
                                         source={item.url}
@@ -167,6 +173,41 @@ class HomeScreen extends Component {
                         }
                     />
                 </Content>
+                <Modal isVisible={this.state.isModalVisible}
+                    backdropOpacity={0.2}
+                    onBackdropPress={() => this.setState({ isModalVisible: false })}
+                    style={{
+                        backgroundColor: '#FFFFFF',
+                        borderColor: 'gray',
+                        borderWidth: 1,
+                        justifyContent: 'flex-start',
+
+                    }}>
+                    <View style={{ flexDirection: 'row', backgroundColor: '#363A57' }}>
+                        <Button transparent onPress={() => { this.setState({ isModalVisible: false }) }}>
+                            <Icon name='close' style={{ color: '#FFFFFF' }} />
+                        </Button>
+                        <TextInput
+                            style={{ height: 40, flex: 1, color: '#FFFFFF' }}
+                            placeholderTextColor='#FFFFFF'
+                            placeholder='Search for ...'
+                            blurOnSubmit={true}
+                            underlineColorAndroid='#FFFFFF'
+                            contextMenuHidden={true}
+                            selectionColor='#FFFFFF'
+                            returnKeyType='search'
+                            onChangeText={(searchText) => this.setState({ searchText })}
+                            value={this.state.searchText}
+                        />
+
+                        <Button transparent onPress={() => { this.setState({ isModalVisible: false }) }}>
+                            <Icon name='search' style={{ color: '#FFFFFF' }} />
+                        </Button>
+                    </View>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text>No Result Found</Text>
+                    </View>
+                </Modal>
             </Container>
         )
     }
