@@ -65,7 +65,7 @@ class CatagoryScreen extends Component {
             colNum = 2
         }
         return (
-            <ScrollView style={{ backgroundColor: '#FFFFFF' }}>
+            <ScrollView>
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     horizontal={false}

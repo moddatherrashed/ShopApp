@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
-import { Content, Container, Body, Button, Icon, Badge } from 'native-base';
+import { View, Text, FlatList, Animated, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
 import SearchHeader from 'react-native-search-header'
 import { StackNavigator } from 'react-navigation'
 import CatagoryScreen from './CatagoryScreen'
 import ItemScreen from './ItemScreen'
-
+import Badge from './components/Badge'
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -29,28 +29,25 @@ class HomeScreen extends Component {
                     name: 'White T-shirt',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }],
-            offerFalg: true
+            offerFalg: false,
+            badgeScale: new Animated.Value(0),
+            textValue: 0
         }
+    }
+    animateBadge() {
+        const textCounter = ++this.state.textValue
+        this.state.badgeScale.setValue(0)
+        this.setState({ textValue: textCounter })
+        Animated.timing(this.state.badgeScale, {
+            toValue: 1,
+            duration: 500
+        }).start() 
     }
     static navigationOptions = {
         drawerIcon: (
             <Icon name='home' style={{ color: '#FFFFFF' }} />
         ),
-        title: `Catagories`,
-        headerTintColor: '#FFFFFF',
-        headerStyle: {
-            backgroundColor: '#363A57',
-        },
-        headerRight: <Button transparent
-            onPress={() => _this.searchHeader.show()}>
-            <Icon name='cart' style={{ color: '#FFFFFF' }} />
-        </Button>,
-        headerLeft: <Button transparent
-            onPress={() => {
-                _this.props.navigation.navigate('DrawerOpen')
-            }}>
-            <Icon name='menu' style={{ color: '#FFFFFF' }} />
-        </Button>
+        header: null
     }
 
     componentDidMount() {
@@ -76,6 +73,7 @@ class HomeScreen extends Component {
             )
         }
     }
+
     render() {
         const { navigate } = this.props.navigation
         let width = ScreenSize.width
@@ -96,6 +94,33 @@ class HomeScreen extends Component {
                 <StatusBar
                     hidden
                 />
+                <Header style={{ backgroundColor: '#363A57' }}>
+                    <Left>
+                        <Button transparent>
+                            <Button transparent
+                                onPress={() => {
+                                    this.props.navigation.navigate('DrawerOpen')
+                                }}>
+                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+                            </Button>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Header</Title>
+                    </Body>
+                    <Right>
+                    <Button transparent
+                            onPress={() => this.searchHeader.show()}>
+                            <Icon name='search' style={{ color: '#FFFFFF' }} />
+                        </Button>
+                        <Button transparent
+                            onPress={() => this.animateBadge()}>
+                            <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                            <Badge text={this.state.textValue} badgeScale={this.state.badgeScale} />
+                        </Button>
+                    </Right>
+                </Header>
                 <Content>
                     <SearchHeader
                         ref={(searchHeader) => {
@@ -129,7 +154,7 @@ class HomeScreen extends Component {
                                         elevation: 15,
                                         backgroundColor: '#FFFFFF'
                                     }}
-                                    onPress={()=> navigate('CatagoryScreen' , {name : item.name})}>
+                                    onPress={() => navigate('CatagoryScreen', {name : item.name})}>
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
                                         source={item.url}
