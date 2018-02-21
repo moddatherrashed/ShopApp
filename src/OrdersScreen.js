@@ -82,7 +82,7 @@ class AccountScreen extends Component {
                             data={this.state.orders}
                             renderItem={({ item, index }) =>
                                 <View style={{ flexDirection: 'row', backgroundColor: '#FFFFFF', elevation: 15, width: '100%', margin: 10 }}>
-                                    <View style={{  flexDirection: 'row', flex: 6 }}>
+                                    <View style={{ flexDirection: 'row', flex: 6 }}>
                                         <View style={{ flex: 2 }}>
                                             <Image
                                                 style={{ height: 100, width: 100 }}
@@ -90,13 +90,13 @@ class AccountScreen extends Component {
                                                 resizeMode='contain'
                                             />
                                         </View>
-                                        <View style={{ flex: 3 ,justifyContent : 'center',alignItems : 'flex-start' }}>
+                                        <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
                                             <Text style={{ color: '#363A57' }}>{item.name}</Text>
                                             <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
                                         </View>
                                         <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                             <TouchableOpacity>
-                                                <Icon name='ios-close' style={{ color: '#363A57',padding : 10}} />
+                                                <Icon name='ios-close' style={{ color: '#363A57', padding: 10 }} />
                                             </TouchableOpacity>
                                         </View>
                                     </View>

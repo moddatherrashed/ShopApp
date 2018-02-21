@@ -31,7 +31,7 @@ class AccountScreen extends Component {
                     </Body>
                 </Header>
                 <Content>
-                    <View style={{ height: ScreenSize.height*0.9, flex: 6 }}>
+                    <View style={{ height: ScreenSize.height * 0.9, flex: 6 }}>
                         <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
                             <View style={{ flexDirection: 'row', flex: 5 }}>
                                 <View style={{ flex: 4, padding: 10, justifyContent: 'center' }}>

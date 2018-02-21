@@ -9,9 +9,9 @@ import {
     StatusBar
 } from 'react-native';
 import SearchHeader from 'react-native-search-header';
- 
+
 const DEVICE_WIDTH = Dimensions.get(`window`).width;
- 
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -54,29 +54,29 @@ const styles = StyleSheet.create({
         backgroundColor: `#ff5722`
     }
 });
- 
+
 export default class SearchBarRelease extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
     }
-    render () {
+    render() {
         return (
-            <View style = { styles.container }>
-                <StatusBar barStyle = 'light-content' />
-                <View style = { styles.status }/>
-                <View style = { styles.header }>
-                    <Text style = { styles.label }> Demo </Text>
+            <View style={styles.container}>
+                <StatusBar barStyle='light-content' />
+                <View style={styles.status} />
+                <View style={styles.header}>
+                    <Text style={styles.label}> Demo </Text>
                     <Button
-                        title = 'Search'
-                        color = '#f5fcff'
-                        onPress = {() => this.searchHeader.show()}
+                        title='Search'
+                        color='#f5fcff'
+                        onPress={() => this.searchHeader.show()}
                     />
                 </View>
                 <SearchHeader
-                    ref = {(searchHeader) => {
+                    ref={(searchHeader) => {
                         this.searchHeader = searchHeader;
                     }}
-                    onGetSearchAutocompletions = {async (text) => {
+                    onGetSearchAutocompletions={async (text) => {
                         if (text) {
                             const response = await fetch(`http://suggestqueries.google.com/complete/search?client=firefox&q=${text}`, {
                                 method: `get`
@@ -88,11 +88,11 @@ export default class SearchBarRelease extends Component {
                         }
                     }}
                 />
-                <View style = { styles.button }>
+                <View style={styles.button}>
                     <Button
-                        title = 'Open Search'
-                        color = '#f5fcff'
-                        onPress = {() => this.searchHeader.show()}
+                        title='Open Search'
+                        color='#f5fcff'
+                        onPress={() => this.searchHeader.show()}
                     />
                 </View>
             </View>
