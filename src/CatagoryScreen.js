@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, FlatList, ImageBackground, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
 import ScreenSize from './ScreenSize'
 import ItemScreen from './ItemScreen';
-
+import SearchBar from './components/SearchBar'
 class CatagoryScreen extends Component {
     constructor(props) {
         super(props)
@@ -35,7 +35,8 @@ class CatagoryScreen extends Component {
                 {
                     name: 'White T-eeee',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-                }]
+                }],
+            searchText: ''
         }
     }
 
@@ -48,6 +49,9 @@ class CatagoryScreen extends Component {
         },
 
     })
+    search(searchText) {
+        this.setState({ searchText: searchText })
+    }
 
     render() {
         const { params } = this.props.navigation.state
@@ -64,8 +68,17 @@ class CatagoryScreen extends Component {
             width = width * 0.37
             colNum = 2
         }
+        let filterSearch = this.state.data.filter(
+            (data) => {
+                return data.name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
+
+            }
+        )
         return (
             <ScrollView>
+                <SearchBar
+                    onChangeText={(searchText) => this.search(searchText)}
+                />
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
                     horizontal={false}
@@ -75,7 +88,7 @@ class CatagoryScreen extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
-                    data={this.state.data}
+                    data={filterSearch}
                     renderItem={({ item, index }) =>
                         <View>
                             <TouchableOpacity
