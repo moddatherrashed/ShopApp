@@ -136,7 +136,7 @@ class HomeScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57' }}>
+                <Header style={{ backgroundColor: '#363A57'}}>
                     <Left>
                         <Button transparent>
                             <Button transparent

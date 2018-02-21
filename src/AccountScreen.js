@@ -46,15 +46,16 @@ class AccountScreen extends Component {
                                 </View>
                             </View>
                         </View>
-                        <View style={{ flex: 0.5, flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
+                        <TouchableOpacity style={{ flex: 0.5, flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
                             <Icon name='ios-home' />
                             <Text style={{ marginLeft: 10 }}>Addresses</Text>
-                        </View>
+                        </TouchableOpacity>
 
                         <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center' }}>
-                            <View style={{width : '90%',elevation : 15, backgroundColor : '#FFFFFF',padding : 10,margin : 10,justifyContent : 'center', alignItems : 'center'}}>
+                            <TouchableOpacity style={{width : 100,borderRadius : 50, height : 100,elevation : 15, backgroundColor : '#FFFFFF',padding : 10,margin : 10,justifyContent : 'center', alignItems : 'center'}}>
+                                <Icon name='power'/>
                                 <Text>Sign Out</Text>
-                            </View>
+                            </TouchableOpacity>
                         </View>
                     </View>
 
