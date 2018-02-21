@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import { Container, Content,Icon } from 'native-base'
+import { View, Text,StatusBar } from 'react-native'
+import { Container, Content, Icon,Title, Header, Left, Body, Button } from 'native-base'
 
 class AccountScreen extends Component {
     static navigationOptions = {
@@ -11,6 +11,25 @@ class AccountScreen extends Component {
     render() {
         return (
             <Container>
+                <StatusBar
+                    hidden
+                />
+                <Header style={{ backgroundColor: '#363A57' }}>
+                    <Left>
+                        <Button transparent>
+                            <Button transparent
+                                onPress={() => {
+                                    this.props.navigation.navigate('DrawerOpen')
+                                }}>
+                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+                            </Button>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Account</Title>
+                    </Body>
+                </Header>
                 <Content>
                     <Text>here is account Screen</Text>
                 </Content>

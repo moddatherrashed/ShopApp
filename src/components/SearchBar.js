@@ -12,7 +12,7 @@ const SearchBar = (props) => {
             borderRadius: 10,
         }}>
             <Icon name='search' style={{
-                color: '#46454d',
+                color: '#363A57',
                 padding: 7,
                 elevation: 15
             }} />
@@ -24,7 +24,7 @@ const SearchBar = (props) => {
                 onChangeText={props.onChangeText}
                 value={props.value}
                 placeholder='search for...'
-                placeholderTextColor='#46454d'
+                placeholderTextColor='#363A57'
                 underlineColorAndroid="transparent"
 
             />

@@ -49,7 +49,7 @@ class HomeScreen extends Component {
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }],
             offerFalg: true,
-            wasOfferFlagTrue : false,
+            wasOfferFlagTrue: false,
             badgeScale: new Animated.Value(0),
             textValue: 0,
             searchText: ''
@@ -99,9 +99,9 @@ class HomeScreen extends Component {
         if (this.state.offerFalg) {
             this.setState({
                 offerFalg: false,
-                wasOfferFlagTrue : true
+                wasOfferFlagTrue: true
             })
-            
+
         }
         if (searchText === '' && this.state.wasOfferFlagTrue === true) {
             this.setState({
@@ -149,15 +149,9 @@ class HomeScreen extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Header</Title>
+                        <Title>Catagories</Title>
                     </Body>
                     <Right>
-                        <Button transparent
-                            onPress={() => this.setState({
-                                isModalVisible: true
-                            })}>
-                            <Icon name='search' style={{ color: '#FFFFFF' }} />
-                        </Button>
                         <Button transparent
                             onPress={() => this.animateBadge()}>
                             <Icon name='cart' style={{ color: '#FFFFFF' }} />
