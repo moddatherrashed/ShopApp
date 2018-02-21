@@ -31,23 +31,6 @@ class HomeScreen extends Component {
                     name: 'White T-shirt',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }],
-            imageSearch: [
-                {
-                    name: 'Gray Jacket',
-                    url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
-                },
-                {
-                    name: 'Adidas Jacket',
-                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
-                },
-                {
-                    name: 'Water Prof Jacket',
-                    url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
-                },
-                {
-                    name: 'White T-shirt',
-                    url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-                }],
             offerFalg: true,
             wasOfferFlagTrue: false,
             badgeScale: new Animated.Value(0),
@@ -136,7 +119,7 @@ class HomeScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57'}}>
+                <Header style={{ backgroundColor: '#363A57' }}>
                     <Left>
                         <Button transparent>
                             <Button transparent
