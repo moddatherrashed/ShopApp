@@ -31,10 +31,27 @@ class HomeScreen extends Component {
                     name: 'White T-shirt',
                     url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
                 }],
+            imageSearch: [
+                {
+                    name: 'Gray Jacket',
+                    url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                },
+                {
+                    name: 'Adidas Jacket',
+                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
+                },
+                {
+                    name: 'Water Prof Jacket',
+                    url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                },
+                {
+                    name: 'White T-shirt',
+                    url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                }],
             offerFalg: true,
+            wasOfferFlagTrue : false,
             badgeScale: new Animated.Value(0),
             textValue: 0,
-            isModalVisible: false,
             searchText: ''
         }
     }
@@ -77,6 +94,21 @@ class HomeScreen extends Component {
             )
         }
     }
+    search(searchText) {
+        this.setState({ searchText: searchText })
+        if (this.state.offerFalg) {
+            this.setState({
+                offerFalg: false,
+                wasOfferFlagTrue : true
+            })
+            
+        }
+        if (searchText === '' && this.state.wasOfferFlagTrue === true) {
+            this.setState({
+                offerFalg: true
+            })
+        }
+    }
 
     render() {
         const { navigate } = this.props.navigation
@@ -92,6 +124,12 @@ class HomeScreen extends Component {
             width = width * 0.37
             colNum = 2
         }
+        let filterSearch = this.state.data.filter(
+            (data) => {
+                return data.name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
+
+            }
+        )
         return (
 
             <Container>
@@ -128,11 +166,8 @@ class HomeScreen extends Component {
                     </Right>
                 </Header>
                 <Content>
-                    <SearchHeader
-                        ref={(searchHeader) => {
-                            this.searchHeader = searchHeader;
-                        }}
-                        headerBgColor='#363A57'
+                    <SearchBar
+                        onChangeText={(searchText) => this.search(searchText)}
                     />
                     {this.renderOffer(this.state.offerFalg)}
                     <FlatList
@@ -144,7 +179,7 @@ class HomeScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
-                        data={this.state.data}
+                        data={filterSearch}
                         renderItem={({ item, index }) =>
                             <View>
                                 <TouchableOpacity
@@ -173,41 +208,7 @@ class HomeScreen extends Component {
                         }
                     />
                 </Content>
-                <Modal isVisible={this.state.isModalVisible}
-                    backdropOpacity={0.2}
-                    onBackdropPress={() => this.setState({ isModalVisible: false })}
-                    style={{
-                        backgroundColor: '#FFFFFF',
-                        borderColor: 'gray',
-                        borderWidth: 1,
-                        justifyContent: 'flex-start',
 
-                    }}>
-                    <View style={{ flexDirection: 'row', backgroundColor: '#363A57' }}>
-                        <Button transparent onPress={() => { this.setState({ isModalVisible: false }) }}>
-                            <Icon name='close' style={{ color: '#FFFFFF' }} />
-                        </Button>
-                        <TextInput
-                            style={{ height: 40, flex: 1, color: '#FFFFFF' }}
-                            placeholderTextColor='#FFFFFF'
-                            placeholder='Search for ...'
-                            blurOnSubmit={true}
-                            underlineColorAndroid='#FFFFFF'
-                            contextMenuHidden={true}
-                            selectionColor='#FFFFFF'
-                            returnKeyType='search'
-                            onChangeText={(searchText) => this.setState({ searchText })}
-                            value={this.state.searchText}
-                        />
-
-                        <Button transparent onPress={() => { this.setState({ isModalVisible: false }) }}>
-                            <Icon name='search' style={{ color: '#FFFFFF' }} />
-                        </Button>
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text>No Result Found</Text>
-                    </View>
-                </Modal>
             </Container>
         )
     }
