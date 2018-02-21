@@ -51,9 +51,6 @@ class CatagoryScreen extends Component {
     })
     search(searchText) {
         this.setState({ searchText: searchText })
-        if(!searchText){
-            return(<Text>No Result Found</Text>)
-        }
     }
 
     render() {
