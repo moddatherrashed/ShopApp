@@ -81,11 +81,18 @@ class AccountScreen extends Component {
                             }}
                             data={this.state.orders}
                             renderItem={({ item, index }) =>
-                                <View style={{ flexDirection: 'row', backgroundColor: '#FFFFFF', elevation: 15, width: '100%', margin: 10 }}>
+                                <View style={{
+                                    flexDirection: 'row',
+                                    backgroundColor: '#FFFFFF',
+                                    elevation: 15,
+                                    width: '100%',
+                                    borderBottomWidth: 0.5,
+                                    borderBottomColor: 'gray'
+                                }}>
                                     <View style={{ flexDirection: 'row', flex: 6 }}>
                                         <View style={{ flex: 2 }}>
                                             <Image
-                                                style={{ height: 100, width: 100 }}
+                                                style={{ height: 100, width: 100,margin :5 }}
                                                 source={item.url}
                                                 resizeMode='contain'
                                             />
