@@ -10,51 +10,63 @@ class CartScreen extends Component {
         this.state = {
             orders: [{
                 name: 'Gray Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1
             },
             {
                 name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                quantity: 1
             },
             {
                 name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                quantity: 1
             },
             {
                 name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
+                quantity: 1
             },
             {
                 name: 'Gray Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1
             },
             {
                 name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                quantity: 1
             },
             {
                 name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                quantity: 1
             },
             {
                 name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
+                quantity: 1
             }],
             numberOfItems: 1
         }
     }
 
-    onIncPressed() {
-        const items = ++this.state.numberOfItems
+    onIncPressed(i) {
+        let CopiedState = [...this.state.orders]
+        let newQuantity = ++this.state.orders[i].quantity
+        CopiedState[i].quantity = newQuantity
         this.setState({
-            numberOfItems: items
+            orders: CopiedState
         })
     }
-    onDecPressed() {
-        if (this.state.numberOfItems !== 1) {
-            const items = --this.state.numberOfItems
+    onDecPressed(i) {
+        if (this.state.orders[i].quantity !== 1) {
+            let CopiedState = [...this.state.orders]
+            let newQuantity = --this.state.orders[i].quantity
+            CopiedState[i].quantity = newQuantity
             this.setState({
-                numberOfItems: items
+                orders: CopiedState
             })
         }
     }
@@ -123,14 +135,14 @@ class CartScreen extends Component {
                                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                                 <TouchableOpacity
                                                     onPress={() => {
-                                                        this.onDecPressed()
+                                                        this.onDecPressed(index)
                                                     }}>
                                                     <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
                                                 </TouchableOpacity>
-                                                <Text style={{ padding: 10 }}>{this.state.numberOfItems}</Text>
+                                                <Text style={{ padding: 10 }}>{item.quantity}</Text>
                                                 <TouchableOpacity
                                                     onPress={() => {
-                                                        this.onIncPressed()
+                                                        this.onIncPressed(index)
                                                     }}>
                                                     <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
                                                 </TouchableOpacity>
