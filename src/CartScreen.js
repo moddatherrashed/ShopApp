@@ -141,12 +141,27 @@ class CartScreen extends Component {
                                 }
                             }
                         }>
-                            <View style={{ flex: 1, backgroundColor: 'gray', width: '100%', flexDirection: 'row' }}>
-                                <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text>SUBTOTAL</Text>
+                            <View style={{
+                                flex: 1,
+                                backgroundColor: '#dcdde1',
+                                width: '100%',
+                                flexDirection: 'row'
+                            }}>
+                                <View style={{
+                                    flex: 0.5,
+                                    justifyContent: 'center',
+                                    alignItems: 'flex-start',
+                                    margin: 10
+                                }}>
+                                    <Text style={{ color: '#000000', fontWeight: 'bold' }}>SUBTOTAL</Text>
                                 </View>
-                                <View style={{ flex: 0.5, alignItems: 'flex-end', justifyContent: 'center' }}>
-                                    <Text>0</Text>
+                                <View style={{
+                                    flex: 0.5,
+                                    alignItems: 'flex-end',
+                                    justifyContent: 'center',
+                                    margin: 10
+                                }}>
+                                    <Text style={{ color: '#000000', fontWeight: 'bold' }}>0 JD</Text>
                                 </View>
                             </View>
                             <TouchableOpacity style={{
