@@ -97,6 +97,7 @@ class CartScreen extends Component {
                                                 <Text style={{ margin: 5 }}>Remove</Text>
                                             </TouchableOpacity>
                                         </View>
+                                        
                                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
                                             <Text style={{ color: '#363A57' }}>{item.name}</Text>
                                             <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
