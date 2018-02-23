@@ -11,44 +11,51 @@ class CartScreen extends Component {
             orders: [{
                 name: 'Gray Jacket',
                 url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 50
             },
             {
                 name: 'Adidas Jacket',
                 url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 50
             },
             {
                 name: 'Water Prof Jacket',
                 url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 20
             },
             {
                 name: 'White T-shirt',
                 url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 15
             },
             {
                 name: 'Gray Jacket',
                 url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 5
             },
             {
                 name: 'Adidas Jacket',
                 url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 30
             },
             {
                 name: 'Water Prof Jacket',
                 url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1
+                quantity: 1,
+                price: 40
             },
             {
                 name: 'White T-shirt',
                 url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-                quantity: 1
-            }],
-            numberOfItems: 1
+                quantity: 1,
+                price: 50
+            }]
         }
     }
 
@@ -76,6 +83,13 @@ class CartScreen extends Component {
         headerStyle: {
             backgroundColor: '#FFFFFF',
         },
+    }
+    subTotalCounter() {
+        let total = 0
+        this.state.orders.map((obj) => {
+            total += obj.price
+        })
+        return (<Text style={{ color: '#000000', fontWeight: 'bold' }}>{total} JD</Text>)
     }
     render() {
         return (
@@ -127,7 +141,7 @@ class CartScreen extends Component {
 
                                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
                                             <Text style={{ color: '#363A57' }}>{item.name}</Text>
-                                            <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
+                                            <Text style={{ fontWeight: 'bold', color: '#363A57' }}>{item.price}</Text>
                                             <Text>Size : M</Text>
                                         </View>
                                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
@@ -146,6 +160,7 @@ class CartScreen extends Component {
                                                     }}>
                                                     <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
                                                 </TouchableOpacity>
+
                                             </View>
                                         </View>
                                     </View>
@@ -196,7 +211,7 @@ class CartScreen extends Component {
                                     justifyContent: 'center',
                                     margin: 10
                                 }}>
-                                    <Text style={{ color: '#000000', fontWeight: 'bold' }}>0 JD</Text>
+                                    {this.subTotalCounter()}
                                 </View>
                             </View>
                             <TouchableOpacity style={{
