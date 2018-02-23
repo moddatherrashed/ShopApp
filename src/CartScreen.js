@@ -39,10 +39,25 @@ class CartScreen extends Component {
             {
                 name: 'White T-shirt',
                 url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-            }]
+            }],
+            numberOfItems: 1
         }
     }
 
+    onIncPressed() {
+        const items = ++this.state.numberOfItems
+        this.setState({
+            numberOfItems: items
+        })
+    }
+    onDecPressed() {
+        if (this.state.numberOfItems !== 1) {
+            const items = --this.state.numberOfItems
+            this.setState({
+                numberOfItems: items
+            })
+        }
+    }
     static navigationOptions = {
         title: `Cart`,
         headerTintColor: '#363A57',
@@ -106,11 +121,17 @@ class CartScreen extends Component {
                                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text>Number of Items</Text>
                                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                                <TouchableOpacity>
+                                                <TouchableOpacity
+                                                    onPress={() => {
+                                                        this.onDecPressed()
+                                                    }}>
                                                     <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
                                                 </TouchableOpacity>
-                                                <Text style={{ padding: 10 }}>2</Text>
-                                                <TouchableOpacity>
+                                                <Text style={{ padding: 10 }}>{this.state.numberOfItems}</Text>
+                                                <TouchableOpacity
+                                                    onPress={() => {
+                                                        this.onIncPressed()
+                                                    }}>
                                                     <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
                                                 </TouchableOpacity>
                                             </View>
