@@ -44,7 +44,8 @@ class CartScreen extends Component {
                 quantity: 1,
                 price: 50
             },
-        ]
+            ],
+            subTotal: 0
         }
     }
 
@@ -76,9 +77,10 @@ class CartScreen extends Component {
     subTotalCounter() {
         let total = 0
         this.state.orders.map((obj) => {
-            total += obj.price
+            total += (obj.price) * obj.quantity
         })
-        return (<Text style={{ color: '#000000', fontWeight: 'bold' }}>{total} JD</Text>)
+        return <Text style={{ color: '#000000', fontWeight: 'bold' }}>{total} JD</Text>
+
     }
     render() {
         return (
@@ -91,7 +93,7 @@ class CartScreen extends Component {
                         <FlatList
                             keyExtractor={item => item.name}
                             contentContainerStyle={{
-                                height : ScreenSize.height-100
+                                height: ScreenSize.height - 100
                             }}
                             data={this.state.orders}
                             renderItem={({ item, index }) =>
