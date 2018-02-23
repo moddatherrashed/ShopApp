@@ -9,7 +9,7 @@ class CartScreen extends Component {
         super(props)
         this.state = {
             orders: [{
-                name: 'Gray Jacket',
+                name: 'Grssay Jacket',
                 url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
                 quantity: 1,
                 price: 50
