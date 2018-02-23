@@ -44,9 +44,6 @@ class CartScreen extends Component {
     }
 
     static navigationOptions = {
-        drawerIcon: (
-            <Icon name='list' style={{ color: '#FFFFFF' }} />
-        ),
         title: `Cart`,
         headerTintColor: '#363A57',
         headerStyle: {
@@ -108,9 +105,13 @@ class CartScreen extends Component {
                                         <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
                                             <Text>Number of Items</Text>
                                             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                                <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
+                                                <TouchableOpacity>
+                                                    <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
+                                                </TouchableOpacity>
                                                 <Text style={{ padding: 10 }}>2</Text>
-                                                <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
+                                                <TouchableOpacity>
+                                                    <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
+                                                </TouchableOpacity>
                                             </View>
                                         </View>
                                     </View>
