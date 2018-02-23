@@ -9,6 +9,7 @@ import CatagoryScreen from './CatagoryScreen'
 import ItemScreen from './ItemScreen'
 import Badge from './components/Badge'
 import Modal from 'react-native-modal'
+import CartScreen from './CartScreen';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -136,7 +137,10 @@ class HomeScreen extends Component {
                     </Body>
                     <Right>
                         <Button transparent
-                            onPress={() => this.animateBadge()}>
+                            onPress={() => 
+                            //this.animateBadge()
+                            navigate('CartScreen')
+                        }>
                             <Icon name='cart' style={{ color: '#FFFFFF' }} />
                             <Badge text={this.state.textValue} badgeScale={this.state.badgeScale} />
                         </Button>
@@ -195,6 +199,7 @@ const StackNavigation = StackNavigator({
     HomeScreen: { screen: HomeScreen },
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
+    CartScreen : {screen : CartScreen}
 })
 
 const styles = StyleSheet.create({
