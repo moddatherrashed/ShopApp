@@ -80,13 +80,13 @@ class CatagoryScreen extends Component {
                     onChangeText={(searchText) => this.search(searchText)}
                 />
                 <FlatList
-                    contentContainerStyle={{ margin: 2 }}
                     horizontal={false}
                     numColumns={colNum}
                     keyExtractor={item => item.name}
                     contentContainerStyle={{
                         justifyContent: 'center',
-                        alignItems: 'center'
+                        alignItems: 'center',
+                        marginTop : 10
                     }}
                     data={filterSearch}
                     renderItem={({ item, index }) =>
@@ -94,14 +94,14 @@ class CatagoryScreen extends Component {
                             <TouchableOpacity
                                 style={{
                                     flex: 1,
-                                    margin: 5,
                                     height: width * 2,
                                     width: width * 1.28,
                                     justifyContent: 'center',
                                     alignItems: 'center',
-                                    borderColor: '#FFFFFF',
+                                    borderColor: 'gray',
                                     borderWidth: 1,
                                     elevation: 15,  
+                                    borderWidth : 0.5,
                                     backgroundColor: '#FFFFFF'
                                 }}
                                 onPress={() => navigate("ItemScreen", { name: item.name, url: item.url })}>
