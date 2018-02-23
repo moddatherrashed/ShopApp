@@ -101,7 +101,7 @@ class CatagoryScreen extends Component {
                                     alignItems: 'center',
                                     borderColor: '#FFFFFF',
                                     borderWidth: 1,
-                                    elevation: 15,
+                                    elevation: 15,  
                                     backgroundColor: '#FFFFFF'
                                 }}
                                 onPress={() => navigate("ItemScreen", { name: item.name, url: item.url })}>

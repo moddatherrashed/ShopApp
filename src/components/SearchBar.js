@@ -7,9 +7,7 @@ const SearchBar = (props) => {
         <View style={{
             flexDirection: 'row',
             backgroundColor: '#FFFFFF',
-            margin: 5,
             elevation: 5,
-            borderRadius: 10,
         }}>
             <Icon name='search' style={{
                 color: '#363A57',
