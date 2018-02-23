@@ -15,47 +15,36 @@ class CartScreen extends Component {
                 price: 50
             },
             {
-                name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            {
-                name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1,
-                price: 20
-            },
-            {
-                name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-                quantity: 1,
-                price: 15
-            },
-            {
-                name: 'Gray Jacket',
+                name: 'Gray Jassscket',
                 url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
                 quantity: 1,
-                price: 5
+                price: 50
             },
             {
-                name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                name: 'Gray Jadddcket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
                 quantity: 1,
-                price: 30
+                price: 51
             },
             {
-                name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                quantity: 1,
-                price: 40
-            },
-            {
-                name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
+                name: 'Gray Jacffffket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
                 quantity: 1,
                 price: 50
-            }]
+            },
+            {
+                name: 'Gray Jaccccket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 50
+            },
+            {
+                name: 'Gray Jacrrket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 50
+            },
+        ]
         }
     }
 
@@ -102,9 +91,7 @@ class CartScreen extends Component {
                         <FlatList
                             keyExtractor={item => item.name}
                             contentContainerStyle={{
-                                justifyContent: 'center',
-                                alignItems: 'center',
-
+                                height : ScreenSize.height-100
                             }}
                             data={this.state.orders}
                             renderItem={({ item, index }) =>
@@ -113,7 +100,6 @@ class CartScreen extends Component {
                                     backgroundColor: '#FFFFFF',
                                     elevation: 15,
                                     width: '100%',
-
                                     borderBottomWidth: 0.5,
                                     borderBottomColor: 'gray'
                                 }}>
@@ -179,7 +165,7 @@ class CartScreen extends Component {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 position: 'absolute',
-                                bottom: 0,
+                                bottom: 1,
                                 right: 0,
                                 left: 0,
                                 shadowColor: "#000000",
