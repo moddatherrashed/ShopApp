@@ -100,6 +100,8 @@ class CatagoryScreen extends Component {
                                     alignItems: 'center',
                                     borderColor: 'gray',
                                     borderWidth: 1,
+                                    margin : 1 ,
+                                    padding : 2,
                                     elevation: 15,  
                                     borderWidth : 0.5,
                                     backgroundColor: '#FFFFFF'

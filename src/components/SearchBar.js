@@ -16,8 +16,8 @@ const SearchBar = (props) => {
             }} />
             <TextInput
                 style={{
-                    height: 40,
-                    width: '85%'
+                    height: 42,
+                    width: '90%',
                 }}
                 onChangeText={props.onChangeText}
                 value={props.value}
