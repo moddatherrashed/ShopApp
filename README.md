@@ -1,6 +1,6 @@
 # ShopApp (React Native)
 
-#this app is an open source React Native App 
+# this app is an open source React Native App 
 
 # Copyrights
 
