@@ -1,6 +1,7 @@
 # ShopApp (React Native)
 
+#this app is an open source React Native App 
+
 # Copyrights
 
-*This module is Copyrighted (c) 2018-2019 by Swiss Tocuh Tech Solutions, All Rights Reserved.
- Usage of this module is subject to the Terms of Service agreement with Swiss Touch Tech Solutions.*
+*you can take the source code but in terms to learn to copy paste ;)*
