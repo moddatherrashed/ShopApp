@@ -89,7 +89,7 @@ class CartScreen extends Component {
                     hidden
                 />
                 <View>
-                    <View style={{ height: '100%' }}>
+                    <View style={{ height: ScreenSize.height-155 }}>
                         <FlatList
                             keyExtractor={item => item.name}
                             contentContainerStyle={{
@@ -167,10 +167,7 @@ class CartScreen extends Component {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 position: 'absolute',
-                                bottom: 0,
-                                right: 0,
-                                top: -100,
-                                left: 0,
+                                width : '100%',
                                 shadowColor: "#000000",
                                 shadowOpacity: 0.8,
                                 shadowRadius: 2,

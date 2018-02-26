@@ -29,11 +29,11 @@ class AccountScreen extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Language</Title>
+                        <Title>Connect with us</Title>
                     </Body>
                 </Header>
                 <Content>
-                    <Text>here is language Screen</Text>
+                    <Text>here is Connect Screen</Text>
                 </Content>
             </Container>
         )
