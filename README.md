@@ -4,4 +4,4 @@
 
 # Copyrights
 
-*you can take the source code but in terms to learn to copy paste ;)*
+*you can take the source code but in terms to learn not to copy and paste ;)*
