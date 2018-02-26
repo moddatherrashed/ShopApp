@@ -5,6 +5,7 @@ import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'nat
 class AccountScreen extends Component {
 
     static navigationOptions = {
+        drawerLabel: 'Connect With Us',
         drawerIcon: (
             <Icon name='ios-call' style={{ color: '#FFFFFF' }} />
         )

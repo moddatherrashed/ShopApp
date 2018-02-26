@@ -7,7 +7,7 @@ class AccountScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
             <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
-        )
+        ),
     }
 
     render() {
@@ -29,7 +29,7 @@ class AccountScreen extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Connect With Us</Title>
+                        <Title>Connect With Usrr</Title>
                     </Body>
                 </Header>
                 <Content>

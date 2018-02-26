@@ -49,6 +49,7 @@ class HomeScreen extends Component {
         }).start()
     }
     static navigationOptions = {
+        drawerLabel: 'Catagories',
         drawerIcon: (
             <Icon name='home' style={{ color: '#FFFFFF' }} />
         ),
@@ -137,10 +138,10 @@ class HomeScreen extends Component {
                     </Body>
                     <Right>
                         <Button transparent
-                            onPress={() => 
-                            //this.animateBadge()
-                            navigate('CartScreen')
-                        }>
+                            onPress={() =>
+                                //this.animateBadge()
+                                navigate('CartScreen')
+                            }>
                             <Icon name='cart' style={{ color: '#FFFFFF' }} />
                             <Badge text={this.state.textValue} badgeScale={this.state.badgeScale} />
                         </Button>
@@ -199,7 +200,7 @@ const StackNavigation = StackNavigator({
     HomeScreen: { screen: HomeScreen },
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
-    CartScreen : {screen : CartScreen}
+    CartScreen: { screen: CartScreen }
 })
 
 const styles = StyleSheet.create({
