@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'
+import {
+    View,
+    Text,
+    Image,
+    ScrollView,
+    TouchableOpacity,
+    AsyncStorage
+} from 'react-native'
 import { Icon, Button, Badge } from 'native-base'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"

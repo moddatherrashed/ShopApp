@@ -89,10 +89,11 @@ class CartScreen extends Component {
                     hidden
                 />
                 <View>
-                    <View style={{marginBottom :100}}>
+                    <View style={{ height: '100%' }}>
                         <FlatList
                             keyExtractor={item => item.name}
                             contentContainerStyle={{
+                                marginBottom: 100,
                             }}
                             data={this.state.orders}
                             renderItem={({ item, index }) =>
@@ -168,7 +169,7 @@ class CartScreen extends Component {
                                 position: 'absolute',
                                 bottom: 0,
                                 right: 0,
-                                top : -100,
+                                top: -100,
                                 left: 0,
                                 shadowColor: "#000000",
                                 shadowOpacity: 0.8,
