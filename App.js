@@ -6,12 +6,12 @@ import { Image, Text, View } from 'react-native'
 import { Container, Header, Body, Content } from 'native-base'
 import OrdersScreen from './src/OrdersScreen'
 import FavoritesScreen from './src/FavoritesScreen'
-import LanguageScreen from './src/LanguageScreen'
 import ConnectScreen from './src/ConnectScreen'
+import LanguageScreen from './src/LanguageScreen'
 
 const CustomDrawerComponent = (props) => (
   <Container>
-    <Content style={{backgroundColor : '#363a57'}}>
+    <Content style={{ backgroundColor: '#363a57' }}>
       <DrawerItems {...props} />
     </Content>
     <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#363a57' }}>
@@ -30,7 +30,8 @@ const App = DrawerNavigator({
   Account: { screen: AccountScreen },
   Orders: { screen: OrdersScreen },
   Favorites: { screen: FavoritesScreen },
-  Language: { screen: LanguageScreen }
+  Language: { screen: LanguageScreen },
+  ConnectScreen: { screen: ConnectScreen }
 
 }, {
     initialRouteName: 'HomeScreen',
@@ -40,8 +41,8 @@ const App = DrawerNavigator({
     drawerRoggleRoute: 'DrawerToggle',
     contentOptions: {
       activeTintColor: '#FFFFFF',
-      labelStyle : {
-        color :'#FFFFFF'
+      labelStyle: {
+        color: '#FFFFFF'
       }
     }
   })

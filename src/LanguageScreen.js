@@ -6,7 +6,7 @@ import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'nat
 class AccountScreen extends Component {
     static navigationOptions = {
         drawerIcon: (
-            <Icon name='settings' style={{ color: '#FFFFFF' }} />
+            <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
         )
     }
 
@@ -29,7 +29,7 @@ class AccountScreen extends Component {
                         </Button>
                     </Left>
                     <Body>
-                        <Title>Language</Title>
+                        <Title>Connect With Us</Title>
                     </Body>
                 </Header>
                 <Content>
