@@ -92,7 +92,7 @@ class AccountScreen extends Component {
                                     <View style={{ flexDirection: 'row', flex: 6 }}>
                                         <View style={{ flex: 2 }}>
                                             <Image
-                                                style={{ height: 100, width: 100,margin :5 }}
+                                                style={{ height: 100, width: 100, margin: 5 }}
                                                 source={item.url}
                                                 resizeMode='contain'
                                             />

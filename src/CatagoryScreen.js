@@ -83,37 +83,20 @@ class CatagoryScreen extends Component {
                     horizontal={false}
                     numColumns={colNum}
                     keyExtractor={item => item.name}
-                    contentContainerStyle={{
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        marginTop : 10
-                    }}
+                    contentContainerStyle={styles.contentStyle}
                     data={filterSearch}
                     renderItem={({ item, index }) =>
                         <View>
                             <TouchableOpacity
-                                style={{
-                                    flex: 1,
-                                    height: width * 2,
-                                    width: width * 1.28,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    borderColor: 'gray',
-                                    borderWidth: 1,
-                                    margin : 1 ,
-                                    padding : 2,
-                                    elevation: 15,  
-                                    borderWidth : 0.5,
-                                    backgroundColor: '#FFFFFF'
-                                }}
+                                style={styles.touchableOpacityStyle}
                                 onPress={() => navigate("ItemScreen", { name: item.name, url: item.url })}>
                                 <Image
-                                    style={{ height: '80%', width: '100%', margin: 3 }}
+                                    style={styles.imageStyle}
                                     source={item.url}
                                     resizeMode="contain"
                                 />
                                 <Text style={styles.textStyle}>{item.name}</Text>
-                                <Text style={{ fontWeight: "bold", color: '#000', fontSize: 20 }}>50 JD</Text>
+                                <Text style={styles.priceTextStyle}>50 JD</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -127,6 +110,35 @@ const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
         color: '#46454d'
+    },
+    priceTextStyle: {
+        fontWeight: "bold",
+        color: '#000',
+        fontSize: 20
+    },
+    imageStyle: {
+        height: '80%',
+        width: '100%',
+        margin: 3
+    },
+    touchableOpacityStyle: {
+        flex: 1,
+        height: width * 2,
+        width: width * 1.28,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderColor: 'gray',
+        borderWidth: 1,
+        margin: 1,
+        padding: 2,
+        elevation: 15,
+        borderWidth: 0.5,
+        backgroundColor: '#FFFFFF'
+    },
+    contentStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 10
     }
 })
 

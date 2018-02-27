@@ -1,0 +1,6 @@
+# all is readuy except :
+
+1) add login screen 
+2) add localization to the app 
+3) change headers (make back the original headers)
+4) flip the context depend on the language 

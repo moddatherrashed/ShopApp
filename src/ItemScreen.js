@@ -5,7 +5,8 @@ import {
     Image,
     ScrollView,
     TouchableOpacity,
-    AsyncStorage
+    AsyncStorage,
+    StyleSheet
 } from 'react-native'
 import { Icon, Button, Badge } from 'native-base'
 import ScreenSize from './ScreenSize'
@@ -42,31 +43,31 @@ class ItemScreen extends Component {
     render() {
         const { params } = this.props.navigation.state
         return (
-            <View style={{ flex: 2, backgroundColor: '#FFFFFF' }}>
-                <ScrollView style={{ flex: 1.9 }}>
-                    <View style={{ margin: 5, backgroundColor: '#FFFFFF', elevation: 15, marginBottom: 10, borderRadius: 5 }}>
+            <View style={styles.conatinerStyle}>
+                <ScrollView style={styles.scrollViewStyle}>
+                    <View style={styles.imageContainer}>
                         <Image
-                            style={{ height: ScreenSize.height * 0.6, width: '100%', flex: 0.9, }}
+                            style={styles.imageStyle}
                             source={params.url}
                             resizeMode='contain'
                         />
-                        <View style={{ flexDirection: 'row', flex: 4, alignItems: 'center', justifyContent: 'center' }}>
-                            <View style={{ flexDirection: 'column', flex: 1.5 }}>
-                                <Text style={{ padding: 5, flex: 1, textAlign: 'left', fontWeight: 'bold' }}>{params.name}</Text>
-                                <Text style={{ padding: 10, textAlign: 'left', flex: 1, fontWeight: 'bold', fontSize: 20 }}>50 JD</Text>
+                        <View style={styles.priceNameFavContainer}>
+                            <View style={styles.namePriceConatiner}>
+                                <Text style={styles.nameTextStyle}>{params.name}</Text>
+                                <Text style={styles.priceTextStyle}>50 JD</Text>
                             </View>
-                            <View style={{ flexDirection: 'row', flex: 1.5 }}>
-                                <Button bordered style={{ borderColor: '#363A57', justifyContent: 'center', width: '100%' }}
+                            <View style={styles.sizeSelectorStyle}>
+                                <Button bordered style={styles.sizeBtnStyle}
                                     onPress={() => {
                                         this.setState({
                                             isModalVisible: true
                                         })
                                     }}
                                 >
-                                    <Text style={{ padding: 5, color: '#363A57', textAlign: 'center' }}>{this.state.size}</Text>
+                                    <Text style={styles.sizeTextStyle}>{this.state.size}</Text>
                                 </Button>
                             </View>
-                            <TouchableOpacity style={{ padding: 10, flex: 1 }}
+                            <TouchableOpacity style={styles.iconTouchStyle}
                                 onPress={() => {
                                     if (this.state.favBtn === 'ios-star-outline') {
                                         this.setState({
@@ -78,100 +79,211 @@ class ItemScreen extends Component {
                                         })
                                     }
                                 }}>
-                                <Icon name={this.state.favBtn} style={{ color: '#363A57', padding: 10, flex: 1, textAlign: 'right' }} />
+                                <Icon name={this.state.favBtn} style={styles.iconFavStyle} />
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={{ padding: 5, fontWeight: 'bold', color: '#363A57' }}>Descrption</Text>
-                    <View style={{ backgroundColor: '#FFFFFF', elevation: 25, margin: 5, borderRadius: 5, marginBottom: 10 }}>
-                        <Text style={{ padding: 20, fontSize: 15 }}>
+                    <Text style={styles.descriptionTextStyle}>Descrption</Text>
+                    <View style={styles.descriptionContainerStyle}>
+                        <Text style={styles.descriptionTextStyle}>
                             asdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwf
                         </Text>
                     </View>
                 </ScrollView>
                 <Modal isVisible={this.state.isModalVisible}
-                    style={{
-                        justifyContent: "flex-end",
-                        margin: 0
-                    }}>
-                    <View style={{ backgroundColor: '#FFFFFF', height: 200, justifyContent: 'center', alignItems: 'center' }}>
+                    style={styles.ModalStyle}>
+                    <View style={styles.conatainerModalStyle}>
                         <Text style={{
                             fontSize: 25
                         }}>Select Size</Text>
-                        <View style={{
-                            flexDirection: 'row',
-                            marginTop: ScreenSize.width * 0.1,
-                            flex: 5
-                        }} >
+                        <View style={styles.containerSizeStyle} >
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('S')}
                                 onBackButtonPress={() => this._toggleModal}
-                                style={{
-                                    padding: 5,
-                                    flex: 1
-                                }}
+                                style={styles.sizeTouchStyle}
                             >
-                                <Text style={{ borderWidth: 0.5, padding: 2, textAlign: 'center', borderColor: '#363A57', color: '#363A57' }}>S</Text>
+                                <Text style={styles.sizeTextStyle}>S</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XS')}
                                 onBackButtonPress={() => this._toggleModal}
-                                style={{
-                                    padding: 5,
-                                    flex: 1
-                                }}
+                                style={styles.sizeTouchStyle}
                             >
-                                <Text style={{ borderWidth: 0.5, padding: 2, textAlign: 'center', borderColor: '#363A57', color: '#363A57' }}>XS</Text>
+                                <Text style={styles.sizeTextStyle}>XS</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('L')}
                                 onBackButtonPress={() => this._toggleModal}
-                                style={{
-                                    padding: 5,
-                                    flex: 1
-                                }}
+                                style={styles.sizeTouchStyle}
                             >
-                                <Text style={{ borderWidth: 0.5, padding: 2, textAlign: 'center', borderColor: '#363A57', color: '#363A57' }}>L</Text>
+                                <Text style={styles.sizeTextStyle}>L</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XL')}
                                 onBackButtonPress={() => this._toggleModal}
-                                style={{
-                                    padding: 5,
-                                    flex: 1
-                                }}
+                                style={styles.sizeTouchStyle}
                             >
-                                <Text style={{ borderWidth: 0.5, padding: 2, textAlign: 'center', borderColor: '#363A57', color: '#363A57' }}>XL</Text>
+                                <Text style={styles.sizeTextStyle}>XL</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XXL')}
                                 onBackButtonPress={() => this._toggleModal}
-                                style={{
-                                    padding: 5,
-                                    flex: 1
-                                }}
+                                style={styles.sizeTouchStyle}
                             >
-                                <Text style={{ borderWidth: 0.5, padding: 2, textAlign: 'center', borderColor: '#363A57', color: '#363A57' }}>XXL</Text>
+                                <Text style={styles.sizeTextStyle}>XXL</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: 'row', flex: 2 }}>
+                        <View style={styles.cancelBtnConatinaerStyle}>
 
-                            <Button full style={{ backgroundColor: '#363A57', height: '100%', flex: 1, borderWidth: 0.5, borderColor: '#FFFFFF' }}
+                            <Button full style={styles.cancelBtnStyle}
                                 onPress={() => this.setState({ isModalVisible: false })}>
-                                <Text style={{ color: '#FFFFFF' }} >cancel</Text>
+                                <Text style={styles.textBtnsStyle} >cancel</Text>
                             </Button>
                         </View>
                     </View>
                 </Modal>
-                <View style={{ flex: 0.1, backgroundColor: '#323232', elevation: 15 }}>
-                    <Button full style={{ backgroundColor: '#363A57', height: '100%' }}
+                <View style={styles.addToCartContainerStyle}>
+                    <Button full style={styles.addToCartBtnStyle}
                         onPress={() => this.setState({ isModalVisible: true })}>
-                        <Text style={{ color: '#FFFFFF' }} >Add To Cart</Text>
+                        <Text style={styles.textBtnsStyle} >Add To Cart</Text>
                     </Button>
                 </View>
             </View>
         )
     }
 }
+const styles = StyleSheet.create({
+    addToCartBtnStyle: {
+        backgroundColor: '#363A57',
+        height: '100%'
+    },
+    addToCartContainerStyle: {
+        flex: 0.1,
+        backgroundColor: '#323232',
+        elevation: 15
+    },
+    textBtnsStyle: {
+        color: '#FFFFFF'
+    },
+    cancelBtnStyle: {
+        backgroundColor: '#363A57',
+        height: '100%',
+        flex: 1,
+        borderWidth: 0.5,
+        borderColor: '#FFFFFF'
+    },
 
+    cancelBtnConatinaerStyle: {
+        flexDirection: 'row',
+        flex: 2
+    },
+    ModalStyle: {
+        justifyContent: "flex-end",
+        margin: 0
+    },
+    sizeTextStyle: {
+        borderWidth: 0.5,
+        padding: 2,
+        textAlign: 'center',
+        borderColor: '#363A57',
+        color: '#363A57'
+    },
+    containerSizeStyle: {
+        flexDirection: 'row',
+        marginTop: ScreenSize.width * 0.1,
+        flex: 5
+    },
+    sizeTouchStyle: {
+        padding: 5,
+        flex: 1
+    },
+    conatainerModalStyle: {
+        backgroundColor: '#FFFFFF',
+        height: 200,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    conatinerStyle: {
+        flex: 2,
+        backgroundColor: '#FFFFFF'
+    },
+    imageContainer: {
+        margin: 5,
+        backgroundColor: '#FFFFFF',
+        elevation: 15,
+        marginBottom: 10,
+        borderRadius: 5
+    },
+    priceNameFavContainer: {
+        flexDirection: 'row',
+        flex: 4,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    nameTextStyle: {
+        padding: 5,
+        flex: 1,
+        textAlign: 'left',
+        fontWeight: 'bold'
+    },
+    priceTextStyle: {
+        padding: 10,
+        textAlign: 'left',
+        flex: 1,
+        fontWeight: 'bold',
+        fontSize: 20
+    },
+    namePriceConatiner: {
+        flexDirection: 'column',
+        flex: 1.5
+    },
+    sizeSelectorStyle: {
+        flexDirection: 'row',
+        flex: 1.5
+    },
+    scrollViewStyle: {
+        flex: 1.9
+    },
+    sizeBtnStyle: {
+        borderColor: '#363A57',
+        justifyContent: 'center',
+        width: '100%'
+    },
+    sizeTextStyle: {
+        padding: 5,
+        color: '#363A57',
+        textAlign: 'center'
+    },
+    iconFavStyle: {
+        color: '#363A57',
+        padding: 10,
+        flex: 1,
+        textAlign: 'right'
+    },
+    iconTouchStyle: {
+        padding: 10,
+        flex: 1
+    },
+    imageStyle: {
+        height: ScreenSize.height * 0.6,
+        width: '100%',
+        flex: 0.9,
+    },
+    descriptionTextStyle: {
+        padding: 5,
+        fontWeight: 'bold',
+        color: '#363A57'
+    },
+    descriptionContainerStyle: {
+        backgroundColor: '#FFFFFF',
+        elevation: 25,
+        margin: 5,
+        borderRadius: 5,
+        marginBottom: 10
+    },
+    descriptionTextStyle: {
+        padding: 20,
+        fontSize: 15
+    }
+})
 export default ItemScreen
