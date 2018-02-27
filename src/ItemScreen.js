@@ -102,35 +102,35 @@ class ItemScreen extends Component {
                                 onBackButtonPress={() => this._toggleModal}
                                 style={styles.sizeTouchStyle}
                             >
-                                <Text style={styles.sizeTextStyle}>S</Text>
+                                <Text style={styles.sizeTouchTextStyle}>S</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XS')}
                                 onBackButtonPress={() => this._toggleModal}
                                 style={styles.sizeTouchStyle}
                             >
-                                <Text style={styles.sizeTextStyle}>XS</Text>
+                                <Text style={styles.sizeTouchTextStyle}>XS</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('L')}
                                 onBackButtonPress={() => this._toggleModal}
                                 style={styles.sizeTouchStyle}
                             >
-                                <Text style={styles.sizeTextStyle}>L</Text>
+                                <Text style={styles.sizeTouchTextStyle}>L</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XL')}
                                 onBackButtonPress={() => this._toggleModal}
                                 style={styles.sizeTouchStyle}
                             >
-                                <Text style={styles.sizeTextStyle}>XL</Text>
+                                <Text style={styles.sizeTouchTextStyle}>XL</Text>
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('XXL')}
                                 onBackButtonPress={() => this._toggleModal}
                                 style={styles.sizeTouchStyle}
                             >
-                                <Text style={styles.sizeTextStyle}>XXL</Text>
+                                <Text style={styles.sizeTouchTextStyle}>XXL</Text>
                             </TouchableOpacity>
                         </View>
                         <View style={styles.cancelBtnConatinaerStyle}>
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
         margin: 0
     },
-    sizeTextStyle: {
+    sizeTouchTextStyle: {
         borderWidth: 0.5,
         padding: 2,
         textAlign: 'center',
