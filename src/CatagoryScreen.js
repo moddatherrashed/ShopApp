@@ -88,7 +88,20 @@ class CatagoryScreen extends Component {
                     renderItem={({ item, index }) =>
                         <View>
                             <TouchableOpacity
-                                style={styles.touchableOpacityStyle}
+                                style={{
+                                    flex: 1,
+                                    height: width * 2,
+                                    width: width * 1.28,
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    borderColor: 'gray',
+                                    borderWidth: 1,
+                                    margin: 1,
+                                    padding: 2,
+                                    elevation: 15,
+                                    borderWidth: 0.5,
+                                    backgroundColor: '#FFFFFF'
+                                }}
                                 onPress={() => navigate("ItemScreen", { name: item.name, url: item.url })}>
                                 <Image
                                     style={styles.imageStyle}
@@ -120,20 +133,6 @@ const styles = StyleSheet.create({
         height: '80%',
         width: '100%',
         margin: 3
-    },
-    touchableOpacityStyle: {
-        flex: 1,
-        height: width * 2,
-        width: width * 1.28,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: 'gray',
-        borderWidth: 1,
-        margin: 1,
-        padding: 2,
-        elevation: 15,
-        borderWidth: 0.5,
-        backgroundColor: '#FFFFFF'
     },
     contentStyle: {
         justifyContent: 'center',

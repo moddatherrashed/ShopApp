@@ -165,7 +165,18 @@ class HomeScreen extends Component {
                         renderItem={({ item, index }) =>
                             <View>
                                 <TouchableOpacity
-                                    style={styles.touchableOpacityStyle}
+                                    style={{
+                                        flex: 1,
+                                        margin: 5,
+                                        height: width * 2,
+                                        width: width * 1.28,
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        borderColor: '#FFFFFF',
+                                        borderWidth: 1,
+                                        elevation: 15,
+                                        backgroundColor: '#FFFFFF'
+                                    }}
                                     onPress={() => navigate('CatagoryScreen', { name: item.name })}>
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
@@ -205,18 +216,6 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         backgroundColor: '#FFFFFF'
     },
-    touchableOpacityStyle: {
-        flex: 1,
-        margin: 5,
-        height: width * 2,
-        width: width * 1.28,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderColor: '#FFFFFF',
-        borderWidth: 1,
-        elevation: 15,
-        backgroundColor: '#FFFFFF'
-    }
 })
 
 export default StackNavigation
