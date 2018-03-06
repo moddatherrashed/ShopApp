@@ -11,6 +11,7 @@ import {
 import { Icon, Button, Badge } from 'native-base'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"
+import CartScreen from './CartScreen'
 
 class ItemScreen extends Component {
 
@@ -19,7 +20,8 @@ class ItemScreen extends Component {
         this.state = {
             isModalVisible: false,
             size: 'Select Size',
-            favBtn: 'ios-star-outline'
+            favBtn: 'ios-star-outline',
+            dialgoBox: false
         }
     }
     _toggleModal = () =>
@@ -42,6 +44,7 @@ class ItemScreen extends Component {
     })
     render() {
         const { params } = this.props.navigation.state
+        const { navigate } = this.props.navigation
         return (
             <View style={styles.conatinerStyle}>
                 <ScrollView style={styles.scrollViewStyle}>
@@ -142,13 +145,43 @@ class ItemScreen extends Component {
                         </View>
                     </View>
                 </Modal>
+                <Modal
+                    isVisible={this.state.dialgoBox}>
+                    <View style={{ height: '40%', backgroundColor: '#FFFFFF' }}>
+                        <View style={{ height: '80%', justifyContent: 'center' }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57' }}>Awesome Choise</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', marginTop: 25 }}>What do you want to do now ?</Text>
+                        </View>
+                        <View style={{ marginBottom: 20, width: '100%', height: '100%', alignItems: 'flex-end', flexDirection: 'row' }}>
+                            <Button style={{ height: 50, width: '50%', backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' }}
+                                onPress={() => {
+                                    this.setState({ dialgoBox: false })
+                                }}>
+                                <Text style={{ color: '#363A57' }} >Continue Shopping</Text>
+                            </Button>
+                            <Button style={{ height: 50, backgroundColor: '#363A57', width: '50%', justifyContent: 'center', alignItems: 'center' }}
+                                onPress={() => {
+                                    this.setState({ dialgoBox: false })
+                                    navigate('CartScreen')
+                                }}>
+                                <Text style={styles.textBtnsStyle} >View Cart</Text>
+                            </Button>
+                        </View>
+                    </View>
+                </Modal>
                 <View style={styles.addToCartContainerStyle}>
                     <Button full style={styles.addToCartBtnStyle}
-                        onPress={() => this.setState({ isModalVisible: true })}>
+                        onPress={() => {
+                            if (this.state.size === 'Select Size') {
+                                this.setState({ isModalVisible: true })
+                            } else {
+                                this.setState({ dialgoBox: true })
+                            }
+                        }}>
                         <Text style={styles.textBtnsStyle} >Add To Cart</Text>
                     </Button>
                 </View>
-            </View>
+            </View >
         )
     }
 }
