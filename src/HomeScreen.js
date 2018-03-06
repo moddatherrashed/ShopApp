@@ -70,11 +70,19 @@ class HomeScreen extends Component {
                     borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
                     elevation: 15, borderRadius: 5
                 }}>
-                    <Image
-                        style={{ height: ScreenSize.height * 0.4, borderRadius: 5, width: '100%' }}
+                    <ImageBackground
+                        style={{
+                            height: ScreenSize.height * 0.4,
+                            borderRadius: 5,
+                            width: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
                         source={{ uri: 'http://s1.picswalls.com/wallpapers/2014/07/24/sports-desktop-background_113128110_89.jpg' }}
                         resizeMode="cover"
-                    />
+                    >
+                        <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 7, margin: 15, borderRadius: 3 }}>Offer Title</Text>
+                    </ImageBackground>
                 </View>
             )
         }
