@@ -10,35 +10,43 @@ class AccountScreen extends Component {
         this.state = {
             orders: [{
                 name: 'Gray Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'Gray Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
+                date: '02-06-2018'
             },
             {
                 name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
+                date: '02-06-2018'
             }]
         }
     }
@@ -98,7 +106,8 @@ class AccountScreen extends Component {
                                             />
                                         </View>
                                         <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                            <Text style={{ color: '#363A57' }}>{item.name}</Text>
+                                            <Text style={{ color: '#363A57' }}>name: {item.name}</Text>
+                                            <Text style={{ color: '#363A57' }}>ordered in: {item.date}</Text>
                                             <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
                                         </View>
                                         <View style={{ flex: 1, alignItems: 'flex-end' }}>

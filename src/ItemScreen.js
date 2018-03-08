@@ -147,19 +147,37 @@ class ItemScreen extends Component {
                 </Modal>
                 <Modal
                     isVisible={this.state.dialgoBox}>
-                    <View style={{ height: '40%', backgroundColor: '#FFFFFF' }}>
+                    <View style={{ height: '40%', backgroundColor: '#FFFFFF', borderRadius: 10 }}>
                         <View style={{ height: '80%', justifyContent: 'center' }}>
                             <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57' }}>Awesome Choise</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', marginTop: 25 }}>What do you want to do now ?</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', marginTop: '20%' }}>What do you want to do now ?</Text>
                         </View>
                         <View style={{ marginBottom: 20, width: '100%', height: '100%', alignItems: 'flex-end', flexDirection: 'row' }}>
-                            <Button style={{ height: 50, width: '50%', backgroundColor: '#FFFFFF', justifyContent: 'center', alignItems: 'center' }}
+                            <Button style={{
+                                height: 50,
+                                width: '50%',
+                                backgroundColor: '#363A57',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderWidth: 5,
+                                borderColor: '#FFFFFF',
+                                borderRadius: 10
+                            }}
                                 onPress={() => {
                                     this.setState({ dialgoBox: false })
                                 }}>
-                                <Text style={{ color: '#363A57' }} >Continue Shopping</Text>
+                                <Text style={styles.textBtnsStyle} >Continue Shopping</Text>
                             </Button>
-                            <Button style={{ height: 50, backgroundColor: '#363A57', width: '50%', justifyContent: 'center', alignItems: 'center' }}
+                            <Button style={{
+                                height: 50,
+                                backgroundColor: '#363A57',
+                                width: '50%',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderWidth: 5,
+                                borderColor: '#FFFFFF',
+                                borderRadius: 10
+                            }}
                                 onPress={() => {
                                     this.setState({ dialgoBox: false })
                                     navigate('CartScreen')
@@ -196,7 +214,8 @@ const styles = StyleSheet.create({
         elevation: 15
     },
     textBtnsStyle: {
-        color: '#FFFFFF'
+        color: '#FFFFFF',
+        fontWeight: 'bold'
     },
     cancelBtnStyle: {
         backgroundColor: '#363A57',
