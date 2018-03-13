@@ -3,6 +3,8 @@ import { AppRegistry, StyleSheet, View, Text, Button } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import LoginScreen from '../checkoutScreens/LoginScreen'
+import InformationScreen from '../checkoutScreens/InformationScreen'
+
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
     currentStepIndicatorSize: 40,
@@ -39,7 +41,7 @@ class CheckoutScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.stepIndicator}>
-                    <StepIndicator customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Profile", "Band", "Membership", "Dashboard"]} />
+                    <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Information", "Done"]} />
                 </View>
                 <Swiper style={styles.wrapper} showsButtons={false} ref='swiper' showsPagination={false}>
                     <View style={styles.slide1}>
@@ -51,11 +53,19 @@ class CheckoutScreen extends Component {
                                     currentPage: counter
                                 })
                                 this.refs.swiper.scrollBy(1)
-                            }
-                        } />
+                            }} />
                     </View>
                     <View style={styles.slide2}>
-                        <Text style={styles.text}>Beautiful</Text>
+                        <InformationScreen onNextPressed={
+                            () => {
+                                let counter = this.state.currentPage
+                                counter++
+                                this.setState({
+                                    currentPage: counter
+                                })
+                                this.refs.swiper.scrollBy(1)
+                            }
+                        } />
                     </View>
                     <View style={styles.slide3}>
                         <Text style={styles.text}>And simple</Text>
@@ -90,9 +100,7 @@ const styles = StyleSheet.create({
     },
     slide2: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5',
+        backgroundColor: '#FFFFFF',
     },
     slide3: {
         flex: 1,
