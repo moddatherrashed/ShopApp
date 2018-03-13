@@ -83,6 +83,7 @@ class CartScreen extends Component {
 
     }
     render() {
+        const { navigate } = this.props.navigation
         return (
             <View>
                 <StatusBar
@@ -205,6 +206,8 @@ class CartScreen extends Component {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 flex: 1
+                            }} onPress={() => {
+                                navigate('LoginScreen')
                             }}>
                                 <Text style={{ fontSize: 15, color: 'white' }}>CHECKOUT</Text>
                             </TouchableOpacity>

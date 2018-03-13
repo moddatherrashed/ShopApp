@@ -10,6 +10,7 @@ import ItemScreen from './ItemScreen'
 import Badge from './components/Badge'
 import Modal from 'react-native-modal'
 import CartScreen from './CartScreen';
+import LoginScreen from './LoginScreen'
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -208,7 +209,8 @@ const StackNavigation = StackNavigator({
     HomeScreen: { screen: HomeScreen },
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
-    CartScreen: { screen: CartScreen }
+    CartScreen: { screen: CartScreen },
+    LoginScreen: { screen: LoginScreen },
 })
 
 const styles = StyleSheet.create({
