@@ -32,7 +32,12 @@ class LoginScreen extends Component {
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>Password</Label>
                         <Input secureTextEntry style={{ color: '#363A57' }} />
                     </Item>
-                    <Button full style={{ backgroundColor: '#363A57', margin: 10, elevation: 5, flex: 0.15 }}>
+                    <Button full style={{
+                        backgroundColor: '#363A57',
+                        margin: 10,
+                        elevation: 5,
+                        flex: 0.15
+                    }} onPress={this.props.onLoginPressed}>
                         <Text style={{ color: '#FFFFFF' }}>Login</Text>
                     </Button>
                 </View>
