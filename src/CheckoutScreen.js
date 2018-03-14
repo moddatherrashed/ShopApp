@@ -4,6 +4,7 @@ import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
+import DoneScreen from '../src/checkoutScreens/DoneScreen'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -68,7 +69,7 @@ class CheckoutScreen extends Component {
                         } />
                     </View>
                     <View style={styles.slide3}>
-                        <Text style={styles.text}>And simple</Text>
+                        <DoneScreen />
                     </View>
                 </Swiper>
             </View>
@@ -104,9 +105,7 @@ const styles = StyleSheet.create({
     },
     slide3: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9',
+        backgroundColor: '#FFFFFF',
     },
     text: {
         color: '#fff',

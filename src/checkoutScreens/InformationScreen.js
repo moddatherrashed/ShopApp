@@ -24,19 +24,19 @@ class InformationScreen extends Component {
             <ScrollView style={{ flex: 1 }}>
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
                     <Text style={{ backgroundColor: '#363A57', color: '#FFFFFF', fontSize: 20, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>Please fill in your information</Text>
-                    <Item floatingLabel style={{}} >
+                    <Item floatingLabel >
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>City</Label>
                         <Input style={{ color: '#363A57' }} />
                     </Item>
-                    <Item floatingLabel style={{}} >
+                    <Item floatingLabel >
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>Street</Label>
                         <Input style={{ color: '#363A57' }} />
                     </Item>
-                    <Item floatingLabel style={{}} >
+                    <Item floatingLabel >
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>Description for the address</Label>
                         <Input multiline style={{ color: '#363A57', height: 150 }} />
                     </Item>
-                    <Item floatingLabel style={{}} >
+                    <Item floatingLabel >
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>Mobile Number</Label>
                         <Input style={{ color: '#363A57' }} />
                     </Item>
