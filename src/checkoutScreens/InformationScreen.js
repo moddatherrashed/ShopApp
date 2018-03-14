@@ -22,8 +22,8 @@ class InformationScreen extends Component {
     render() {
         return (
             <ScrollView style={{ flex: 1 }}>
-                <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
-                    <Text style={{ backgroundColor: '#363A57', color: '#FFFFFF', fontSize: 20, padding: 10 }}>Please fill in your information</Text>
+                <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
+                    <Text style={{ backgroundColor: '#363A57', color: '#FFFFFF', fontSize: 20, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>Please fill in your information</Text>
                     <Item floatingLabel style={{}} >
                         <Label style={{ color: '#363A57', paddingLeft: 5 }}>City</Label>
                         <Input style={{ color: '#363A57' }} />
@@ -43,9 +43,10 @@ class InformationScreen extends Component {
                     <Button full style={{
                         backgroundColor: '#363A57',
                         margin: 10,
-                        elevation: 5
+                        elevation: 5,
+                        borderRadius: 5
                     }} onPress={this.props.onNextPressed}>
-                        <Text style={{ color: '#FFFFFF' }}>Next</Text>
+                        <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Next</Text>
                     </Button>
                 </View>
             </ScrollView>

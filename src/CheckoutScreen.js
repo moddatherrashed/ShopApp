@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, View, Text, Button } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
 import Swiper from 'react-native-swiper';
-import LoginScreen from '../checkoutScreens/LoginScreen'
-import InformationScreen from '../checkoutScreens/InformationScreen'
+import LoginScreen from '../src/checkoutScreens/LoginScreen'
+import InformationScreen from '../src/checkoutScreens/InformationScreen'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
