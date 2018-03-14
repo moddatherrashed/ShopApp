@@ -69,7 +69,13 @@ class CheckoutScreen extends Component {
                         } />
                     </View>
                     <View style={styles.slide3}>
-                        <DoneScreen />
+                        <DoneScreen onDonePressed={() => {
+                            let counter = this.state.currentPage
+                            counter++
+                            this.setState({
+                                currentPage: counter
+                            })
+                        }} />
                     </View>
                 </Swiper>
             </View>

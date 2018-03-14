@@ -22,7 +22,7 @@ class DoneScreen extends Component {
                     margin: 10,
                     elevation: 5,
                     borderRadius: 5
-                }} onPress={this.props.onNextPressed}>
+                }} onPress={this.props.onDonePressed}>
                     <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Done</Text>
                 </Button>
             </View>
