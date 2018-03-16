@@ -147,19 +147,18 @@ class ItemScreen extends Component {
                 </Modal>
                 <Modal
                     isVisible={this.state.dialgoBox}>
-                    <View style={{ height: '40%', backgroundColor: '#FFFFFF', borderRadius: 10 }}>
-                        <View style={{ height: '80%', justifyContent: 'center' }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57' }}>Awesome Choise</Text>
+                    <View style={{ height: '60%', backgroundColor: '#FFFFFF', borderRadius: 10 }}>
+                        <View style={{ height: '80%', justifyContent: 'flex-start', alignItems: 'center' }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: 10 }}>Awesome Choise</Text>
                             <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', marginTop: '20%' }}>What do you want to do now ?</Text>
                         </View>
-                        <View style={{ marginBottom: 20, width: '100%', height: '100%', alignItems: 'flex-end', flexDirection: 'row' }}>
+                        <View style={{ marginBottom: 20, width: '100%', height: '100%', justifyContent: 'center', flexDirection: 'row' }}>
                             <Button style={{
-                                height: 50,
-                                width: '50%',
+                                width: '40%',
                                 backgroundColor: '#363A57',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                borderWidth: 5,
+                                margin: 10,
                                 borderColor: '#FFFFFF',
                                 borderRadius: 10
                             }}
@@ -169,12 +168,11 @@ class ItemScreen extends Component {
                                 <Text style={styles.textBtnsStyle} >Continue Shopping</Text>
                             </Button>
                             <Button style={{
-                                height: 50,
                                 backgroundColor: '#363A57',
-                                width: '50%',
+                                width: '40%',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                borderWidth: 5,
+                                margin: 10,
                                 borderColor: '#FFFFFF',
                                 borderRadius: 10
                             }}

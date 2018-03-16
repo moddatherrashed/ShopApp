@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, ScrollView } from 'react-native'
 import { Icon, Button } from 'native-base'
 
 class DoneScreen extends Component {
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
+            <ScrollView style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
                     <Icon name='ios-checkmark-circle' style={{ color: '#009432' }} />
                     <Text style={{ fontWeight: 'bold', margin: 5, color: '#363A57' }}>Done</Text>
@@ -25,7 +25,7 @@ class DoneScreen extends Component {
                 }} onPress={this.props.onDonePressed}>
                     <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Done</Text>
                 </Button>
-            </View>
+            </ScrollView>
         )
     }
 }
