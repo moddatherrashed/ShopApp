@@ -67,6 +67,92 @@ class CartScreen extends Component {
             })
         }
     }
+
+    renderList() {
+        if (this.state.orders.length !== 0) {
+            return (
+                <FlatList
+                    keyExtractor={item => item.name}
+                    contentContainerStyle={{
+                        marginBottom: 100,
+                    }}
+                    data={this.state.orders}
+                    renderItem={({ item, index }) =>
+                        <View style={{
+                            flexDirection: 'row',
+                            backgroundColor: '#FFFFFF',
+                            elevation: 15,
+                            width: '100%',
+                            borderBottomWidth: 0.5,
+                            borderBottomColor: 'gray'
+                        }}>
+                            <View style={{ flexDirection: 'row', flex: 6 }}>
+                                <View style={{ flex: 2, alignItems: 'center' }}>
+                                    <Image
+                                        style={{ height: 100, width: 100, margin: 5 }}
+                                        source={item.url}
+                                        resizeMode='contain'
+                                    />
+                                    <TouchableOpacity style={
+                                        {
+                                            flexDirection: 'row',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            borderWidth: 0.5,
+                                            borderColor: 'gray',
+                                            margin: 5,
+                                            padding: 3
+                                        }}
+                                        onPress={() => {
+                                            let orders = this.state.orders
+                                            orders.splice(index, 1)
+                                            this.setState({
+                                                orders
+                                            })
+
+                                        }}>
+                                        <Icon name='ios-trash-outline' style={{ color: '#363A57' }} />
+                                        <Text style={{ margin: 5 }}>Remove</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
+                                    <Text style={{ color: '#363A57' }}>{item.name}</Text>
+                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>{item.price}</Text>
+                                    <Text>Size : M</Text>
+                                </View>
+                                <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Text>Number of Items</Text>
+                                    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                                        <TouchableOpacity
+                                            onPress={() => {
+                                                this.onDecPressed(index)
+                                            }}>
+                                            <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
+                                        </TouchableOpacity>
+                                        <Text style={{ padding: 10 }}>{item.quantity}</Text>
+                                        <TouchableOpacity
+                                            onPress={() => {
+                                                this.onIncPressed(index)
+                                            }}>
+                                            <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
+                                        </TouchableOpacity>
+
+                                    </View>
+                                </View>
+                            </View>
+                        </View>
+                    }
+                />
+            )
+        } else {
+            return (
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ fontWeight: 'bold', marginTop: '50%', fontSize: 25 }}>you have no items yet</Text>
+                </View>
+            )
+        }
+    }
     static navigationOptions = {
         title: `Cart`,
         headerTintColor: '#363A57',
@@ -91,79 +177,7 @@ class CartScreen extends Component {
                 />
                 <View>
                     <View style={{ height: ScreenSize.height - 155 }}>
-                        <FlatList
-                            keyExtractor={item => item.name}
-                            contentContainerStyle={{
-                                marginBottom: 100,
-                            }}
-                            data={this.state.orders}
-                            renderItem={({ item, index }) =>
-                                <View style={{
-                                    flexDirection: 'row',
-                                    backgroundColor: '#FFFFFF',
-                                    elevation: 15,
-                                    width: '100%',
-                                    borderBottomWidth: 0.5,
-                                    borderBottomColor: 'gray'
-                                }}>
-                                    <View style={{ flexDirection: 'row', flex: 6 }}>
-                                        <View style={{ flex: 2, alignItems: 'center' }}>
-                                            <Image
-                                                style={{ height: 100, width: 100, margin: 5 }}
-                                                source={item.url}
-                                                resizeMode='contain'
-                                            />
-                                            <TouchableOpacity style={
-                                                {
-                                                    flexDirection: 'row',
-                                                    justifyContent: 'center',
-                                                    alignItems: 'center',
-                                                    borderWidth: 0.5,
-                                                    borderColor: 'gray',
-                                                    margin: 5,
-                                                    padding: 3
-                                                }}
-                                                onPress={() => {
-                                                    let orders = this.state.orders
-                                                    orders.splice(index, 1)
-                                                    this.setState({
-                                                        orders
-                                                    })
-                                                    
-                                                }}>
-                                                <Icon name='ios-trash-outline' style={{ color: '#363A57' }} />
-                                                <Text style={{ margin: 5 }}>Remove</Text>
-                                            </TouchableOpacity>
-                                        </View>
-
-                                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                            <Text style={{ color: '#363A57' }}>{item.name}</Text>
-                                            <Text style={{ fontWeight: 'bold', color: '#363A57' }}>{item.price}</Text>
-                                            <Text>Size : M</Text>
-                                        </View>
-                                        <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                                            <Text>Number of Items</Text>
-                                            <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-                                                <TouchableOpacity
-                                                    onPress={() => {
-                                                        this.onDecPressed(index)
-                                                    }}>
-                                                    <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
-                                                </TouchableOpacity>
-                                                <Text style={{ padding: 10 }}>{item.quantity}</Text>
-                                                <TouchableOpacity
-                                                    onPress={() => {
-                                                        this.onIncPressed(index)
-                                                    }}>
-                                                    <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
-                                                </TouchableOpacity>
-
-                                            </View>
-                                        </View>
-                                    </View>
-                                </View>
-                            }
-                        />
+                        {this.renderList()}
                     </View>
                     <View>
                         <View style={
