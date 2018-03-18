@@ -148,7 +148,7 @@ class CartScreen extends Component {
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '50%', fontSize: 25 }}>you have no items yet</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no items yet</Text>
                 </View>
             )
         }

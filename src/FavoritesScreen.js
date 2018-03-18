@@ -101,7 +101,7 @@ class FavoritesScreen extends Component {
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '50%', fontSize: 25 }}>you have no favorites yet</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no favorites yet</Text>
                 </View>
             )
         }
