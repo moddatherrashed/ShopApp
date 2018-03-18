@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, FlatList, Image, ScrollView, TouchableHighlight } from 'react-native'
+import { View, Text, StatusBar, TouchableOpacity, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import ScreenSize from './ScreenSize';
 
@@ -122,6 +122,14 @@ class CartScreen extends Component {
                                                     borderColor: 'gray',
                                                     margin: 5,
                                                     padding: 3
+                                                }}
+                                                onPress={() => {
+                                                    let orders = this.state.orders
+                                                    orders.splice(index, 1)
+                                                    this.setState({
+                                                        orders
+                                                    })
+                                                    
                                                 }}>
                                                 <Icon name='ios-trash-outline' style={{ color: '#363A57' }} />
                                                 <Text style={{ margin: 5 }}>Remove</Text>
