@@ -44,7 +44,16 @@ class CheckoutScreen extends Component {
                 <View style={styles.stepIndicator}>
                     <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Information", "Done"]} />
                 </View>
-                <Swiper style={styles.wrapper} showsButtons={false} ref='swiper' showsPagination={false}>
+                <Swiper
+                    style={styles.wrapper}
+                    showsButtons={false}
+                    ref='swiper'
+                    showsPagination={false}
+                    loop={false}
+                    index={0}
+                    horizontal={false}
+                    scrollEnabled={false}
+                    >
                     <View style={styles.slide1}>
                         <LoginScreen onLoginPressed={
                             () => {
