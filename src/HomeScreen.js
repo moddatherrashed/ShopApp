@@ -50,11 +50,33 @@ class HomeScreen extends Component {
         }).start()
     }
     static navigationOptions = {
+        title: `Catagories`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        },
+        headerLeft: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('DrawerOpen')
+                }}>
+                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
+        headerRight: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('CartScreen')
+                }}>
+                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
         drawerLabel: 'Catagories',
         drawerIcon: (
             <Icon name='home' style={{ color: '#FFFFFF' }} />
-        ),
-        header: null
+        )
     }
 
     componentDidMount() {
@@ -130,32 +152,6 @@ class HomeScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57' }}>
-                    <Left>
-                        <Button transparent>
-                            <Button transparent
-                                onPress={() => {
-                                    this.props.navigation.navigate('DrawerOpen')
-                                }}>
-                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
-
-                            </Button>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Catagories</Title>
-                    </Body>
-                    <Right>
-                        <Button transparent
-                            onPress={() =>
-                                //this.animateBadge()
-                                navigate('CartScreen')
-                            }>
-                            <Icon name='cart' style={{ color: '#FFFFFF' }} />
-                            <Badge text={this.state.textValue} badgeScale={this.state.badgeScale} />
-                        </Button>
-                    </Right>
-                </Header>
                 <Content>
                     <SearchBar
                         onChangeText={(searchText) => this.search(searchText)}
