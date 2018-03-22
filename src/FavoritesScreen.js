@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
+import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
 
 
@@ -44,6 +45,29 @@ class FavoritesScreen extends Component {
     }
 
     static navigationOptions = {
+        title: `Favorites Items`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        },
+        headerLeft: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('DrawerOpen')
+                }}>
+                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
+        headerRight: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('CartScreen')
+                }}>
+                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
         drawerIcon: (
             <Icon name='star' style={{ color: '#FFFFFF' }} />
         )
@@ -112,22 +136,6 @@ class FavoritesScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57' }}>
-                    <Left>
-                        <Button transparent>
-                            <Button transparent
-                                onPress={() => {
-                                    this.props.navigation.navigate('DrawerOpen')
-                                }}>
-                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
-
-                            </Button>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Favorites Items</Title>
-                    </Body>
-                </Header>
                 <Content>
                     <View>
                         {this.renderList()}
@@ -138,4 +146,8 @@ class FavoritesScreen extends Component {
     }
 }
 
-export default FavoritesScreen
+const FavoritesStackNavigator = StackNavigator({
+    FavoritesScreen: { screen: FavoritesScreen }
+})
+
+export default FavoritesStackNavigator

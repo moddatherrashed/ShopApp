@@ -33,7 +33,8 @@ const App = DrawerNavigator({
   Language: { screen: LanguageScreen },
   ConnectScreen: { screen: ConnectScreen }
 
-}, {
+},
+  {
     initialRouteName: 'HomeScreen',
     contentComponent: CustomDrawerComponent,
     drawerOpenRoute: 'DrawerOpen',

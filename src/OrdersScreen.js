@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
+import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
 
 
-class AccountScreen extends Component {
+class OrdersScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -52,6 +53,29 @@ class AccountScreen extends Component {
     }
 
     static navigationOptions = {
+        headerTitle: `All Orders`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        },
+        headerLeft: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('DrawerOpen')
+                }}>
+                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
+        headerRight: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('CartScreen')
+                }}>
+                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
         drawerIcon: (
             <Icon name='list' style={{ color: '#FFFFFF' }} />
         )
@@ -121,22 +145,6 @@ class AccountScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57' }}>
-                    <Left>
-                        <Button transparent>
-                            <Button transparent
-                                onPress={() => {
-                                    this.props.navigation.navigate('DrawerOpen')
-                                }}>
-                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
-
-                            </Button>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>All orders</Title>
-                    </Body>
-                </Header>
                 <Content>
                     <View>
                         {this.renderList()}
@@ -146,5 +154,7 @@ class AccountScreen extends Component {
         )
     }
 }
-
-export default AccountScreen
+const OrdersStackNavigator = StackNavigator({
+    OrdersScreen: { screen: OrdersScreen },
+})
+export default OrdersStackNavigator

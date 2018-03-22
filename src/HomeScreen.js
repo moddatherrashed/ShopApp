@@ -11,7 +11,7 @@ import Badge from './components/Badge'
 import Modal from 'react-native-modal'
 import CartScreen from './CartScreen';
 import CheckoutScreen from './CheckoutScreen'
-
+import OrdersScreen from './OrdersScreen'
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -152,10 +152,10 @@ class HomeScreen extends Component {
                 <StatusBar
                     hidden
                 />
+                <SearchBar
+                    onChangeText={(searchText) => this.search(searchText)}
+                />
                 <Content>
-                    <SearchBar
-                        onChangeText={(searchText) => this.search(searchText)}
-                    />
                     {this.renderOffer(this.state.offerFalg)}
                     <FlatList
                         contentContainerStyle={{ margin: 2 }}
@@ -206,8 +206,7 @@ const StackNavigation = StackNavigator({
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
     CartScreen: { screen: CartScreen },
-    CheckoutScreen: { screen: CheckoutScreen },
-})
+    CheckoutScreen: { screen: CheckoutScreen }})
 
 const styles = StyleSheet.create({
     textStyle: {

@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
+import { StackNavigator } from 'react-navigation'
 
 
-class AccountScreen extends Component {
+class LanguageScreen extends Component {
     static navigationOptions = {
+        headerTitle: `Language Selector`,
+        headerTintColor: '#FFFFFF',
+        headerStyle: {
+            backgroundColor: '#363A57',
+        },
+        headerLeft: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('DrawerOpen')
+                }}>
+                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
+        headerRight: (
+            <Button transparent
+                onPress={() => {
+                    _this.props.navigation.navigate('CartScreen')
+                }}>
+                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+
+            </Button>
+        ),
         drawerIcon: (
             <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
         ),
@@ -16,22 +40,6 @@ class AccountScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <Header style={{ backgroundColor: '#363A57' }}>
-                    <Left>
-                        <Button transparent>
-                            <Button transparent
-                                onPress={() => {
-                                    this.props.navigation.navigate('DrawerOpen')
-                                }}>
-                                <Icon name='menu' style={{ color: '#FFFFFF' }} />
-
-                            </Button>
-                        </Button>
-                    </Left>
-                    <Body>
-                        <Title>Connect With Usrr</Title>
-                    </Body>
-                </Header>
                 <Content>
                     <Text>here is language Screen</Text>
                 </Content>
@@ -40,4 +48,8 @@ class AccountScreen extends Component {
     }
 }
 
-export default AccountScreen
+const LanguageStackNavigation = StackNavigator({
+    LanguageScreen: { screen: LanguageScreen }
+})
+
+export default LanguageStackNavigation
