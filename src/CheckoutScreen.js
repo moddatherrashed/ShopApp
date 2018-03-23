@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, View, Text, Button } from 'react-native';
+import { AppRegistry, ScrollView, StyleSheet, View, Text, Button } from 'react-native';
 import StepIndicator from 'react-native-step-indicator';
-import Swiper from 'react-native-swiper';
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
 import DoneScreen from '../src/checkoutScreens/DoneScreen'
+import ScreenSize from './ScreenSize';
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -38,23 +38,24 @@ class CheckoutScreen extends Component {
         }
     }
 
+    onNextPagePressed(ref, pageNumber) {
+        ref.scrollView.scrollTo({ x: ((pageNumber - 1) * ScreenSize.width), y: 0, animated: true })
+    }
+
     render() {
+        let context = this
         return (
             <View style={styles.container}>
                 <View style={styles.stepIndicator}>
                     <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Information", "Done"]} />
                 </View>
-                <Swiper
-                    style={styles.wrapper}
-                    showsButtons={false}
-                    ref='swiper'
-                    showsPagination={false}
-                    loop={false}
-                    index={0}
-                    horizontal={false}
+                <ScrollView
+                    horizontal={true}
+                    pagingEnabled={true}
                     scrollEnabled={false}
-                    >
-                    <View style={styles.slide1}>
+                    ref='swiper'
+                >
+                    <View style={styles.slide}>
                         <LoginScreen onLoginPressed={
                             () => {
                                 let counter = this.state.currentPage
@@ -62,10 +63,10 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollBy(1)
+                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width })
                             }} />
                     </View>
-                    <View style={styles.slide2}>
+                    <View style={styles.slide}>
                         <InformationScreen onNextPressed={
                             () => {
                                 let counter = this.state.currentPage
@@ -73,11 +74,11 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollBy(1)
+                                this.refs.swiper.scrollTo({ x: 2 * ScreenSize.width })
                             }
                         } />
                     </View>
-                    <View style={styles.slide3}>
+                    <View style={styles.slide}>
                         <DoneScreen onDonePressed={() => {
                             let counter = this.state.currentPage
                             counter++
@@ -86,7 +87,7 @@ class CheckoutScreen extends Component {
                             })
                         }} />
                     </View>
-                </Swiper>
+                </ScrollView>
             </View>
         );
     }
@@ -109,9 +110,9 @@ const styles = StyleSheet.create({
     wrapper: {
         height: 150
     },
-    slide1: {
+    slide: {
         flex: 1,
-
+        width: ScreenSize.width,
         backgroundColor: '#FFFFFF',
     },
     slide2: {
