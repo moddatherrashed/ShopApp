@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StatusBar, TouchableOpacity, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import ScreenSize from './ScreenSize';
+import { SafeAreaView } from 'react-navigation'
 
 
 class CartScreen extends Component {

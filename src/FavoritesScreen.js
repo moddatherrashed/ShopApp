@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-native'
+import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
@@ -40,10 +40,21 @@ class FavoritesScreen extends Component {
             {
                 name: 'White T-shirt',
                 url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-            }]
+            }],
+            fav: ''
         }
     }
-
+    async getKey() {
+        try {
+            const value = await AsyncStorage.getItem('fav');
+            this.setState({ fav: value });
+        } catch (error) {
+            console.log("Error retrieving data" + error);
+        }
+    }
+    componentDidMount(){
+        this.getKey()
+    }
     static navigationOptions = {
         title: `Favorites Items`,
         headerTintColor: '#FFFFFF',
@@ -103,7 +114,11 @@ class FavoritesScreen extends Component {
                                 </View>
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
                                     <Text style={{ color: '#363A57' }}>name: {item.name}</Text>
-                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
+                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>
+                                        {
+
+                                        }
+                                    </Text>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
@@ -138,6 +153,7 @@ class FavoritesScreen extends Component {
                 />
                 <Content>
                     <View>
+                        <Text>ddddd {this.state.fav}</Text>
                         {this.renderList()}
                     </View>
                 </Content>

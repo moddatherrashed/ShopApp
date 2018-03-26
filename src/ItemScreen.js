@@ -21,7 +21,8 @@ class ItemScreen extends Component {
             isModalVisible: false,
             size: 'Select Size',
             favBtn: 'ios-star-outline',
-            dialgoBox: false
+            dialgoBox: false,
+            fav: ''
         }
     }
     _toggleModal = () =>
@@ -42,6 +43,36 @@ class ItemScreen extends Component {
         },
 
     })
+    async saveKey(value) {
+        try {
+            const retrievedItem = await AsyncStorage.getItem('fav');
+            if (retrievedItem === null) {
+                await AsyncStorage.setItem('fav', JSON.stringify([value]))
+            } else {
+                const item = JSON.parse(retrievedItem)
+                item.push(value)
+                alert(item)
+                await AsyncStorage.setItem('fav', JSON.stringify(item))
+            }
+
+        } catch (error) {
+            alert("Error saving data" + error)
+        }
+    }
+
+    itemIsFav(namesArray, name) {
+        let itemName = name
+        for (let i = 0; i <= namesArray.length; i++) {
+            if (item[i] === itemName) {
+                return true
+            }
+        }
+        return false
+    }
+    componentWillMount() {
+        const checkItem = JSON.parse(AsyncStorage.getItem('fav'))
+        alert(typeof checkItem)
+    }
     render() {
         const { params } = this.props.navigation.state
         const { navigate } = this.props.navigation
@@ -76,6 +107,8 @@ class ItemScreen extends Component {
                                         this.setState({
                                             favBtn: 'ios-star'
                                         })
+                                        this.saveKey(params.name);
+
                                     } else {
                                         this.setState({
                                             favBtn: 'ios-star-outline'
@@ -152,16 +185,16 @@ class ItemScreen extends Component {
                             <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: 10 }}>Awesome Choise</Text>
                             <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57' }}>What do you want to do now ?</Text>
                         </View>
-                        <View style={{ flex : 2, width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <View style={{ flex: 2, width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
                             <Button style={{
                                 width: '40%',
                                 backgroundColor: '#363A57',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                marginLeft : '5%',
+                                marginLeft: '5%',
                                 borderColor: '#FFFFFF',
                                 borderRadius: 10,
-                                
+
                             }}
                                 onPress={() => {
                                     this.setState({ dialgoBox: false })
@@ -173,7 +206,7 @@ class ItemScreen extends Component {
                                 width: '40%',
                                 justifyContent: 'center',
                                 alignItems: 'center',
-                                marginRight : '5%',
+                                marginRight: '5%',
                                 borderColor: '#FFFFFF',
                                 borderRadius: 10
                             }}
