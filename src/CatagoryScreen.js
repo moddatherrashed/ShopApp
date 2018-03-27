@@ -10,7 +10,7 @@ class CatagoryScreen extends Component {
             data: [
                 {
                     name: 'Gray Jacket',
-                    url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                    url: { uri: '1510748446.4518.jpg' }
                 },
                 {
                     name: 'Adidas Jacket',

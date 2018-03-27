@@ -46,13 +46,13 @@ class FavoritesScreen extends Component {
     }
     async getKey() {
         try {
-            const value = await AsyncStorage.getItem('fav');
+            const value = JSON.parse(await AsyncStorage.getItem('fav'))
             this.setState({ fav: value });
         } catch (error) {
             console.log("Error retrieving data" + error);
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         this.getKey()
     }
     static navigationOptions = {
@@ -85,7 +85,7 @@ class FavoritesScreen extends Component {
     }
 
     renderList() {
-        if (this.state.orders.length !== 0) {
+        if (this.state.fav !== null) {
             return (
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
@@ -94,7 +94,7 @@ class FavoritesScreen extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
-                    data={this.state.orders}
+                    data={this.state.fav}
                     renderItem={({ item, index }) =>
                         <View style={{
                             flexDirection: 'row',
@@ -123,11 +123,13 @@ class FavoritesScreen extends Component {
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
                                         onPress={() => {
-                                            let restOfOrders = this.state.orders
+                                            let restOfOrders = this.state.fav
                                             restOfOrders.splice(index, 1)
                                             this.setState({
-                                                orders: restOfOrders
+                                                fav: restOfOrders
                                             })
+                                             AsyncStorage.setItem('fav', JSON.stringify(this.state.fav));
+
                                         }}>
                                         <Icon name='ios-close' style={{ color: '#363A57', padding: 10 }} />
                                     </TouchableOpacity>
@@ -146,6 +148,8 @@ class FavoritesScreen extends Component {
         }
     }
     render() {
+        let x = this.state.fav
+        // alert(typeof x)
         return (
             <Container>
                 <StatusBar
@@ -153,7 +157,6 @@ class FavoritesScreen extends Component {
                 />
                 <Content>
                     <View>
-                        <Text>ddddd {this.state.fav}</Text>
                         {this.renderList()}
                     </View>
                 </Content>

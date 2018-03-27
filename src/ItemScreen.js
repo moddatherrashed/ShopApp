@@ -56,7 +56,7 @@ class ItemScreen extends Component {
             }
 
         } catch (error) {
-            alert("Error saving data" + error)
+            alert("Error saving data ===" + error)
         }
     }
 
@@ -70,8 +70,7 @@ class ItemScreen extends Component {
         return false
     }
     componentWillMount() {
-        const checkItem = JSON.parse(AsyncStorage.getItem('fav'))
-        alert(typeof checkItem)
+        
     }
     render() {
         const { params } = this.props.navigation.state
@@ -107,7 +106,7 @@ class ItemScreen extends Component {
                                         this.setState({
                                             favBtn: 'ios-star'
                                         })
-                                        this.saveKey(params.name);
+                                        this.saveKey(params)
 
                                     } else {
                                         this.setState({
