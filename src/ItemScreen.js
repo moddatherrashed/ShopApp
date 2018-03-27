@@ -51,7 +51,7 @@ class ItemScreen extends Component {
             } else {
                 const item = JSON.parse(retrievedItem)
                 item.push(value)
-                alert(item)
+                //alert(item)
                 await AsyncStorage.setItem('fav', JSON.stringify(item))
             }
 

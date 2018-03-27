@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar } from 'react-native'
+import { View, Text, StatusBar, StyleSheet } from 'react-native'
 import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
@@ -38,14 +38,24 @@ class ConnectScreen extends Component {
 
     render() {
         return (
-            <Container>
+
+            <View stye={{justifyContent: 'center'}}>
                 <StatusBar
                     hidden
                 />
-                <Content>
-                    <Text>here is Connect Screen</Text>
-                </Content>
-            </Container>
+                <View style={styles.viewContainerStyle}>
+                    <View style={styles.elementStyle}>
+                    <Text>phone number</Text>
+                    <Text>004177404019</Text>
+                    </View>
+                    <View style={styles.elementStyle}>
+                    <Text>website</Text>
+                    <Text>www.moddather.net</Text>
+                    </View>
+                    <View style={styles.elementStyle}>
+                    </View>
+                </View>
+            </View>
         )
     }
 }
@@ -54,4 +64,23 @@ const ConnectStackNavigator = StackNavigator({
     ConnectScreen: { screen: ConnectScreen }
 })
 
+
+
+const styles = StyleSheet.create({
+    viewContainerStyle: {
+        flex: 3,
+        flexDirection: 'column',
+        margin :20,
+        borderWidth : 1,
+        borderColor:'#363A57'
+    },
+    elementStyle: {
+        height: 20,
+        flexDirection : 'row',
+        justifyContent : 'space-around'
+    }
+})
+
+
 export default ConnectStackNavigator
+
