@@ -61,17 +61,31 @@ class ItemScreen extends Component {
     }
 
     itemIsFav(namesArray, name) {
-        let itemName = name
-        for (let i = 0; i <= namesArray.length; i++) {
-            if (item[i] === itemName) {
+
+        for (let i = 0; i < namesArray.length; i++) {
+            if (namesArray[i].name === name) {
                 return true
             }
+
         }
         return false
     }
-    componentWillMount() {
-        
+    async getKey() {
+        try {
+            const value = JSON.parse(await AsyncStorage.getItem('fav'))
+            this.setState({ fav: value });
+            this.itemIsFav(this.state.fav, this.props.navigation.state.params.name) ? this.setState({ favBtn: 'ios-star' }) : this.setState({ favBtn: 'ios-star-outline' })
+        } catch (error) {
+            alert("Error retrieving data get key " + error);
+        }
     }
+    componentWillMount() {
+        this.getKey()
+        //alert(isItemThere)
+
+
+    }
+
     render() {
         const { params } = this.props.navigation.state
         const { navigate } = this.props.navigation
@@ -112,6 +126,14 @@ class ItemScreen extends Component {
                                         this.setState({
                                             favBtn: 'ios-star-outline'
                                         })
+
+                                        let restOfOrders = this.state.fav
+                                        let index = restOfOrders.findIndex(x => x.name == params.name);
+                                        restOfOrders.splice(index, 1)
+                                        this.setState({
+                                            fav: restOfOrders
+                                        })
+                                        AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
                                     }
                                 }}>
                                 <Icon name={this.state.favBtn} style={styles.iconFavStyle} />
