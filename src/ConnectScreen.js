@@ -51,12 +51,12 @@ class ConnectScreen extends Component {
                 <StatusBar
                     hidden
                 />
-                <View style={{ backgroundColor: '#FFFFFF', margin: 15, padding: 20, borderWidth: 2, borderColor: '#363A57', elevation: 15 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
+                <View style={{ backgroundColor: '#FFFFFF', margin: 15, padding: 20, borderWidth: 0.5, borderColor: '#363A57', elevation: 15 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10, padding: 5, borderBottomWidth: 0.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</Text>
                         <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>0041774044019</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10, padding: 5, borderBottomWidth: 0.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</Text>
                         <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>www.moddather.net</Text>
                     </View>
@@ -75,8 +75,8 @@ class ConnectScreen extends Component {
                 }]}>
                     <Animated.View style={{ height: 80, borderTopWidth: 1, borderTopColor: '#ebe5e5', flexDirection: 'row' }}>
                         <View style={{ flex: 4, flexDirection: 'row' }}>
-                            <Animated.View style={{ height: 55, width: 40, flexDirection: 'row', width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-                                <Image style={{ marginLeft: 15, height: 38, width: 28 }}
+                            <Animated.View style={{ height: 50, width: 40, flexDirection: 'row', width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
+                                <Image style={{ marginLeft: 15, height: 40, width: 30 }}
                                     source={require('./icons/handlogo.png')} />
                                 <Animated.Text style={{ opacity: 1, textAlign: 'center', fontSize: 18, color: 'white', paddingLeft: 45 }}>
                                     All Rights Reserved for STTS ®
