@@ -3,7 +3,7 @@ import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image 
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
-
+import ItemScreen from './ItemScreen'
 
 class FavoritesScreen extends Component {
     constructor(props) {
@@ -85,7 +85,7 @@ class FavoritesScreen extends Component {
     }
 
     renderList() {
-        if (this.state.fav !== null) {
+        if ((this.state.fav).length > 0) {
             return (
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
@@ -96,14 +96,17 @@ class FavoritesScreen extends Component {
                     }}
                     data={this.state.fav}
                     renderItem={({ item, index }) =>
-                        <View style={{
+                        <TouchableOpacity style={{
                             flexDirection: 'row',
                             backgroundColor: '#FFFFFF',
                             elevation: 15,
                             width: '100%',
                             borderBottomWidth: 0.5,
                             borderBottomColor: 'gray'
-                        }}>
+                        }}
+                            onPress={() => {
+                                this.props.navigation.navigate('ItemScreen', item)
+                            }}>
                             <View style={{ flexDirection: 'row', flex: 6 }}>
                                 <View style={{ flex: 2 }}>
                                     <Image
@@ -135,21 +138,19 @@ class FavoritesScreen extends Component {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     }
                 />
             )
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no favorites yet</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no favorite items</Text>
                 </View>
             )
         }
     }
     render() {
-        let x = this.state.fav
-        // alert(typeof x)
         return (
             <Container>
                 <StatusBar
@@ -167,7 +168,8 @@ class FavoritesScreen extends Component {
 }
 
 const FavoritesStackNavigator = StackNavigator({
-    FavoritesScreen: { screen: FavoritesScreen }
+    FavoritesScreen: { screen: FavoritesScreen },
+    ItemScreen: { screen: ItemScreen }
 })
 
 export default FavoritesStackNavigator
