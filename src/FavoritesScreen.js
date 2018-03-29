@@ -128,7 +128,7 @@ class FavoritesScreen extends Component {
                                             this.setState({
                                                 fav: restOfOrders
                                             })
-                                             AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
+                                            AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
 
                                         }}>
                                         <Icon name='ios-close' style={{ color: '#363A57', padding: 10 }} />
@@ -153,8 +153,9 @@ class FavoritesScreen extends Component {
         return (
             <Container>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <Content>
                     <View>
                         {this.renderList()}

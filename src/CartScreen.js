@@ -174,10 +174,11 @@ class CartScreen extends Component {
         return (
             <View>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <View>
-                    <View style={{ height: ScreenSize.height - 155 }}>
+                    <View style={{ height: ScreenSize.height - 180 }}>
                         {this.renderList()}
                     </View>
                     <View>

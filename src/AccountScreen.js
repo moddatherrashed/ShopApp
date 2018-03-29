@@ -41,8 +41,9 @@ class AccountScreen extends Component {
         return (
             <Container>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <Content>
                     <View style={{ height: ScreenSize.height * 0.9, flex: 6 }}>
                         <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>

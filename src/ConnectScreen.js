@@ -49,8 +49,9 @@ class ConnectScreen extends Component {
 
             <View style={{ flex: 1, justifyContent: 'center', }}>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <View style={{ backgroundColor: '#FFFFFF', margin: 15, padding: 20, borderWidth: 0.5, borderColor: '#363A57', elevation: 15 }}>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10, padding: 5, borderBottomWidth: 0.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</Text>
@@ -65,7 +66,7 @@ class ConnectScreen extends Component {
                         <Icon name='logo-instagram' style={{ color: '#e95950', fontSize: 80 }} />
                     </View>
                 </View>
-                <Animated.View style={[animatedHeight, {
+                {/* <Animated.View style={[animatedHeight, {
                     position: 'absolute',
                     left: 0,
                     right: 0,
@@ -87,7 +88,7 @@ class ConnectScreen extends Component {
                             </Animated.View>
                         </View>
                     </Animated.View>
-                </Animated.View>
+                </Animated.View>*/}
             </View>
         )
     }

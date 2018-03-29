@@ -38,8 +38,9 @@ class LanguageScreen extends Component {
         return (
             <Container>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <Content>
                     <Text>here is language Screen</Text>
                 </Content>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
-import ScreenSize from './ScreenSize';
+import ScreenSize from './ScreenSize'
 
 
 class OrdersScreen extends Component {
@@ -143,8 +143,9 @@ class OrdersScreen extends Component {
         return (
             <Container>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <Content>
                     <View>
                         {this.renderList()}

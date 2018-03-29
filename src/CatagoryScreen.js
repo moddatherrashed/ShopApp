@@ -10,7 +10,7 @@ class CatagoryScreen extends Component {
             data: [
                 {
                     name: 'Gray Jacket',
-                    url: { uri: '1510748446.4518.jpg' }
+                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
                 },
                 {
                     name: 'Adidas Jacket',

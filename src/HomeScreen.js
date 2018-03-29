@@ -150,8 +150,9 @@ class HomeScreen extends Component {
 
             <Container>
                 <StatusBar
-                    hidden
-                />
+                    barStyle="light-content"
+                    backgroundColor="#4d537c"
+                    hidden={false} />
                 <SearchBar
                     onChangeText={(searchText) => this.search(searchText)}
                 />
@@ -206,7 +207,8 @@ const StackNavigation = StackNavigator({
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
     CartScreen: { screen: CartScreen },
-    CheckoutScreen: { screen: CheckoutScreen }})
+    CheckoutScreen: { screen: CheckoutScreen }
+})
 
 const styles = StyleSheet.create({
     textStyle: {

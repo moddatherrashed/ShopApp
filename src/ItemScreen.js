@@ -61,7 +61,9 @@ class ItemScreen extends Component {
     }
 
     itemIsFav(namesArray, name) {
-
+        if (namesArray === null) {
+            return false
+        }
         for (let i = 0; i < namesArray.length; i++) {
             if (namesArray[i].name === name) {
                 return true
@@ -81,9 +83,6 @@ class ItemScreen extends Component {
     }
     componentWillMount() {
         this.getKey()
-        //alert(isItemThere)
-
-
     }
 
     render() {
@@ -201,12 +200,12 @@ class ItemScreen extends Component {
                 </Modal>
                 <Modal
                     isVisible={this.state.dialgoBox}>
-                    <View style={{ height: '40%', backgroundColor: '#FFFFFF', borderRadius: 10 }}>
-                        <View style={{ height: '80%', justifyContent: 'flex-start', alignItems: 'center' }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: 10 }}>Awesome Choise</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57' }}>What do you want to do now ?</Text>
+                    <View style={{ height: ScreenSize.height * 0.4, backgroundColor: '#FFFFFF', borderRadius: 10, justifyContent: 'space-around' }}>
+                        <View style={{ justifyContent: 'space-around', alignItems: 'center' }}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03 }}>Awesome Choise</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03 }}>What do you want to do now ?</Text>
                         </View>
-                        <View style={{ flex: 2, width: '100%', justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <View style={{ paddingTop: ScreenSize.height * 0.1, height: ScreenSize.height * 0.2, width: '100%', justifyContent: 'space-around', flexDirection: 'row' }}>
                             <Button style={{
                                 width: '40%',
                                 backgroundColor: '#363A57',
