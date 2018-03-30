@@ -96,7 +96,7 @@ class AccountScreen extends Component {
                 <Modal isVisible={this.state.isModalVisible}
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
-                        <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                        <View style={{ justifyContent: 'center',padding : 5, alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <TextInput
                                 placeholder={this.state.name}
                                 style={{ width: 200 }}
@@ -118,11 +118,11 @@ class AccountScreen extends Component {
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57' }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
                                 onPress={() => this.setState({ isModalVisible: false })}>
                                 <Text style={styles.textBtnsStyle} >Done</Text>
                             </Button>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57' }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
                                 onPress={() => this.setState({ isModalVisible: false })}>
                                 <Text style={styles.textBtnsStyle} >Cancel</Text>
                             </Button>
