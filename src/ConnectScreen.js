@@ -40,11 +40,29 @@ class ConnectScreen extends Component {
     }
     componentWillMount() {
         this.animation = new Animated.ValueXY({ x: 0, y: SCREEN_HEIGHT - 80 })
+        this.panResponder = PanResponder.create({
+            onMoveShouldSetPanResponder: () => true,
+            onPanResponderGrant: (evt, gestureState) => {
+                this.animation.extractOffset()
+            },
+            onPanResponderMove: (evt, gestureState) => {
+                this.animation.setValue({ x: 0, y: gestureState.dy })
+            },
+            onPanResponderRelease: (evt, gestureState) => {
+
+            }
+
+        })
     }
     render() {
         const animatedHeight = {
             transform: this.animation.getTranslateTransform()
         }
+        animatedImageHeight = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 80],
+            outputRange: [200, 32],
+            extrapolate: "clamp"
+        })
         return (
 
             <View style={{ flex: 1, justifyContent: 'center', }}>
@@ -52,31 +70,33 @@ class ConnectScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#4d537c"
                     hidden={false} />
-                <View style={{ backgroundColor: '#FFFFFF', margin: 15, padding: 20, borderWidth: 0.5, borderColor: '#363A57', elevation: 15 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10, padding: 5, borderBottomWidth: 0.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Phone Number</Text>
-                        <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>0041774044019</Text>
+                <View style={{ backgroundColor: '#363A57', margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
+                    <View style={{ flexDirection: 'row', borderColor: '#FFFFFF', justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>Phone Number</Text>
+                        <Text style={{ color: '#FFFFFF' }}>077777777</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10, padding: 5, borderBottomWidth: 0.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center' }}>Website</Text>
-                        <Text style={{ color: 'blue', textDecorationLine: 'underline' }}>www.moddather.net</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: '#FFFFFF', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>Website</Text>
+                        <Text style={{ color: '#FFFFFF' }}>www.test.net</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
-                        <Icon name='logo-facebook' style={{ color: '#3B5998', fontSize: 80 }} />
-                        <Icon name='logo-instagram' style={{ color: '#e95950', fontSize: 80 }} />
+                        <Icon name='logo-facebook' style={{ color: '#FFFFFF', fontSize: 60 }} />
+                        <Icon name='logo-instagram' style={{ color: '#FFFFFF', fontSize: 60 }} />
                     </View>
                 </View>
-                {/* <Animated.View style={[animatedHeight, {
+                { /*<Animated.View style={[animatedHeight, {
                     position: 'absolute',
                     left: 0,
                     right: 0,
-                    zIndex: 10,
+                    zIndex: 200,
                     backgroundColor: '#363A57',
                     height: ScreenSize.height
                 }]}>
-                    <Animated.View style={{ height: 80, borderTopWidth: 1, borderTopColor: '#ebe5e5', flexDirection: 'row' }}>
+                    <Animated.View
+                        {...this.panResponder.panHandlers}
+                        style={{ height: 80, borderTopWidth: 1, borderTopColor: '#ebe5e5', flexDirection: 'row' }}>
                         <View style={{ flex: 4, flexDirection: 'row' }}>
-                            <Animated.View style={{ height: 50, width: 40, flexDirection: 'row', width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
+                            <Animated.View style={{ height: animatedImageHeight, width: animatedImageHeight, width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
                                 <Image style={{ marginLeft: 15, height: 40, width: 30 }}
                                     source={require('./icons/handlogo.png')} />
                                 <Animated.Text style={{ opacity: 1, textAlign: 'center', fontSize: 18, color: 'white', paddingLeft: 45 }}>
@@ -88,7 +108,7 @@ class ConnectScreen extends Component {
                             </Animated.View>
                         </View>
                     </Animated.View>
-                </Animated.View>*/}
+            </Animated.View>*/}
             </View>
         )
     }

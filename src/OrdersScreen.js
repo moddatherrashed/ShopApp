@@ -93,7 +93,7 @@ class OrdersScreen extends Component {
                     }}
                     data={this.state.orders}
                     renderItem={({ item, index }) =>
-                        <View style={{
+                        <TouchableOpacity style={{
                             flexDirection: 'row',
                             backgroundColor: '#FFFFFF',
                             elevation: 15,
@@ -127,7 +127,7 @@ class OrdersScreen extends Component {
                                     </TouchableOpacity>
                                 </View>
                             </View>
-                        </View>
+                        </TouchableOpacity>
                     }
                 />
             )

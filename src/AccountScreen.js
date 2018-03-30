@@ -3,6 +3,7 @@ import { View, Text, StatusBar, TouchableOpacity } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
+import Modal from "react-native-modal"
 
 class AccountScreen extends Component {
 
