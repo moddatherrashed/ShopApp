@@ -10,10 +10,12 @@ class AccountScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            isModalVisible: false,
+            EditModal: false,
             name: 'test',
             number: '0778899555',
-            email: 'test@test.com'
+            email: 'test@test.com',
+            addressModal: false,
+            address: 'Epingerstrasse 28, Basel Switzerland'
         }
     }
     static navigationOptions = {
@@ -73,62 +75,88 @@ class AccountScreen extends Component {
                                     </View>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
-                                    <TouchableOpacity onPress={() => { this.setState({ isModalVisible: true }) }} >
+                                    <TouchableOpacity onPress={() => { this.setState({ EditModal: true }) }} >
                                         <Text style={{ color: '#363A57', fontWeight: 'bold' }}>Edit</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
                         </View>
-                        <TouchableOpacity style={{ flex: 0.5, flexDirection: 'row', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
-                            <Icon name='ios-home' style={{ color: '#363A57' }} />
-                            <Text style={{ marginLeft: 10, color: '#363A57' }}>Addresses</Text>
+                        <TouchableOpacity
+                            style={{ flex: 0.5, flexDirection: 'column', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}
+                            onPress={() => { this.setState({ addressModal: true }) }}
+                        >
+                            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+                                <Icon name='ios-home' style={{ color: '#363A57' }} />
+                                <Text style={{ marginLeft: 10, color: '#363A57', fontWeight: 'bold' }}>Address</Text>
+                            </View>
+                            <Text style={{ marginLeft: 10, width: '100%' }}>{this.state.address}</Text>
                         </TouchableOpacity>
 
-                        <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
                             <TouchableOpacity style={{ width: 100, borderRadius: 50, height: 100, elevation: 15, backgroundColor: '#FFFFFF', padding: 10, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
                                 <Icon name='power' style={{ color: '#363A57' }} />
                                 <Text style={{ color: '#363A57' }} >Sign Out</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
-
                 </Content>
-                <Modal isVisible={this.state.isModalVisible}
+                <Modal isVisible={this.state.EditModal}
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
-                        <View style={{ justifyContent: 'center',padding : 5, alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                        <View style={{ justifyContent: 'center', padding: 5, alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <TextInput
                                 placeholder={this.state.name}
-                                style={{ width: 200 }}
+                                style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor='#363A57'
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <TextInput
                                 placeholder={this.state.number}
-                                style={{ width: 200 }}
+                                style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor='#363A57'
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <TextInput
                                 placeholder={this.state.email}
-                                style={{ width: 200 }}
+                                style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor='#363A57'
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
-                                onPress={() => this.setState({ isModalVisible: false })}>
+                                onPress={() => this.setState({ EditModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Done</Text>
                             </Button>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
-                                onPress={() => this.setState({ isModalVisible: false })}>
+                                onPress={() => this.setState({ EditModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Cancel</Text>
                             </Button>
                         </View>
                     </View>
-
+                </Modal>
+                <Modal isVisible={this.state.addressModal}
+                    style={styles.ModalStyle}>
+                    <View style={{ backgroundColor: '#FFFFFF' }}>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <TextInput
+                                placeholder={this.state.address}
+                                style={{ width: ScreenSize.width * 0.8 }}
+                                placeholderTextColor='#363A57'
+                                underlineColorAndroid="#363A57" />
+                        </View>
+                        <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                                onPress={() => this.setState({ addressModal: false })}>
+                                <Text style={styles.textBtnsStyle} >Edit</Text>
+                            </Button>
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                                onPress={() => this.setState({ addressModal: false })}>
+                                <Text style={styles.textBtnsStyle} >Cancel</Text>
+                            </Button>
+                        </View>
+                    </View>
                 </Modal>
             </Container>
         )

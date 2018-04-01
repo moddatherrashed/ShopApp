@@ -39,7 +39,8 @@ class ConnectScreen extends Component {
         )
     }
     componentWillMount() {
-        this.animation = new Animated.ValueXY({ x: 0, y: SCREEN_HEIGHT - 80 })
+        this.animation = new Animated.ValueXY({ x: 0, y: SCREEN_HEIGHT - 90 })
+
         this.panResponder = PanResponder.create({
             onMoveShouldSetPanResponder: () => true,
             onPanResponderGrant: (evt, gestureState) => {
@@ -49,7 +50,18 @@ class ConnectScreen extends Component {
                 this.animation.setValue({ x: 0, y: gestureState.dy })
             },
             onPanResponderRelease: (evt, gestureState) => {
-
+                if (gestureState.dy < 0) {
+                    Animated.spring(this.animation.y, {
+                        toValue: -SCREEN_HEIGHT + 120,
+                        tension: 1
+                    }).start()
+                }
+                if (gestureState.dy > 0) {
+                    Animated.spring(this.animation.y, {
+                        toValue: SCREEN_HEIGHT - 120,
+                        tension: 1
+                    }).start()
+                }
             }
 
         })
@@ -59,8 +71,33 @@ class ConnectScreen extends Component {
             transform: this.animation.getTranslateTransform()
         }
         animatedImageHeight = this.animation.y.interpolate({
-            inputRange: [0, SCREEN_HEIGHT - 80],
+            inputRange: [0, SCREEN_HEIGHT - 90],
+            outputRange: [260, 42],
+            extrapolate: "clamp"
+        })
+        animatedTitleOpacity = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 500, SCREEN_HEIGHT - 150],
+            outputRange: [0, 0, 1],
+            extrapolate: "clamp"
+        })
+        animatedImageMarginLeft = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 90],
+            outputRange: [SCREEN_WIDTH / 2 - 100, 10],
+            extrapolate: "clamp"
+        })
+        animatedImageWidth = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 90],
             outputRange: [200, 32],
+            extrapolate: "clamp"
+        })
+        animatedHeaderHeight = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 90],
+            outputRange: [SCREEN_HEIGHT / 2, 45],
+            extrapolate: "clamp"
+        })
+        animatedDetailsOpacity = this.animation.y.interpolate({
+            inputRange: [0, SCREEN_HEIGHT - 500, SCREEN_HEIGHT - 90],
+            outputRange: [1, 0, 0],
             extrapolate: "clamp"
         })
         return (
@@ -84,31 +121,53 @@ class ConnectScreen extends Component {
                         <Icon name='logo-instagram' style={{ color: '#FFFFFF', fontSize: 60 }} />
                     </View>
                 </View>
-                { /*<Animated.View style={[animatedHeight, {
+
+                <Animated.View style={[animatedHeight, {
                     position: 'absolute',
                     left: 0,
                     right: 0,
-                    zIndex: 200,
-                    backgroundColor: '#363A57',
-                    height: ScreenSize.height
+                    zIndex: 10,
+                    elevation: 20,
+                    backgroundColor:
+                        'red',
+                    height: SCREEN_HEIGHT
                 }]}>
                     <Animated.View
                         {...this.panResponder.panHandlers}
-                        style={{ height: 80, borderTopWidth: 1, borderTopColor: '#ebe5e5', flexDirection: 'row' }}>
-                        <View style={{ flex: 4, flexDirection: 'row' }}>
-                            <Animated.View style={{ height: animatedImageHeight, width: animatedImageHeight, width: SCREEN_WIDTH, alignItems: 'center', justifyContent: 'center' }}>
-                                <Image style={{ marginLeft: 15, height: 40, width: 30 }}
-                                    source={require('./icons/handlogo.png')} />
-                                <Animated.Text style={{ opacity: 1, textAlign: 'center', fontSize: 18, color: 'white', paddingLeft: 45 }}>
-                                    All Rights Reserved for STTS ®
-                                </Animated.Text>
-                                <Animated.View style={{ opacity: 1, flex: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-                                    <Icon name='ios-arrow-up' style={{ color: 'white' }} />
-                                </Animated.View>
+                        style={{
+                            height: animatedHeaderHeight,
+                            borderTopWidth: 1,
+                            borderTopColor: '#ebe5e5',
+                            flexDirection: 'row',
+                            alignItems: 'center'
+                        }}>
+                        <View style={{ flex: 4, flexDirection: 'row', alignItems: 'center' }}>
+                            <Animated.View style={{ height: animatedImageHeight, width: animatedImageWidth, marginLeft: animatedImageMarginLeft }}>
+                                <Image style={{ flex: 1, width: null, height: null }}
+                                    source={require('./icons/handlogo.png')}
+                                />
                             </Animated.View>
+                            <Animated.Text style={{ opacity: animatedTitleOpacity, color: 'white', fontWeight: 'bold', fontSize: 18, paddingLeft: 40 }}>
+                                Swiss Touch Tech Solutions
+                            </Animated.Text>
                         </View>
+                        <Animated.View style={{ opacity: animatedTitleOpacity, flex: 1, justifyContent: 'space-around', paddingLeft: 50 }}>
+                            <Icon name='arrow-up' style={{ color: '#FFFFFF' }} />
+                        </Animated.View>
                     </Animated.View>
-            </Animated.View>*/}
+                    <Animated.Text style={{ opacity: animatedDetailsOpacity, color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 25 }}>
+                        SWISS TOUCH TECH SOLUTIONS
+                    </Animated.Text>
+                    <Animated.Text style={{ opacity: animatedDetailsOpacity, color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 18, padding: 15 }}>
+                        Eptingerstrasse 28, 4052 Basel
+                    </Animated.Text>
+                    <Animated.Text style={{ opacity: animatedDetailsOpacity, color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 18 }}>
+                        Switzerland
+                    </Animated.Text>
+                    <Animated.Text style={{ opacity: animatedDetailsOpacity, color: 'white', textAlign: 'center', fontWeight: 'bold', fontSize: 18, padding: 25 }}>
+                        0041774044019
+                    </Animated.Text>
+                </Animated.View>
             </View>
         )
     }
