@@ -58,20 +58,30 @@ class AccountScreen extends Component {
                     hidden={false} />
                 <Content>
                     <View style={{ flex: 6 }}>
-                        <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}>
+                        <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
+                            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: '#363A57' }}>Personal Information</Text>
                             <View style={{ flexDirection: 'row', flex: 5 }}>
                                 <View style={{ flex: 4, padding: 15, justifyContent: 'center' }}>
                                     <View style={{ padding: 10 }}>
-                                        <Text style={{ color: '#363A57', fontWeight: 'bold' }}>Name</Text>
-                                        <Text style={{}}>{this.state.name}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <Icon name='person' style={{ color: '#363A57' }} />
+                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Name</Text>
+                                        </View>
+                                        <Text style={{ marginLeft: 30 }}>{this.state.name}</Text>
                                     </View>
                                     <View style={{ padding: 10 }}>
-                                        <Text style={{ color: '#363A57', fontWeight: 'bold' }}>Number</Text>
-                                        <Text style={{}}>{this.state.number}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                            <Icon name='ios-call' style={{ color: '#363A57' }} />
+                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Number</Text>
+                                        </View>
+                                        <Text style={{ marginLeft: 30 }}>{this.state.number}</Text>
                                     </View>
                                     <View style={{ padding: 10 }}>
-                                        <Text style={{ color: '#363A57', fontWeight: 'bold' }}>Email</Text>
-                                        <Text style={{}}>{this.state.email}</Text>
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                                            <Icon name='ios-mail' style={{ color: '#363A57' }} />
+                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Email</Text>
+                                        </View>
+                                        <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
@@ -82,14 +92,14 @@ class AccountScreen extends Component {
                             </View>
                         </View>
                         <TouchableOpacity
-                            style={{ flex: 0.5, flexDirection: 'column', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10 }}
+                            style={{ flex: 0.5, flexDirection: 'column', alignItems: 'center', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}
                             onPress={() => { this.setState({ addressModal: true }) }}
                         >
                             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
                                 <Icon name='ios-home' style={{ color: '#363A57' }} />
                                 <Text style={{ marginLeft: 10, color: '#363A57', fontWeight: 'bold' }}>Address</Text>
                             </View>
-                            <Text style={{ marginLeft: 10, width: '100%' }}>{this.state.address}</Text>
+                            <Text style={{ marginLeft: 60, width: '100%' }}>{this.state.address}</Text>
                         </TouchableOpacity>
 
                         <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
@@ -104,6 +114,7 @@ class AccountScreen extends Component {
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
                         <View style={{ justifyContent: 'center', padding: 5, alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <Icon name='person' style={{ color: '#363A57', paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.name}
                                 style={{ width: ScreenSize.width * 0.8 }}
@@ -111,6 +122,7 @@ class AccountScreen extends Component {
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <Icon name='ios-call' style={{ color: '#363A57', paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.number}
                                 style={{ width: ScreenSize.width * 0.8 }}
@@ -118,6 +130,7 @@ class AccountScreen extends Component {
                                 underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <Icon name='ios-mail' style={{ color: '#363A57', paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.email}
                                 style={{ width: ScreenSize.width * 0.8 }}
@@ -140,6 +153,7 @@ class AccountScreen extends Component {
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <Icon name='ios-home' style={{ color: '#363A57', paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.address}
                                 style={{ width: ScreenSize.width * 0.8 }}
