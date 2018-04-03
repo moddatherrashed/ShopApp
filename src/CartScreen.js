@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
+import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import ScreenSize from './ScreenSize';
 import { SafeAreaView } from 'react-navigation'
@@ -46,8 +46,23 @@ class CartScreen extends Component {
                 price: 50
             },
             ],
-            subTotal: 0
+            subTotal: 0,
+            cartItems: ''
         }
+    }
+
+    async getCartItems() {
+        try {
+            const value = JSON.parse(await AsyncStorage.getItem('cartItems'))
+            alert(typeof value)
+            this.setState({ cartItems: value });
+        } catch (error) {
+            alert("Error retrieving data" + error);
+        }
+    }
+    componentDidMount() {
+        alert('component did mount')
+        this.getCartItems()
     }
 
     onIncPressed(i) {
@@ -70,14 +85,15 @@ class CartScreen extends Component {
     }
 
     renderList() {
-        if (this.state.orders.length !== 0) {
+        if ((this.state.cartItems).length > 0) {
+
             return (
                 <FlatList
                     keyExtractor={item => item.name}
                     contentContainerStyle={{
                         marginBottom: 100,
                     }}
-                    data={this.state.orders}
+                    data={this.state.cartItems}
                     renderItem={({ item, index }) =>
                         <View style={{
                             flexDirection: 'row',
@@ -105,6 +121,7 @@ class CartScreen extends Component {
                                             padding: 3
                                         }}
                                         onPress={() => {
+                                            //here is not done
                                             let orders = this.state.orders
                                             orders.splice(index, 1)
                                             this.setState({

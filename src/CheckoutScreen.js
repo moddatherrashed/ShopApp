@@ -34,10 +34,9 @@ class CheckoutScreen extends Component {
         super(props);
 
         this.state = {
-            currentPage: 0
+            currentPage: 0,
         }
     }
-
     onNextPagePressed(ref, pageNumber) {
         ref.scrollView.scrollTo({ x: ((pageNumber - 1) * ScreenSize.width), y: 0, animated: true })
     }

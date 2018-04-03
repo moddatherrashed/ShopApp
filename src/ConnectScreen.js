@@ -50,16 +50,15 @@ class ConnectScreen extends Component {
                 this.animation.setValue({ x: 0, y: gestureState.dy })
             },
             onPanResponderRelease: (evt, gestureState) => {
-                if (gestureState.dy < 0) {
+                alert(gestureState.dy)
+                if (gestureState.dy < 10) {
                     Animated.spring(this.animation.y, {
                         toValue: -SCREEN_HEIGHT + 120,
-                        tension: 1
                     }).start()
                 }
-                if (gestureState.dy > 0) {
+                if (gestureState.dy > 10) {
                     Animated.spring(this.animation.y, {
                         toValue: SCREEN_HEIGHT - 120,
-                        tension: 1
                     }).start()
                 }
             }
@@ -96,7 +95,7 @@ class ConnectScreen extends Component {
             extrapolate: "clamp"
         })
         animatedDetailsOpacity = this.animation.y.interpolate({
-            inputRange: [0, SCREEN_HEIGHT - 500, SCREEN_HEIGHT - 90],
+            inputRange: [0, SCREEN_HEIGHT - 500, SCREEN_HEIGHT - 200],
             outputRange: [1, 0, 0],
             extrapolate: "clamp"
         })
@@ -122,18 +121,20 @@ class ConnectScreen extends Component {
                     </View>
                 </View>
 
-                <Animated.View style={[animatedHeight, {
-                    position: 'absolute',
-                    left: 0,
-                    right: 0,
-                    zIndex: 10,
-                    elevation: 20,
-                    backgroundColor:
-                        'red',
-                    height: SCREEN_HEIGHT
-                }]}>
+                <Animated.View
+                    {...this.panResponder.panHandlers}
+                    style={[animatedHeight, {
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        zIndex: 10,
+                        elevation: 20,
+                        backgroundColor:
+                            'red',
+                        height: SCREEN_HEIGHT
+                    }]}>
                     <Animated.View
-                        {...this.panResponder.panHandlers}
+
                         style={{
                             height: animatedHeaderHeight,
                             borderTopWidth: 1,

@@ -43,7 +43,26 @@ class ItemScreen extends Component {
         },
 
     })
-    async saveKey(value) {
+
+    async setCartItems(value) {
+        try {
+            const retrievedItem = await AsyncStorage.getItem('cartItems');
+            alert(retrievedItem)
+            if (retrievedItem === null) {
+                await AsyncStorage.setItem('cartItems', JSON.stringify([value]))
+            } else {
+                const item = JSON.parse(retrievedItem)
+                item.push(value)
+                //alert(item)
+                await AsyncStorage.setItem('cartItems', JSON.stringify(item))
+            }
+
+        } catch (error) {
+            alert("Error saving data ===" + error)
+        }
+    }
+
+    async saveFavoraites(value) {
         try {
             const retrievedItem = await AsyncStorage.getItem('fav');
             if (retrievedItem === null) {
@@ -119,7 +138,7 @@ class ItemScreen extends Component {
                                         this.setState({
                                             favBtn: 'ios-star'
                                         })
-                                        this.saveKey(params)
+                                        this.saveFavoraites(params)
 
                                     } else {
                                         this.setState({
@@ -244,8 +263,12 @@ class ItemScreen extends Component {
                         onPress={() => {
                             if (this.state.size === 'Select Size') {
                                 this.setState({ isModalVisible: true })
+
                             } else {
+                                this.setCartItems(params)
+                                alert(params)
                                 this.setState({ dialgoBox: true })
+
                             }
                         }}>
                         <Text style={styles.textBtnsStyle} >Add To Cart</Text>
