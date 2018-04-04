@@ -7,35 +7,43 @@ class CatagoryScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [
-                {
-                    name: 'Gray Jacket',
-                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
-                },
-                {
-                    name: 'Adidas Jacket',
-                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
-                },
-                {
-                    name: 'Water Prof Jacket',
-                    url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
-                },
-                {
-                    name: 'White T-shirt',
-                    url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-                },
-                {
-                    name: 'Adidas sss',
-                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
-                },
-                {
-                    name: 'Water Prof aaaa',
-                    url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
-                },
-                {
-                    name: 'White T-eeee',
-                    url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
-                }],
+            data: [{
+                name: 'Grssay Jacket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 15
+            },
+            {
+                name: 'Gray Jassscket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 20
+            },
+            {
+                name: 'Gray Jadddcket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 25
+            },
+            {
+                name: 'Gray Jacffffket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 10
+            },
+            {
+                name: 'Gray Jaccccket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 11
+            },
+            {
+                name: 'Gray Jacrrket',
+                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                quantity: 1,
+                price: 11.5
+            },
+            ],
             searchText: ''
         }
     }
@@ -102,14 +110,14 @@ class CatagoryScreen extends Component {
                                     borderWidth: 0.5,
                                     backgroundColor: '#FFFFFF'
                                 }}
-                                onPress={() => navigate("ItemScreen", { name: item.name, url: item.url })}>
+                                onPress={() => navigate("ItemScreen", { name: item.name, url: item.url, quantity: item.quantity, price: item.price })}>
                                 <Image
                                     style={styles.imageStyle}
                                     source={item.url}
                                     resizeMode="contain"
                                 />
                                 <Text style={styles.textStyle}>{item.name}</Text>
-                                <Text style={styles.priceTextStyle}>50 JD</Text>
+                                <Text style={styles.priceTextStyle}>{item.price} JD</Text>
                             </TouchableOpacity>
 
                         </View>

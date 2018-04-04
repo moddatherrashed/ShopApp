@@ -54,38 +54,40 @@ class CartScreen extends Component {
     async getCartItems() {
         try {
             const value = JSON.parse(await AsyncStorage.getItem('cartItems'))
-            alert(typeof value)
-            this.setState({ cartItems: value });
+            if (value !== null) {
+                this.setState({ cartItems: value });
+            }
         } catch (error) {
-            alert("Error retrieving data" + error);
+            alert("Error retrieving data cart screen" + error);
         }
     }
     componentDidMount() {
-        alert('component did mount')
+        //alert('component did mount')
+        // AsyncStorage.clear()
         this.getCartItems()
     }
 
     onIncPressed(i) {
-        let CopiedState = [...this.state.orders]
-        let newQuantity = ++this.state.orders[i].quantity
+        let CopiedState = [...this.state.cartItems]
+        let newQuantity = ++this.state.cartItems[i].quantity
         CopiedState[i].quantity = newQuantity
         this.setState({
-            orders: CopiedState
+            cartItems: CopiedState
         })
     }
     onDecPressed(i) {
-        if (this.state.orders[i].quantity !== 1) {
-            let CopiedState = [...this.state.orders]
-            let newQuantity = --this.state.orders[i].quantity
+        if (this.state.cartItems[i].quantity !== 1) {
+            let CopiedState = [...this.state.cartItems]
+            let newQuantity = --this.state.cartItems[i].quantity
             CopiedState[i].quantity = newQuantity
             this.setState({
-                orders: CopiedState
+                cartItems: CopiedState
             })
         }
     }
 
     renderList() {
-        if ((this.state.cartItems).length > 0) {
+        if ((this.state.cartItems).length !== 0) {
 
             return (
                 <FlatList
@@ -122,11 +124,12 @@ class CartScreen extends Component {
                                         }}
                                         onPress={() => {
                                             //here is not done
-                                            let orders = this.state.orders
-                                            orders.splice(index, 1)
+                                            let restOfOrders = this.state.cartItems
+                                            restOfOrders.splice(index, 1)
                                             this.setState({
-                                                orders
+                                                cartItems: restOfOrders
                                             })
+                                            AsyncStorage.setItem('cartItems', JSON.stringify(this.state.cartItems))
 
                                         }}>
                                         <Icon name='ios-trash-outline' style={{ color: '#363A57' }} />
@@ -180,9 +183,11 @@ class CartScreen extends Component {
     }
     subTotalCounter() {
         let total = 0
-        this.state.orders.map((obj) => {
-            total += (obj.price) * obj.quantity
-        })
+        if (this.state.cartItems !== '') {
+            this.state.cartItems.map((obj) => {
+                total += (obj.price) * obj.quantity
+            })
+        }
         return <Text style={{ color: '#000000', fontWeight: 'bold' }}>{total} JD</Text>
 
     }

@@ -26,7 +26,7 @@ class ItemScreen extends Component {
         }
     }
     _toggleModal = () =>
-        this.setState({ isModalVisible: !this.state.isModalVisible });
+        this.setState({ isModalVisible: !this.state.isModalVisible })
 
     onSelectSize(sizeAttr) {
         this.setState({
@@ -119,7 +119,7 @@ class ItemScreen extends Component {
                         <View style={styles.priceNameFavContainer}>
                             <View style={styles.namePriceConatiner}>
                                 <Text style={styles.nameTextStyle}>{params.name}</Text>
-                                <Text style={styles.priceTextStyle}>50 JD</Text>
+                                <Text style={styles.priceTextStyle}>{params.price}</Text>
                             </View>
                             <View style={styles.sizeSelectorStyle}>
                                 <Button bordered style={styles.sizeBtnStyle}
@@ -161,7 +161,7 @@ class ItemScreen extends Component {
                     <Text style={styles.descriptionTextStyle}>Descrption</Text>
                     <View style={styles.descriptionContainerStyle}>
                         <Text style={styles.descriptionTextStyle}>
-                            asdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwfasdlkjaslkjc kajef lkjwf lkjwf
+                            this is dummu description just to show how it looks like, please do not read it
                         </Text>
                     </View>
                 </ScrollView>
