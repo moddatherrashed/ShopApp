@@ -266,7 +266,6 @@ class ItemScreen extends Component {
 
                             } else {
                                 this.setCartItems(params)
-                                alert(params)
                                 this.setState({ dialgoBox: true })
 
                             }

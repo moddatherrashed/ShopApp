@@ -10,6 +10,7 @@
     "native-base": "^2.3.8",
     "react": "16.2.0",
     "react-native": "0.53.0",
+    "react-native-animatable": "^1.2.4",
     "react-native-modal": "^5.0.0",
     "react-native-search-header": "^0.2.5",
     "react-native-step-indicator": "0.0.7",

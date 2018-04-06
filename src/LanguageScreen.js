@@ -70,7 +70,7 @@ class LanguageScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#4d537c"
                     hidden={false} />
-                <Text style={{ margin: 20, fontSize: 20 }}>Choose your Language:</Text>
+                <Text style={{ margin: 20, fontSize: 20 }}>Choose your Language</Text>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <Button bordered style={{
