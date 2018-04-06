@@ -95,7 +95,7 @@ class HomeScreen extends Component {
                 }}>
                     <ImageBackground
                         style={{
-                            height: ScreenSize.height * 0.4,
+                            height: ScreenSize.height * 0.3,
                             borderRadius: 5,
                             width: '100%',
                             justifyContent: 'center',
