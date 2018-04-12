@@ -62,8 +62,6 @@ class CartScreen extends Component {
         }
     }
     componentDidMount() {
-        //alert('component did mount')
-        // AsyncStorage.clear()
         this.getCartItems()
     }
 
@@ -88,7 +86,6 @@ class CartScreen extends Component {
 
     renderList() {
         if ((this.state.cartItems).length !== 0) {
-
             return (
                 <FlatList
                     keyExtractor={item => item.name}

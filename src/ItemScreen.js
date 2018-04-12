@@ -47,13 +47,11 @@ class ItemScreen extends Component {
     async setCartItems(value) {
         try {
             const retrievedItem = await AsyncStorage.getItem('cartItems');
-            alert(retrievedItem)
             if (retrievedItem === null) {
                 await AsyncStorage.setItem('cartItems', JSON.stringify([value]))
             } else {
                 const item = JSON.parse(retrievedItem)
                 item.push(value)
-                //alert(item)
                 await AsyncStorage.setItem('cartItems', JSON.stringify(item))
             }
 
@@ -70,7 +68,6 @@ class ItemScreen extends Component {
             } else {
                 const item = JSON.parse(retrievedItem)
                 item.push(value)
-                //alert(item)
                 await AsyncStorage.setItem('fav', JSON.stringify(item))
             }
 
@@ -267,7 +264,6 @@ class ItemScreen extends Component {
                             } else {
                                 this.setCartItems(params)
                                 this.setState({ dialgoBox: true })
-
                             }
                         }}>
                         <Text style={styles.textBtnsStyle} >Add To Cart</Text>
