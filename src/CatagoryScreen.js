@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, FlatList, ImageBackground, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
+import { Icon } from 'native-base'
 import ScreenSize from './ScreenSize'
 import ItemScreen from './ItemScreen';
 import SearchBar from './components/SearchBar'
@@ -98,14 +99,14 @@ class CatagoryScreen extends Component {
                             <TouchableOpacity
                                 style={{
                                     flex: 1,
-                                    height: width * 2,
+                                    height: width * 1.4,
                                     width: width * 1.28,
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
+
+
                                     borderColor: 'gray',
                                     borderWidth: 1,
-                                    margin: 1,
-                                    padding: 2,
+                                    margin: 0.2,
+                                    padding: 3,
                                     elevation: 15,
                                     borderWidth: 0.5,
                                     backgroundColor: '#FFFFFF'
@@ -118,6 +119,11 @@ class CatagoryScreen extends Component {
                                 />
                                 <Text style={styles.textStyle}>{item.name}</Text>
                                 <Text style={styles.priceTextStyle}>{item.price} JD</Text>
+                                <View style={{ alignItems: 'flex-end', padding: 5 }}>
+                                    <TouchableOpacity>
+                                        <Icon name='ios-add' style={{ fontWeight: 'bold' }} />
+                                    </TouchableOpacity>
+                                </View>
                             </TouchableOpacity>
 
                         </View>
@@ -135,17 +141,19 @@ const styles = StyleSheet.create({
     priceTextStyle: {
         fontWeight: "bold",
         color: '#000',
+        textAlign: 'center',
         fontSize: 20
     },
     imageStyle: {
-        height: '80%',
+        height: '60%',
         width: '100%',
         margin: 3
     },
     contentStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10
+        marginTop: 10,
+        marginBottom: 10
     }
 })
 

@@ -173,8 +173,8 @@ class HomeScreen extends Component {
                                 <TouchableOpacity
                                     style={{
                                         flex: 1,
-                                        margin: 5,
-                                        height: width * 2,
+                                        margin: 0.5,
+                                        height: width * 1.4,
                                         width: width * 1.28,
                                         justifyContent: 'center',
                                         alignItems: 'center',
