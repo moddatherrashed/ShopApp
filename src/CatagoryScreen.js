@@ -101,14 +101,9 @@ class CatagoryScreen extends Component {
                                     flex: 1,
                                     height: width * 1.4,
                                     width: width * 1.28,
-
-
-                                    borderColor: 'gray',
-                                    borderWidth: 1,
                                     margin: 0.2,
                                     padding: 3,
                                     elevation: 15,
-                                    borderWidth: 0.5,
                                     backgroundColor: '#FFFFFF'
                                 }}
                                 onPress={() => navigate("ItemScreen", { name: item.name, url: item.url, quantity: item.quantity, price: item.price })}>
@@ -121,7 +116,7 @@ class CatagoryScreen extends Component {
                                 <Text style={styles.priceTextStyle}>{item.price} JD</Text>
                                 <View style={{ alignItems: 'flex-end', padding: 5 }}>
                                     <TouchableOpacity>
-                                        <Icon name='ios-add' style={{ fontWeight: 'bold' }} />
+                                        <Icon name='ios-add' style={{ fontWeight: 'bold', color: '#363A57' }} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity>
@@ -140,7 +135,7 @@ const styles = StyleSheet.create({
     },
     priceTextStyle: {
         fontWeight: "bold",
-        color: '#000',
+        color: '#363A57',
         textAlign: 'center',
         fontSize: 20
     },

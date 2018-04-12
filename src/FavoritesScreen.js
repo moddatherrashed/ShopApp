@@ -47,7 +47,8 @@ class FavoritesScreen extends Component {
     async getKey() {
         try {
             const value = JSON.parse(await AsyncStorage.getItem('fav'))
-            this.setState({ fav: value });
+            if (value !== null)
+                this.setState({ fav: value });
         } catch (error) {
             alert("Error retrieving data" + error);
         }
