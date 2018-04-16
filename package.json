@@ -7,23 +7,23 @@
     "test": "jest"
   },
   "dependencies": {
-    "native-base": "^2.3.8",
-    "react": "16.2.0",
-    "react-native": "0.53.0",
+    "native-base": "^2.4.2",
+    "react": "16.3.1",
+    "react-native": "0.55.2",
     "react-native-animatable": "^1.2.4",
-    "react-native-modal": "^5.0.0",
-    "react-native-search-header": "^0.2.5",
+    "react-native-modal": "^5.4.0",
+    "react-native-search-header": "^0.2.6",
     "react-native-step-indicator": "0.0.7",
     "react-native-swiper": "^1.5.13",
-    "react-native-vector-icons": "^4.5.0",
-    "react-navigation": "^1.0.3"
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^1.5.11"
   },
   "devDependencies": {
     "babel-jest": "22.2.2",
     "babel-preset-react-native": "4.0.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-config-rallycoding": "^3.2.0",
-    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "jest": "22.3.0",
