@@ -185,18 +185,18 @@ class CartScreen extends Component {
                 total += (obj.price) * obj.quantity
             })
         }
-        return <Text style={{ color: '#000000', fontWeight: 'bold' }}>{total} JD</Text>
+        return <Text style={{ color: '#000000', fontWeight: 'bold',margin : 5, }}>{total} JD</Text>
 
     }
     render() {
         const { navigate } = this.props.navigation
         return (
-            <View>
+    
+                <View>
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor="#4d537c"
                     hidden={false} />
-                <View>
                     <View style={{ height: ScreenSize.height - 180 }}>
                         {this.renderList()}
                     </View>
@@ -207,39 +207,30 @@ class CartScreen extends Component {
                                 borderColor: '#363A57',
                                 borderWidth: 1,
                                 height: 100,
-                                flex: 2,
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 position: 'absolute',
                                 width: '100%',
-                                shadowColor: "#000000",
-                                shadowOpacity: 0.8,
-                                shadowRadius: 2,
-                                shadowOffset: {
-                                    height: 1,
-                                    width: 0
-                                }
+                                
                             }
                         }>
                             <View style={{
-                                flex: 1,
                                 backgroundColor: '#dcdde1',
                                 width: '100%',
                                 flexDirection: 'row'
                             }}>
                                 <View style={{
-                                    flex: 0.5,
                                     justifyContent: 'center',
                                     alignItems: 'flex-start',
-                                    margin: 10
+                                    width : '50%',
+                                    
                                 }}>
-                                    <Text style={{ color: '#000000', fontWeight: 'bold' }}>SUBTOTAL</Text>
+                                    <Text style={{ color: '#000000',margin :5, fontWeight: 'bold' }}>SUBTOTAL</Text>
                                 </View>
                                 <View style={{
-                                    flex: 0.5,
                                     alignItems: 'flex-end',
                                     justifyContent: 'center',
-                                    margin: 10
+                                    width : '50%',
                                 }}>
                                     {this.subTotalCounter()}
                                 </View>
@@ -257,7 +248,7 @@ class CartScreen extends Component {
                         </View>
                     </View>
                 </View>
-            </View>
+
         )
     }
 }
