@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Animated, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { View, Text, FlatList, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
 import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
@@ -39,6 +39,8 @@ class HomeScreen extends Component {
             textValue: 0,
             searchText: ''
         }
+        YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+
     }
     animateBadge() {
         const textCounter = ++this.state.textValue
