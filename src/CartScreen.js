@@ -90,7 +90,7 @@ class CartScreen extends Component {
                 <FlatList
                     keyExtractor={item => item.name}
                     contentContainerStyle={{
-                        marginBottom: 100,
+                        flex: 1.7
                     }}
                     data={this.state.cartItems}
                     renderItem={({ item, index }) =>
@@ -185,69 +185,67 @@ class CartScreen extends Component {
                 total += (obj.price) * obj.quantity
             })
         }
-        return <Text style={{ color: '#000000', fontWeight: 'bold',margin : 5, }}>{total} JD</Text>
+        return <Text style={{ color: '#000000', fontWeight: 'bold', margin: 5, }}>{total} JD</Text>
 
     }
     render() {
         const { navigate } = this.props.navigation
         return (
-    
-                <View>
+
+            <View style={{ flex: 2 }}>
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor="#4d537c"
                     hidden={false} />
-                    <View style={{ height: ScreenSize.height - 180 }}>
-                        {this.renderList()}
-                    </View>
-                    <View>
-                        <View style={
-                            {
-                                backgroundColor: '#363A57',
-                                borderColor: '#363A57',
-                                borderWidth: 1,
-                                height: 100,
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                position: 'absolute',
-                                width: '100%',
-                                
-                            }
-                        }>
-                            <View style={{
-                                backgroundColor: '#dcdde1',
-                                width: '100%',
-                                flexDirection: 'row'
-                            }}>
-                                <View style={{
-                                    justifyContent: 'center',
-                                    alignItems: 'flex-start',
-                                    width : '50%',
-                                    
-                                }}>
-                                    <Text style={{ color: '#000000',margin :5, fontWeight: 'bold' }}>SUBTOTAL</Text>
-                                </View>
-                                <View style={{
-                                    alignItems: 'flex-end',
-                                    justifyContent: 'center',
-                                    width : '50%',
-                                }}>
-                                    {this.subTotalCounter()}
-                                </View>
-                            </View>
-                            <TouchableOpacity style={{
-                                width: '100%',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                                flex: 1
-                            }} onPress={() => {
-                                navigate('CheckoutScreen')
-                            }}>
-                                <Text style={{ fontSize: 15, color: 'white' }}>CHECKOUT</Text>
-                            </TouchableOpacity>
+                <View style={{ flex: 1.7 }}>
+                    {this.renderList()}
+                </View>
+
+                <View style={
+                    {
+                        backgroundColor: '#363A57',
+                        borderColor: '#363A57',
+                        borderWidth: 1,
+                        flex: 0.3,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '100%',
+
+                    }
+                }>
+                    <View style={{
+                        backgroundColor: '#dcdde1',
+                        width: '100%',
+                        flexDirection: 'row'
+                    }}>
+                        <View style={{
+                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            width: '50%',
+
+                        }}>
+                            <Text style={{ color: '#000000', margin: 5, fontWeight: 'bold' }}>SUBTOTAL</Text>
+                        </View>
+                        <View style={{
+                            alignItems: 'flex-end',
+                            justifyContent: 'center',
+                            width: '50%',
+                        }}>
+                            {this.subTotalCounter()}
                         </View>
                     </View>
+                    <TouchableOpacity style={{
+                        width: '100%',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flex: 1
+                    }} onPress={() => {
+                        navigate('CheckoutScreen')
+                    }}>
+                        <Text style={{ fontSize: 15, color: 'white' }}>CHECKOUT</Text>
+                    </TouchableOpacity>
                 </View>
+            </View>
 
         )
     }
