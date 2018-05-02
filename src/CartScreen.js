@@ -197,16 +197,16 @@ class CartScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#4d537c"
                     hidden={false} />
-                <View style={{ flex: 1.7 }}>
+                <ScrollView style={{ flex: 1.8 }}>
                     {this.renderList()}
-                </View>
+                </ScrollView>
 
                 <View style={
                     {
                         backgroundColor: '#363A57',
                         borderColor: '#363A57',
                         borderWidth: 1,
-                        flex: 0.3,
+                        flex: 0.2,
                         alignItems: 'center',
                         justifyContent: 'center',
                         width: '100%',
