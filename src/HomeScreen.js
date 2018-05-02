@@ -18,20 +18,20 @@ class HomeScreen extends Component {
         this.state = {
             data: [
                 {
-                    name: 'Gray Jacket',
-                    url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' }
+                    name: 'Vegetables',
+                    url: { uri: 'https://www.mynutritionclinic.com.au/wp-content/uploads/2018/01/fruits-vegetables-rainbow-hero-getty.jpg' }
                 },
                 {
-                    name: 'Adidas Jacket',
-                    url: { uri: 'http://www.sportzone.sk/img/cache/public/f1-w800-h800-r-b255-255-255-o-f1/photos/57/566/56517.jpg' }
+                    name: 'Meat',
+                    url: { uri: 'https://www.argiro.gr/wp-content/uploads/2017/05/fresh-meat.jpg' }
                 },
                 {
-                    name: 'Water Prof Jacket',
-                    url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' }
+                    name: 'Cleaning products',
+                    url: { uri: 'https://cdn.shopify.com/s/files/1/2102/8057/collections/cleaning-products-stock-today-160307-tease_4097ed238bc46047a15831a86dd47267.jpg?v=1501687198' }
                 },
                 {
-                    name: 'White T-shirt',
-                    url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' }
+                    name: 'Spices',
+                    url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' }
                 }],
             offerFalg: true,
             wasOfferFlagTrue: false,
@@ -103,7 +103,7 @@ class HomeScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
-                        source={{ uri: 'http://s1.picswalls.com/wallpapers/2014/07/24/sports-desktop-background_113128110_89.jpg' }}
+                        source={{ uri: 'https://thumbs.dreamstime.com/b/milk-products-shelves-18000758.jpg' }}
                         resizeMode="cover"
                     >
                         <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 7, margin: 15, borderRadius: 3 }}>Offer Title</Text>
@@ -167,7 +167,8 @@ class HomeScreen extends Component {
                         keyExtractor={item => item.name}
                         contentContainerStyle={{
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            marginBottom : 10
                         }}
                         data={filterSearch}
                         renderItem={({ item, index }) =>
