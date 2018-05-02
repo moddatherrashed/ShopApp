@@ -11,7 +11,7 @@ import LanguageScreen from './src/LanguageScreen'
 
 const CustomDrawerComponent = (props) => (
   <Container>
-    <Content style={{ backgroundColor: '#363a57' }}>
+    <Content style={{ backgroundColor: '#363a57',paddingTop :50 }}>
       <DrawerItems {...props} />
     </Content>
     <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#363a57' }}>

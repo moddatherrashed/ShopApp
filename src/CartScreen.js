@@ -230,6 +230,7 @@ class CartScreen extends Component {
                         <View style={{
                             alignItems: 'flex-end',
                             justifyContent: 'center',
+                            flex : 0.8,
                             width: '50%',
                         }}>
                             {this.subTotalCounter()}
