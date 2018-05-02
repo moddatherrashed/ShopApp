@@ -3,7 +3,8 @@ import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image,
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import ScreenSize from './ScreenSize';
 import { SafeAreaView } from 'react-navigation'
-
+import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 class CartScreen extends Component {
     constructor(props) {
@@ -173,9 +174,9 @@ class CartScreen extends Component {
     }
     static navigationOptions = {
         title: `Cart`,
-        headerTintColor: '#363A57',
+        headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: styleColors.toolBarColor,
         },
     }
     subTotalCounter() {

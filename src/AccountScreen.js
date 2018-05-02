@@ -4,6 +4,8 @@ import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'nat
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"
+import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 class AccountScreen extends Component {
 
@@ -20,16 +22,16 @@ class AccountScreen extends Component {
     }
     static navigationOptions = {
         title: `Account`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: screenColors.mainToolBarColor,
         },
         headerLeft: (
             <Button transparent
                 onPress={() => {
                     _this.props.navigation.navigate('DrawerOpen')
                 }}>
-                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+                <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -38,7 +40,7 @@ class AccountScreen extends Component {
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>
-                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -59,34 +61,34 @@ class AccountScreen extends Component {
                 <Content>
                     <View style={{ flex: 6 }}>
                         <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
-                            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: '#363A57' }}>Personal Information</Text>
+                            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: styleColors.barsAndButtonsColor }}>Personal Information</Text>
                             <View style={{ flexDirection: 'row', flex: 5 }}>
                                 <View style={{ flex: 4, padding: 15, justifyContent: 'center' }}>
                                     <View style={{ padding: 10 }}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Icon name='person' style={{ color: '#363A57' }} />
-                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Name</Text>
+                                            <Icon name='person' style={{ color: styleColors.barsAndButtonsColor }} />
+                                            <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>Name</Text>
                                         </View>
                                         <Text style={{ marginLeft: 30 }}>{this.state.name}</Text>
                                     </View>
                                     <View style={{ padding: 10 }}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                            <Icon name='ios-call' style={{ color: '#363A57' }} />
-                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Number</Text>
+                                            <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor }} />
+                                            <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>Number</Text>
                                         </View>
                                         <Text style={{ marginLeft: 30 }}>{this.state.number}</Text>
                                     </View>
                                     <View style={{ padding: 10 }}>
                                         <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                                            <Icon name='ios-mail' style={{ color: '#363A57' }} />
-                                            <Text style={{ color: '#363A57', fontWeight: 'bold', marginLeft: 10 }}>Email</Text>
+                                            <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor }} />
+                                            <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>Email</Text>
                                         </View>
                                         <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                     </View>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
                                     <TouchableOpacity onPress={() => { this.setState({ EditModal: true }) }} >
-                                        <Text style={{ color: '#363A57', fontWeight: 'bold' }}>Edit</Text>
+                                        <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>Edit</Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -96,16 +98,16 @@ class AccountScreen extends Component {
                             onPress={() => { this.setState({ addressModal: true }) }}
                         >
                             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
-                                <Icon name='ios-home' style={{ color: '#363A57' }} />
-                                <Text style={{ marginLeft: 10, color: '#363A57', fontWeight: 'bold' }}>Address</Text>
+                                <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor }} />
+                                <Text style={{ marginLeft: 10, color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>Address</Text>
                             </View>
                             <Text style={{ marginLeft: 60, width: '100%' }}>{this.state.address}</Text>
                         </TouchableOpacity>
 
                         <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
                             <TouchableOpacity style={{ width: 100, borderRadius: 50, height: 100, elevation: 15, backgroundColor: '#FFFFFF', padding: 10, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                <Icon name='power' style={{ color: '#363A57' }} />
-                                <Text style={{ color: '#363A57' }} >Sign Out</Text>
+                                <Icon name='power' style={{ color: styleColors.barsAndButtonsColor }} />
+                                <Text style={{ color: styleColors.barsAndButtonsColor }} >Sign Out</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -114,35 +116,35 @@ class AccountScreen extends Component {
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
                         <View style={{ justifyContent: 'center', padding: 5, alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
-                            <Icon name='person' style={{ color: '#363A57', paddingRight: 10 }} />
+                            <Icon name='person' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.name}
                                 style={{ width: ScreenSize.width * 0.8 }}
-                                placeholderTextColor='#363A57'
-                                underlineColorAndroid="#363A57" />
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                            underlineColorAndroid="#363A57" />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
-                            <Icon name='ios-call' style={{ color: '#363A57', paddingRight: 10 }} />
+                            <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.number}
                                 style={{ width: ScreenSize.width * 0.8 }}
-                                placeholderTextColor='#363A57'
-                                underlineColorAndroid="#363A57" />
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                            underlineColorAndroid={styleColors.barsAndButtonsColor}/>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
-                            <Icon name='ios-mail' style={{ color: '#363A57', paddingRight: 10 }} />
+                            <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.email}
                                 style={{ width: ScreenSize.width * 0.8 }}
-                                placeholderTextColor='#363A57'
-                                underlineColorAndroid="#363A57" />
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ EditModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Done</Text>
                             </Button>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ EditModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Cancel</Text>
                             </Button>
@@ -153,19 +155,19 @@ class AccountScreen extends Component {
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
-                            <Icon name='ios-home' style={{ color: '#363A57', paddingRight: 10 }} />
+                            <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.address}
                                 style={{ width: ScreenSize.width * 0.8 }}
-                                placeholderTextColor='#363A57'
-                                underlineColorAndroid="#363A57" />
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ addressModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Edit</Text>
                             </Button>
-                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: '#363A57', borderRadius: 5 }}
+                            <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ addressModal: false })}>
                                 <Text style={styles.textBtnsStyle} >Cancel</Text>
                             </Button>
@@ -179,7 +181,7 @@ class AccountScreen extends Component {
 
 const styles = StyleSheet.create({
     addToCartBtnStyle: {
-        backgroundColor: '#363A57',
+        backgroundColor: styleColors.barsAndButtonsColor,
         height: '100%'
     },
     addToCartContainerStyle: {
@@ -192,7 +194,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     cancelBtnStyle: {
-        backgroundColor: '#363A57',
+        backgroundColor: styleColors.barsAndButtonsColor,
         borderWidth: 0.5,
         borderColor: '#FFFFFF',
     },
@@ -209,8 +211,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 2,
         textAlign: 'center',
-        borderColor: '#363A57',
-        color: '#363A57'
+        borderColor: styleColors.barsAndButtonsColor,
+        color: styleColors.barsAndButtonsColor
     },
     containerSizeStyle: {
         flexDirection: 'row',
@@ -269,17 +271,17 @@ const styles = StyleSheet.create({
         flex: 1.9
     },
     sizeBtnStyle: {
-        borderColor: '#363A57',
+        borderColor: styleColors.barsAndButtonsColor,
         justifyContent: 'center',
         width: '100%'
     },
     sizeTextStyle: {
         padding: 5,
-        color: '#363A57',
+        color: styleColors.barsAndButtonsColor,
         textAlign: 'center'
     },
     iconFavStyle: {
-        color: '#363A57',
+        color: styleColors.barsAndButtonsColor,
         padding: 10,
         flex: 1,
         textAlign: 'right'
@@ -296,7 +298,7 @@ const styles = StyleSheet.create({
     descriptionTextStyle: {
         padding: 5,
         fontWeight: 'bold',
-        color: '#363A57'
+        color: styleColors.barsAndButtonsColor
     },
     descriptionContainerStyle: {
         backgroundColor: '#FFFFFF',

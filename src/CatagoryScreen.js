@@ -4,6 +4,8 @@ import { Icon } from 'native-base'
 import ScreenSize from './ScreenSize'
 import ItemScreen from './ItemScreen';
 import SearchBar from './components/SearchBar'
+import styleColors from './components/screenColors'
+
 class CatagoryScreen extends Component {
     constructor(props) {
         super(props)
@@ -52,9 +54,9 @@ class CatagoryScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
 
         title: `${navigation.state.params.name}`,
-        headerTintColor: '#363A57',
+        headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: styleColors.toolBarColor,
         },
 
     })
@@ -116,7 +118,7 @@ class CatagoryScreen extends Component {
                                 <Text style={styles.priceTextStyle}>{item.price} JD</Text>
                                 <View style={{ alignItems: 'flex-end', padding: 5 }}>
                                     <TouchableOpacity>
-                                        <Icon name='ios-add' style={{ fontWeight: 'bold', color: '#363A57' }} />
+                                        <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
                                     </TouchableOpacity>
                                 </View>
                             </TouchableOpacity>

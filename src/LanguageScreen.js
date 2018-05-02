@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StatusBar } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
+import screenColors from './components/screenColors'
 
 
 class LanguageScreen extends Component {
@@ -17,16 +18,16 @@ class LanguageScreen extends Component {
     }
     static navigationOptions = {
         headerTitle: `Language Selector`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: screenColors.mainToolBarColor,
         },
         headerLeft: (
             <Button transparent
                 onPress={() => {
                     _this.props.navigation.navigate('DrawerOpen')
                 }}>
-                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+                <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -35,7 +36,7 @@ class LanguageScreen extends Component {
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>
-                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),

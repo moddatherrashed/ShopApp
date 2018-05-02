@@ -12,6 +12,7 @@ import { Icon, Button, Badge } from 'native-base'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"
 import CartScreen from './CartScreen'
+import styleColors from './components/screenColors'
 
 class ItemScreen extends Component {
 
@@ -37,9 +38,9 @@ class ItemScreen extends Component {
     static navigationOptions = ({ navigation }) => ({
 
         title: `${navigation.state.params.name}`,
-        headerTintColor: '#363A57',
+        headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
-            backgroundColor: '#FFFFFF',
+            backgroundColor: styleColors.toolBarColor,
         },
 
     })
@@ -224,7 +225,7 @@ class ItemScreen extends Component {
                         <View style={{ paddingTop: ScreenSize.height * 0.1, height: ScreenSize.height * 0.2, width: '100%', justifyContent: 'space-around', flexDirection: 'row' }}>
                             <Button style={{
                                 width: '40%',
-                                backgroundColor: '#363A57',
+                                backgroundColor: styleColors.barsAndButtonsColor,
                                 justifyContent: 'center',
                                 alignItems: 'center',
                                 marginLeft: '5%',
@@ -238,7 +239,7 @@ class ItemScreen extends Component {
                                 <Text style={styles.textBtnsStyle} >Continue Shopping</Text>
                             </Button>
                             <Button style={{
-                                backgroundColor: '#363A57',
+                                backgroundColor: styleColors.barsAndButtonsColor,
                                 width: '40%',
                                 justifyContent: 'center',
                                 alignItems: 'center',
@@ -275,7 +276,7 @@ class ItemScreen extends Component {
 }
 const styles = StyleSheet.create({
     addToCartBtnStyle: {
-        backgroundColor: '#363A57',
+        backgroundColor: styleColors.barsAndButtonsColor,
         height: '100%'
     },
     addToCartContainerStyle: {
@@ -288,7 +289,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     },
     cancelBtnStyle: {
-        backgroundColor: '#363A57',
+        backgroundColor: styleColors.barsAndButtonsColor,
         height: '100%',
         flex: 1,
         borderWidth: 0.5,
@@ -307,8 +308,8 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         padding: 2,
         textAlign: 'center',
-        borderColor: '#363A57',
-        color: '#363A57'
+        borderColor: styleColors.barsAndButtonsColor,
+        color: styleColors.barsAndButtonsColor
     },
     containerSizeStyle: {
         flexDirection: 'row',
@@ -367,17 +368,17 @@ const styles = StyleSheet.create({
         flex: 1.9
     },
     sizeBtnStyle: {
-        borderColor: '#363A57',
+        borderColor: styleColors.barsAndButtonsColor,
         justifyContent: 'center',
         width: '100%'
     },
     sizeTextStyle: {
         padding: 5,
-        color: '#363A57',
+        color: styleColors.barsAndButtonsColor,
         textAlign: 'center'
     },
     iconFavStyle: {
-        color: '#363A57',
+        color: styleColors.barsAndButtonsColor,
         padding: 10,
         flex: 1,
         textAlign: 'right'

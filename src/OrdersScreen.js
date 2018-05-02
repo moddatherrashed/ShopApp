@@ -3,7 +3,7 @@ import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
-
+import screenColors from './components/screenColors'
 
 class OrdersScreen extends Component {
     constructor(props) {
@@ -54,16 +54,16 @@ class OrdersScreen extends Component {
 
     static navigationOptions = {
         headerTitle: `All Orders`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: screenColors.mainToolBarColor,
         },
         headerLeft: (
             <Button transparent
                 onPress={() => {
                     _this.props.navigation.navigate('DrawerOpen')
                 }}>
-                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+                <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -72,7 +72,7 @@ class OrdersScreen extends Component {
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>
-                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),

@@ -1,16 +1,17 @@
 import React from 'react'
 import { TextInput, Image, View } from 'react-native'
 import { Icon } from 'native-base'
+import styleColors from './screenColors'
 
 const SearchBar = (props) => {
     return (
         <View style={{
             flexDirection: 'row',
-            backgroundColor: '#FFFFFF',
+            backgroundColor: styleColors.searchBarColor,
             elevation: 5,
         }}>
             <Icon name='search' style={{
-                color: '#363A57',
+                color: styleColors.serachBarTextColor,
                 padding: 7,
                 elevation: 15
             }} />
@@ -22,7 +23,7 @@ const SearchBar = (props) => {
                 onChangeText={props.onChangeText}
                 value={props.value}
                 placeholder='search for...'
-                placeholderTextColor='#363A57'
+                placeholderTextColor= {styleColors.serachBarTextColor}
                 underlineColorAndroid="transparent"
 
             />

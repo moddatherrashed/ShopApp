@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry, ScrollView, StyleSheet, View, Text } from 'react-native';
-import StepIndicator from 'react-native-step-indicator';
+import StepIndicator from 'react-native-step-indicator'
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
 import DoneScreen from '../src/checkoutScreens/DoneScreen'
-import ScreenSize from './ScreenSize';
+import ScreenSize from './ScreenSize'
 import { Button } from 'native-base'
-import * as Animatable from 'react-native-animatable';
+import * as Animatable from 'react-native-animatable'
+import styleColors from './components/screenColors'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -47,6 +48,13 @@ class CheckoutScreen extends Component {
             regRePassword: '',
             isRegisterFailed: false
         }
+    }
+    static navigationOptions = {
+        title: `Checkout`,
+        headerTintColor: styleColors.toolBarTextColor,
+        headerStyle: {
+            backgroundColor: styleColors.toolBarColor,
+        },
     }
     onNextPagePressed(ref, pageNumber) {
         ref.scrollView.scrollTo({ x: ((pageNumber - 1) * ScreenSize.width), y: 0, animated: true })

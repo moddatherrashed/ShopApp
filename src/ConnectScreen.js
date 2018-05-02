@@ -4,6 +4,7 @@ import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'nat
 import { StackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
 import ScreenSize from './ScreenSize';
+import screenColors from './components/screenColors'
 
 const SCREEN_HEIGHT = ScreenSize.height
 const SCREEN_WIDTH = ScreenSize.width
@@ -11,16 +12,16 @@ class ConnectScreen extends Component {
 
     static navigationOptions = {
         title: `Connect with us`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: screenColors.mainToolBarColor,
         },
         headerLeft: (
             <Button transparent
                 onPress={() => {
                     _this.props.navigation.navigate('DrawerOpen')
                 }}>
-                <Icon name='menu' style={{ color: '#FFFFFF' }} />
+                <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -29,7 +30,7 @@ class ConnectScreen extends Component {
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>
-                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),

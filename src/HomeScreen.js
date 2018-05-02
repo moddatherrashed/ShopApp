@@ -9,9 +9,11 @@ import CatagoryScreen from './CatagoryScreen'
 import ItemScreen from './ItemScreen'
 import Badge from './components/Badge'
 import Modal from 'react-native-modal'
-import CartScreen from './CartScreen';
+import CartScreen from './CartScreen'
 import CheckoutScreen from './CheckoutScreen'
 import OrdersScreen from './OrdersScreen'
+import screenColors from './components/screenColors'
+
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -53,17 +55,16 @@ class HomeScreen extends Component {
     }
     static navigationOptions = {
         title: `Catagories`,
-        headerTintColor: '#FFFFFF',
+        headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
-            backgroundColor: '#363A57',
+            backgroundColor: screenColors.mainToolBarColor,
         },
         headerLeft: (
             <Button transparent
                 onPress={() => {
                     _this.props.navigation.navigate('DrawerOpen')
                 }}>
-                <Icon name='menu' style={{ color: '#FFFFFF' }} />
-
+                <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
             </Button>
         ),
         headerRight: (
@@ -71,7 +72,7 @@ class HomeScreen extends Component {
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>
-                <Icon name='cart' style={{ color: '#FFFFFF' }} />
+                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
         ),
@@ -83,11 +84,12 @@ class HomeScreen extends Component {
 
     componentDidMount() {
         _this = this
-
     }
+
     onNavigate(context, params) {
         context.props.navigation.navigate('CatagoryScreen', params)
     }
+
     renderOffer(offerFalg) {
         if (offerFalg) {
             return (
@@ -103,7 +105,7 @@ class HomeScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
-                        source={{ uri: 'https://thumbs.dreamstime.com/b/milk-products-shelves-18000758.jpg' }}
+                        source={{ uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' }}
                         resizeMode="cover"
                     >
                         <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 7, margin: 15, borderRadius: 3 }}>Offer Title</Text>
@@ -168,7 +170,7 @@ class HomeScreen extends Component {
                         contentContainerStyle={{
                             justifyContent: 'center',
                             alignItems: 'center',
-                            marginBottom : 10
+                            marginBottom: 10
                         }}
                         data={filterSearch}
                         renderItem={({ item, index }) =>
@@ -190,7 +192,7 @@ class HomeScreen extends Component {
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
                                         source={item.url}
-                                        resizeMode="contain"
+                                        
                                     />
                                     <Text style={styles.textStyle}>{item.name}</Text>
                                 </TouchableOpacity>
