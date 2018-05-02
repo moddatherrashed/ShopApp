@@ -1,7 +1,7 @@
 const styleColors = {
     "toolBarColor": "#FFFFFF",
     "mainToolBarColor": "#363A57",
-    "barsAndButtonsColor": "red",
+    "barsAndButtonsColor": "#363A57",
     "searchBarColor": "#FFFFFF",
     "serachBarTextColor": "#363A57",
     "toolBarTextColor": "#363A57",
