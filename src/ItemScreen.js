@@ -156,10 +156,10 @@ class ItemScreen extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.descriptionTextStyle}>Descrption</Text>
-                    <View style={styles.descriptionContainerStyle}>
+                    <Text style={styles.descriptionTitleStyle}>Descrption</Text>
+                    <View style={styles.descrptionContainerStyle}>
                         <Text style={styles.descriptionTextStyle}>
-                            this is dummu description just to show how it looks like, please do not read it
+                            this is a dummy description just to see how it looks like, please do not read it.
                         </Text>
                     </View>
                 </ScrollView>
@@ -392,12 +392,12 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 0.9,
     },
-    descriptionTextStyle: {
+    descriptionTitleStyle: {
         padding: 5,
         fontWeight: 'bold',
-        color: '#363A57'
+        color: styleColors.itemScreenDiscrptionTitleColor
     },
-    descriptionContainerStyle: {
+    descrptionContainerStyle: {
         backgroundColor: '#FFFFFF',
         elevation: 25,
         margin: 5,

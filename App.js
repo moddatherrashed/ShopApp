@@ -8,13 +8,14 @@ import OrdersScreen from './src/OrdersScreen'
 import FavoritesScreen from './src/FavoritesScreen'
 import ConnectScreen from './src/ConnectScreen'
 import LanguageScreen from './src/LanguageScreen'
+import styleColors from './src/components/screenColors'
 
 const CustomDrawerComponent = (props) => (
   <Container>
-    <Content style={{ backgroundColor: '#363a57',paddingTop :50 }}>
+    <Content style={{ backgroundColor: styleColors.navigationDrawerItemsBackgroundColor, paddingTop: 50 }}>
       <DrawerItems {...props} />
     </Content>
-    <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: '#363a57' }}>
+    <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: styleColors.navigationDrawerLogoBackGroundColor }}>
       <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image
           style={{ height: 150, width: 150 }}
@@ -43,7 +44,7 @@ const App = DrawerNavigator({
     contentOptions: {
       activeTintColor: '#FFFFFF',
       labelStyle: {
-        color: '#FFFFFF'
+        color: styleColors.navigationDrawerLabelColor
       }
     }
   })

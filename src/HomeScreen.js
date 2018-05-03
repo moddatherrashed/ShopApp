@@ -13,6 +13,7 @@ import CartScreen from './CartScreen'
 import CheckoutScreen from './CheckoutScreen'
 import OrdersScreen from './OrdersScreen'
 import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -218,7 +219,7 @@ const StackNavigation = StackNavigator({
 const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
-        color: '#363A57',
+        color: styleColors.homePageTextColors,
         fontWeight: 'bold',
         fontSize: 18
     },

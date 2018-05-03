@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
 import ScreenSize from './ScreenSize';
 import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 const SCREEN_HEIGHT = ScreenSize.height
 const SCREEN_WIDTH = ScreenSize.width
@@ -108,17 +109,17 @@ class ConnectScreen extends Component {
                     backgroundColor="#4d537c"
                     hidden={false} />
                 <View style={{ backgroundColor: '#363A57', margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
-                    <View style={{ flexDirection: 'row', borderColor: '#FFFFFF', justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>Phone Number</Text>
-                        <Text style={{ color: '#FFFFFF' }}>077777777</Text>
+                    <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>Phone Number</Text>
+                        <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>077777777</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: '#FFFFFF', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: '#FFFFFF' }}>Website</Text>
-                        <Text style={{ color: '#FFFFFF' }}>www.test.net</Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: styleColors.connectWithUsITemsAndTextColor, margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>Website</Text>
+                        <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>www.test.net</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
-                        <Icon name='logo-facebook' style={{ color: '#FFFFFF', fontSize: 60 }} />
-                        <Icon name='logo-instagram' style={{ color: '#FFFFFF', fontSize: 60 }} />
+                        <Icon name='logo-facebook' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
+                        <Icon name='logo-instagram' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
                     </View>
                 </View>
 

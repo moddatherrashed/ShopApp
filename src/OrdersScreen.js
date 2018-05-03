@@ -4,6 +4,7 @@ import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'nat
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
 import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 class OrdersScreen extends Component {
     constructor(props) {
@@ -110,9 +111,9 @@ class OrdersScreen extends Component {
                                     />
                                 </View>
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text style={{ color: '#363A57' }}>name: {item.name}</Text>
-                                    <Text style={{ color: '#363A57' }}>ordered in: {item.date}</Text>
-                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>50 JD</Text>
+                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>name: {item.name}</Text>
+                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>ordered in: {item.date}</Text>
+                                    <Text style={{ fontWeight: 'bold', color: styleColors.ordersScreenTextColor }}>50 JD</Text>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
@@ -123,7 +124,7 @@ class OrdersScreen extends Component {
                                                 orders: restOfOrders
                                             })
                                         }}>
-                                        <Icon name='ios-close' style={{ color: '#363A57', padding: 10 }} />
+                                        <Icon name='ios-close' style={{ color: styleColors.barsAndButtonsColor, padding: 10 }} />
                                     </TouchableOpacity>
                                 </View>
                             </View>

@@ -133,11 +133,11 @@ class CatagoryScreen extends Component {
 const styles = StyleSheet.create({
     textStyle: {
         textAlign: 'center',
-        color: '#46454d'
+        color: styleColors.catagoryScreenItemsNameColor
     },
     priceTextStyle: {
         fontWeight: "bold",
-        color: '#363A57',
+        color: styleColors.catagoryScreenPriceTextColor,
         textAlign: 'center',
         fontSize: 20
     },

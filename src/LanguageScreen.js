@@ -3,6 +3,7 @@ import { View, Text, StatusBar } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 
 class LanguageScreen extends Component {
@@ -10,10 +11,10 @@ class LanguageScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            arabicBtnBackground: '#FFFFFF',
-            englsihBtnBackground: '#363A57',
-            arabicTextColor: '#363A57',
-            englishTextColor: '#FFFFFF',
+            arabicBtnBackground: styleColors.languageScreenNotSelectedTextColor,
+            englsihBtnBackground: styleColors.barsAndButtonsColor,
+            arabicTextColor: styleColors.barsAndButtonsColor,
+            englishTextColor: styleColors.languageScreenSelectedTextColor,
         }
     }
     static navigationOptions = {
@@ -48,17 +49,17 @@ class LanguageScreen extends Component {
     languageSelector(lang) {
         if (lang == 'ar') {
             this.setState({
-                arabicTextColor: '#FFFFFF',
-                arabicBtnBackground: '#363A57',
-                englsihBtnBackground: '#FFFFFF',
-                englishTextColor: '#363A57',
+                arabicTextColor: styleColors.languageScreenSelectedTextColor,
+                arabicBtnBackground: styleColors.barsAndButtonsColor,
+                englsihBtnBackground: styleColors.languageScreenSelectedTextColor,
+                englishTextColor: styleColors.barsAndButtonsColor,
             })
         } else {
             this.setState({
-                englsihBtnBackground: '#363A57',
-                englishTextColor: '#FFFFFF',
-                arabicTextColor: '#363A57',
-                arabicBtnBackground: '#FFFFFF',
+                englsihBtnBackground: styleColors.barsAndButtonsColor,
+                englishTextColor: styleColors.languageScreenSelectedTextColor,
+                arabicTextColor: styleColors.barsAndButtonsColor,
+                arabicBtnBackground: styleColors.languageScreenSelectedTextColor,
             })
         }
     }

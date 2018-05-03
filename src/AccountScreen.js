@@ -61,7 +61,7 @@ class AccountScreen extends Component {
                 <Content>
                     <View style={{ flex: 6 }}>
                         <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
-                            <Text style={{ color: '#FFFFFF', fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: styleColors.barsAndButtonsColor }}>Personal Information</Text>
+                            <Text style={{ color: styleColors.accountScreenBarTextColor, fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: styleColors.barsAndButtonsColor }}>Personal Information</Text>
                             <View style={{ flexDirection: 'row', flex: 5 }}>
                                 <View style={{ flex: 4, padding: 15, justifyContent: 'center' }}>
                                     <View style={{ padding: 10 }}>

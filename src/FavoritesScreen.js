@@ -5,6 +5,7 @@ import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
 import ItemScreen from './ItemScreen'
 import screenColors from './components/screenColors'
+import styleColors from './components/screenColors';
 
 class FavoritesScreen extends Component {
     constructor(props) {
@@ -118,12 +119,7 @@ class FavoritesScreen extends Component {
                                     />
                                 </View>
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text style={{ color: '#363A57' }}>name: {item.name}</Text>
-                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>
-                                        {
-
-                                        }
-                                    </Text>
+                                    <Text style={{ color: styleColors.favoriteScreenItemsTextColor }}>name: {item.name}</Text>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
@@ -136,7 +132,7 @@ class FavoritesScreen extends Component {
                                             AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
 
                                         }}>
-                                        <Icon name='ios-close' style={{ color: '#363A57', padding: 10 }} />
+                                        <Icon name='ios-close' style={{ color: styleColors.barsAndButtonsColor, padding: 10 }} />
                                     </TouchableOpacity>
                                 </View>
                             </View>
