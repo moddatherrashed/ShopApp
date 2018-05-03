@@ -168,11 +168,7 @@ class HomeScreen extends Component {
                         horizontal={false}
                         numColumns={colNum}
                         keyExtractor={item => item.name}
-                        contentContainerStyle={{
-                            justifyContent: 'center',
-                            alignItems: 'center',
-                            marginBottom: 10
-                        }}
+                        contentContainerStyle={styles.contentContainerStyle}
                         data={filterSearch}
                         renderItem={({ item, index }) =>
                             <View>
@@ -193,7 +189,7 @@ class HomeScreen extends Component {
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
                                         source={item.url}
-                                        
+
                                     />
                                     <Text style={styles.textStyle}>{item.name}</Text>
                                 </TouchableOpacity>
@@ -229,6 +225,11 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         backgroundColor: '#FFFFFF'
     },
+    contentContainerStyle: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 10
+    }
 })
 
 export default StackNavigation
