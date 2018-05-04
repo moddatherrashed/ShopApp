@@ -52,7 +52,6 @@ class ConnectScreen extends Component {
                 this.animation.setValue({ x: 0, y: gestureState.dy })
             },
             onPanResponderRelease: (evt, gestureState) => {
-                alert(gestureState.dy)
                 if (gestureState.dy < 10) {
                     Animated.spring(this.animation.y, {
                         toValue: -SCREEN_HEIGHT + 120,
@@ -131,8 +130,7 @@ class ConnectScreen extends Component {
                         right: 0,
                         zIndex: 10,
                         elevation: 20,
-                        backgroundColor:
-                            'red',
+                        backgroundColor: '#000000',
                         height: SCREEN_HEIGHT
                     }]}>
                     <Animated.View

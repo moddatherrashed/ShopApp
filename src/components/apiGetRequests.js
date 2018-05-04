@@ -25,6 +25,9 @@ let apiGetRequests = {
             case 'getConnectDetails':
 
                 break;
+            case 'getDistroy':
+
+                break;
 
         }
     }
