@@ -70,7 +70,7 @@ class LanguageScreen extends Component {
             <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1 }}>
                 <StatusBar
                     barStyle="light-content"
-                    backgroundColor="#4d537c"
+                    backgroundColor="#EF9267"
                     hidden={false} />
                 <Text style={{ margin: 20, fontSize: 20 }}>Choose your Language</Text>
 

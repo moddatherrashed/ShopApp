@@ -153,7 +153,7 @@ class FavoritesScreen extends Component {
             <Container>
                 <StatusBar
                     barStyle="light-content"
-                    backgroundColor="#4d537c"
+                    backgroundColor="#EF9267"
                     hidden={false} />
                 <Content>
                     <View>

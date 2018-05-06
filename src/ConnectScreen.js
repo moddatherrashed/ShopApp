@@ -105,9 +105,9 @@ class ConnectScreen extends Component {
             <View style={{ flex: 1, justifyContent: 'center', }}>
                 <StatusBar
                     barStyle="light-content"
-                    backgroundColor="#4d537c"
+                    backgroundColor="#EF9267"
                     hidden={false} />
-                <View style={{ backgroundColor: '#363A57', margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
+                <View style={{ backgroundColor: styleColors.connectWithUsBakgroundColors, margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
                     <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>Phone Number</Text>
                         <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>077777777</Text>

@@ -1,23 +1,24 @@
 const styleColors = {
     "toolBarColor": "#FFFFFF",
-    "mainToolBarColor": "#363A57",
-    "barsAndButtonsColor": "#363A57",
+    "mainToolBarColor": "#F26422",
+    "barsAndButtonsColor": "#F26422",
     "searchBarColor": "#FFFFFF",
-    "serachBarTextColor": "#363A57",
-    "toolBarTextColor": "#363A57",
+    "serachBarTextColor": "#F26422",
+    "toolBarTextColor": "#F26422",
     "mainToolBarTextColor": "#FFFFFF",
-    "navigationDrawerItemsBackgroundColor": "#363a57",
-    "navigationDrawerLogoBackGroundColor": "#363a57",
+    "navigationDrawerItemsBackgroundColor": "#F26422",
+    "navigationDrawerLogoBackGroundColor": "#F26422",
     "navigationDrawerLabelColor": "#FFFFFF",
-    "homePageTextColors": "#363a57",
-    "catagoryScreenPriceTextColor": "#363a57",
+    "homePageTextColors": "#F26422",
+    "catagoryScreenPriceTextColor": "#F26422",
     "catagoryScreenItemsNameColor": "#46454d",
-    "itemScreenDiscrptionTitleColor": "#363A57",
+    "itemScreenDiscrptionTitleColor": "#F26422",
     "accountScreenBarTextColor": "#FFFFFF",
-    "ordersScreenTextColor": "#363A57",
-    "favoriteScreenItemsTextColor": "#363A57",
+    "ordersScreenTextColor": "#F26422",
+    "favoriteScreenItemsTextColor": "#F26422",
     "languageScreenSelectedTextColor": "#FFFFFF",
-    "connectWithUsITemsAndTextColor" : "#FFFFFF"
+    "connectWithUsITemsAndTextColor": "#FFFFFF",
+    "connectWithUsBakgroundColors": "#F26422"
 }
 
 export default styleColors
