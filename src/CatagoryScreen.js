@@ -116,7 +116,7 @@ class CatagoryScreen extends Component {
                                 />
                                 <Text style={styles.textStyle}>{item.name}</Text>
                                 <Text style={styles.priceTextStyle}>{item.price} JD</Text>
-                                <View style={{ alignItems: 'flex-end', padding: 5 }}>
+                                <View style={{ alignItems: 'flex-end', margin: 5 }}>
                                     <TouchableOpacity>
                                         <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
                                     </TouchableOpacity>

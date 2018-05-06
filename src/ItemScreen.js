@@ -144,12 +144,14 @@ class ItemScreen extends Component {
                                         })
 
                                         let restOfOrders = this.state.fav
-                                        let index = restOfOrders.findIndex(x => x.name == params.name);
-                                        restOfOrders.splice(index, 1)
-                                        this.setState({
-                                            fav: restOfOrders
-                                        })
-                                        AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
+                                        if (restOfOrders !== null) {
+                                            let index = restOfOrders.findIndex(x => x.name == params.name);
+                                            restOfOrders.splice(index, 1)
+                                            this.setState({
+                                                fav: restOfOrders
+                                            })
+                                            AsyncStorage.setItem('fav', JSON.stringify(this.state.fav))
+                                        }
                                     }
                                 }}>
                                 <Icon name={this.state.favBtn} style={styles.iconFavStyle} />

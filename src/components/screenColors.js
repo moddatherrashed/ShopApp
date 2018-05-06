@@ -18,7 +18,8 @@ const styleColors = {
     "favoriteScreenItemsTextColor": "#F26422",
     "languageScreenSelectedTextColor": "#FFFFFF",
     "connectWithUsITemsAndTextColor": "#FFFFFF",
-    "connectWithUsBakgroundColors": "#F26422"
+    "connectWithUsBakgroundColors": "#F26422",
+    "cartScreenColors": "#F26422"
 }
 
 export default styleColors

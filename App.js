@@ -13,17 +13,17 @@ import styleColors from './src/components/screenColors'
 const CustomDrawerComponent = (props) => (
   <Container>
     <Content style={{ backgroundColor: styleColors.navigationDrawerItemsBackgroundColor, paddingTop: 50 }}>
-      <DrawerItems {...props} />
-    </Content>
-    <View style={{ height: 200, justifyContent: 'center', alignItems: 'center', backgroundColor: styleColors.navigationDrawerLogoBackGroundColor }}>
       <Body style={{ justifyContent: 'center', alignItems: 'center' }}>
         <Image
-          style={{ height: 150, width: 150 }}
-          source={require('./src/icons/handlogo.png')}
+          style={{ height: 100, width: 100 }}
+          source={require('./src/icons/akyass_logo_white.png')}
           resizeMode='contain'
         />
+        <Text style={{color : 'white', fontSize : 30, fontWeight : 'bold'}}>akyass</Text>
       </Body>
-    </View>
+
+      <DrawerItems {...props} />
+    </Content>
   </Container>
 )
 const App = DrawerNavigator({

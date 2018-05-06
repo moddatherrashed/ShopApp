@@ -14,20 +14,20 @@ const firstIndicatorStyles = {
     currentStepIndicatorSize: 40,
     separatorStrokeWidth: 3,
     currentStepStrokeWidth: 5,
-    stepStrokeCurrentColor: '#363A57',
-    separatorFinishedColor: '#363A57',
+    stepStrokeCurrentColor: styleColors.cartScreenColors,
+    separatorFinishedColor: styleColors.cartScreenColors,
     separatorUnFinishedColor: '#606270',
-    stepIndicatorFinishedColor: '#363A57',
+    stepIndicatorFinishedColor: styleColors.cartScreenColors,
     stepIndicatorUnFinishedColor: '#606270',
     stepIndicatorCurrentColor: '#ffffff',
     stepIndicatorLabelFontSize: 15,
     currentStepIndicatorLabelFontSize: 15,
-    stepIndicatorLabelCurrentColor: '#363A57',
+    stepIndicatorLabelCurrentColor: styleColors.cartScreenColors,
     stepIndicatorLabelFinishedColor: '#ffffff',
     stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
     labelColor: '#666666',
     labelSize: 12,
-    currentStepLabelColor: '#363A57'
+    currentStepLabelColor: styleColors.cartScreenColors
 }
 
 
@@ -137,7 +137,7 @@ class CheckoutScreen extends Component {
                 <View style={{ flex: 1, width: ScreenSize.width, justifyContent: 'center', alignItems: 'center' }}>
                     <Button
                         style={{
-                            backgroundColor: '#363A57',
+                            backgroundColor: styleColors.cartScreenColors,
                             padding: 10,
                             justifyContent: 'center',
                             alignSelf: 'center',
@@ -159,7 +159,7 @@ class CheckoutScreen extends Component {
                     <Text style={{ fontSize: 20, fontWeight: 'bold', padding: 20, textAlign: 'center' }}>Or</Text>
                     <Button
                         style={{
-                            backgroundColor: '#363A57',
+                            backgroundColor: styleColors.cartScreenColors,
                             padding: 10,
                             justifyContent: 'center',
                             alignSelf: 'center',

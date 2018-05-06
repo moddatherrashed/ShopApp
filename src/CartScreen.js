@@ -130,14 +130,14 @@ class CartScreen extends Component {
                                             AsyncStorage.setItem('cartItems', JSON.stringify(this.state.cartItems))
 
                                         }}>
-                                        <Icon name='ios-trash-outline' style={{ color: '#363A57' }} />
+                                        <Icon name='ios-trash-outline' style={{ color: styleColors.cartScreenColors }} />
                                         <Text style={{ margin: 5 }}>Remove</Text>
                                     </TouchableOpacity>
                                 </View>
 
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text style={{ color: '#363A57' }}>{item.name}</Text>
-                                    <Text style={{ fontWeight: 'bold', color: '#363A57' }}>{item.price}</Text>
+                                    <Text style={{ color: styleColors.cartScreenColors }}>{item.name}</Text>
+                                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors }}>{item.price}</Text>
                                     <Text>Size : M</Text>
                                 </View>
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
@@ -147,14 +147,14 @@ class CartScreen extends Component {
                                             onPress={() => {
                                                 this.onDecPressed(index)
                                             }}>
-                                            <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: '#363A57' }} />
+                                            <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: styleColors.cartScreenColors }} />
                                         </TouchableOpacity>
                                         <Text style={{ padding: 10 }}>{item.quantity}</Text>
                                         <TouchableOpacity
                                             onPress={() => {
                                                 this.onIncPressed(index)
                                             }}>
-                                            <Icon name='ios-arrow-dropright-circle-outline' style={{ color: '#363A57' }} />
+                                            <Icon name='ios-arrow-dropright-circle-outline' style={{ color: styleColors.cartScreenColors }} />
                                         </TouchableOpacity>
 
                                     </View>
@@ -196,7 +196,7 @@ class CartScreen extends Component {
             <View style={{ flex: 2 }}>
                 <StatusBar
                     barStyle="light-content"
-                    backgroundColor="#4d537c"
+                    backgroundColor="#EF9267"
                     hidden={false} />
                 <ScrollView style={{ flex: 1.8 }}>
                     {this.renderList()}
@@ -204,8 +204,8 @@ class CartScreen extends Component {
 
                 <View style={
                     {
-                        backgroundColor: '#363A57',
-                        borderColor: '#363A57',
+                        backgroundColor: styleColors.cartScreenColors,
+                        borderColor: styleColors.cartScreenColors,
                         borderWidth: 1,
                         flex: 0.2,
                         alignItems: 'center',
