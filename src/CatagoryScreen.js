@@ -12,37 +12,37 @@ class CatagoryScreen extends Component {
         this.state = {
             data: [{
                 name: 'Grssay Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 15
             },
             {
                 name: 'Gray Jassscket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 20
             },
             {
                 name: 'Gray Jadddcket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 25
             },
             {
                 name: 'Gray Jacffffket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 10
             },
             {
                 name: 'Gray Jaccccket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 11
             },
             {
                 name: 'Gray Jacrrket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
+                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
                 quantity: 1,
                 price: 11.5
             },
@@ -104,7 +104,7 @@ class CatagoryScreen extends Component {
                                     height: width * 1.4,
                                     width: width * 1.28,
                                     margin: 0.2,
-                                    padding: 3,
+                                    padding: 8,
                                     elevation: 15,
                                     backgroundColor: '#FFFFFF'
                                 }}
@@ -116,7 +116,7 @@ class CatagoryScreen extends Component {
                                 />
                                 <Text style={styles.textStyle}>{item.name}</Text>
                                 <Text style={styles.priceTextStyle}>{item.price} JD</Text>
-                                <View style={{ alignItems: 'flex-end', margin: 5 }}>
+                                <View style={{ alignItems: 'flex-end' }}>
                                     <TouchableOpacity>
                                         <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
                                     </TouchableOpacity>

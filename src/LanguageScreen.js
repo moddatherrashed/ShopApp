@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar } from 'react-native'
+import { View, Text, I18nManager, StatusBar } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
-
+import RNRestart from 'react-native-restart'
 
 class LanguageScreen extends Component {
 
@@ -48,6 +48,8 @@ class LanguageScreen extends Component {
 
     languageSelector(lang) {
         if (lang == 'ar') {
+            I18nManager.forceRTL(true);
+            RNRestart.Restart()
             this.setState({
                 arabicTextColor: styleColors.languageScreenSelectedTextColor,
                 arabicBtnBackground: styleColors.barsAndButtonsColor,
@@ -55,6 +57,8 @@ class LanguageScreen extends Component {
                 englishTextColor: styleColors.barsAndButtonsColor,
             })
         } else {
+            I18nManager.forceRTL(false);
+            RNRestart.Restart()
             this.setState({
                 englsihBtnBackground: styleColors.barsAndButtonsColor,
                 englishTextColor: styleColors.languageScreenSelectedTextColor,

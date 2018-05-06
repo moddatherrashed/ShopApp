@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { View, Text, I18nManager, FlatList, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
 import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
@@ -14,6 +14,8 @@ import CheckoutScreen from './CheckoutScreen'
 import OrdersScreen from './OrdersScreen'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
+
+
 
 class HomeScreen extends Component {
     constructor(props) {

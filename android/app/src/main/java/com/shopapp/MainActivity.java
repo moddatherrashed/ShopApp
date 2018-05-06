@@ -1,6 +1,7 @@
 package com.shopapp;
 
 import com.facebook.react.ReactActivity;
+import com.avishayil.rnrestart.ReactNativeRestartPackage;
 
 public class MainActivity extends ReactActivity {
 
