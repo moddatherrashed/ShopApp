@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, ScrollView, StyleSheet, View, Text } from 'react-native';
+import { AppRegistry, I18nManager, ScrollView, StyleSheet, View, Text } from 'react-native';
 import StepIndicator from 'react-native-step-indicator'
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
@@ -202,7 +202,7 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollTo({ x: 2 * ScreenSize.width })
+                                this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
                             }
                         } />
                     </View>

@@ -43,7 +43,7 @@ class HomeScreen extends Component {
             textValue: 0,
             searchText: ''
         }
-        //YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+        YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
     }
     animateBadge() {
