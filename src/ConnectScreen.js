@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, StyleSheet, Animated, PanResponder, ScrollView, Image, Slider } from 'react-native'
+import { View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, ScrollView, Image, Slider } from 'react-native'
 import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
 import ScreenSize from './ScreenSize';
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
+import strings from './components/strings'
 
 const SCREEN_HEIGHT = ScreenSize.height
 const SCREEN_WIDTH = ScreenSize.width
 class ConnectScreen extends Component {
 
     static navigationOptions = {
-        title: `Connect with us`,
+        title: I18nManager.isRTL ? strings.ar.contactUS : strings.en.contactUS,
         headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
             backgroundColor: screenColors.mainToolBarColor,
@@ -35,7 +36,7 @@ class ConnectScreen extends Component {
 
             </Button>
         ),
-        drawerLabel: 'Connect With Us',
+        drawerLabel: I18nManager.isRTL ? strings.ar.contactUS : strings.en.contactUS,
         drawerIcon: (
             <Icon name='ios-call' style={{ color: '#FFFFFF' }} />
         )
@@ -109,11 +110,11 @@ class ConnectScreen extends Component {
                     hidden={false} />
                 <View style={{ backgroundColor: styleColors.connectWithUsBakgroundColors, margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
                     <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>Phone Number</Text>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{ I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
                         <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>077777777</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: styleColors.connectWithUsITemsAndTextColor, margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>Website</Text>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{ I18nManager.isRTL ? strings.ar.website : strings.en.website}</Text>
                         <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>www.test.net</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>

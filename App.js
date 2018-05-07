@@ -2,7 +2,7 @@ import React from 'react'
 import { DrawerItems, DrawerNavigator } from 'react-navigation'
 import HomeScreen from './src/HomeScreen'
 import AccountScreen from './src/AccountScreen'
-import { Image, Text, View } from 'react-native'
+import { Image, Text, View, I18nManager } from 'react-native'
 import { Container, Header, Body, Content } from 'native-base'
 import OrdersScreen from './src/OrdersScreen'
 import FavoritesScreen from './src/FavoritesScreen'
@@ -19,7 +19,7 @@ const CustomDrawerComponent = (props) => (
           source={require('./src/icons/akyass_logo_white.png')}
           resizeMode='contain'
         />
-        <Text style={{color : 'white', fontSize : 30, fontWeight : 'bold'}}>akyass</Text>
+        <Text style={{ color: 'white', fontSize: 30, fontWeight: 'bold' }}>akyass</Text>
       </Body>
 
       <DrawerItems {...props} />
@@ -41,6 +41,7 @@ const App = DrawerNavigator({
     drawerOpenRoute: 'DrawerOpen',
     drawerCloseRoute: 'DrawerClose',
     drawerRoggleRoute: 'DrawerToggle',
+    drawerPosition: I18nManager.isRTL ? 'right' : 'left',
     contentOptions: {
       activeTintColor: '#FFFFFF',
       labelStyle: {

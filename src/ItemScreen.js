@@ -6,13 +6,15 @@ import {
     ScrollView,
     TouchableOpacity,
     AsyncStorage,
-    StyleSheet
+    StyleSheet,
+    I18nManager
 } from 'react-native'
 import { Icon, Button, Badge } from 'native-base'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"
 import CartScreen from './CartScreen'
 import styleColors from './components/screenColors'
+import strings from './components/strings'
 
 class ItemScreen extends Component {
 
@@ -20,7 +22,7 @@ class ItemScreen extends Component {
         super(props)
         this.state = {
             isModalVisible: false,
-            size: 'Select Size',
+            size: I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize,
             favBtn: 'ios-star-outline',
             dialgoBox: false,
             fav: ''
@@ -158,7 +160,7 @@ class ItemScreen extends Component {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <Text style={styles.descriptionTitleStyle}>Descrption</Text>
+                    <Text style={styles.descriptionTitleStyle}>{I18nManager.isRTL ? strings.ar.description : strings.en.description}</Text>
                     <View style={styles.descrptionContainerStyle}>
                         <Text style={styles.descriptionTextStyle}>
                             this is a dummy description just to see how it looks like, please do not read it.
@@ -170,7 +172,7 @@ class ItemScreen extends Component {
                     <View style={styles.conatainerModalStyle}>
                         <Text style={{
                             fontSize: 25
-                        }}>Select Size</Text>
+                        }}>{I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize}</Text>
                         <View style={styles.containerSizeStyle} >
                             <TouchableOpacity
                                 onPress={() => this.onSelectSize('S')}
@@ -212,7 +214,7 @@ class ItemScreen extends Component {
 
                             <Button full style={styles.cancelBtnStyle}
                                 onPress={() => this.setState({ isModalVisible: false })}>
-                                <Text style={styles.textBtnsStyle} >cancel</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? strings.ar.cancel : strings.en.cancel}</Text>
                             </Button>
                         </View>
                     </View>
@@ -221,8 +223,8 @@ class ItemScreen extends Component {
                     isVisible={this.state.dialgoBox}>
                     <View style={{ height: ScreenSize.height * 0.4, backgroundColor: '#FFFFFF', borderRadius: 10, justifyContent: 'space-around' }}>
                         <View style={{ justifyContent: 'space-around', alignItems: 'center' }}>
-                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03 }}>Awesome Choise</Text>
-                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03 }}>What do you want to do now ?</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 25, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.awesomeChoise : strings.en.awesomeChoise}</Text>
+                            <Text style={{ fontWeight: 'bold', fontSize: 20, textAlign: 'center', color: '#363A57', padding: ScreenSize.height * 0.03, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.WhatDoYouWantToDoNow : strings.en.WhatDoYouWantToDoNow}</Text>
                         </View>
                         <View style={{ paddingTop: ScreenSize.height * 0.1, height: ScreenSize.height * 0.2, width: '100%', justifyContent: 'space-around', flexDirection: 'row' }}>
                             <Button style={{
@@ -238,7 +240,7 @@ class ItemScreen extends Component {
                                 onPress={() => {
                                     this.setState({ dialgoBox: false })
                                 }}>
-                                <Text style={styles.textBtnsStyle} >Continue Shopping</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? strings.ar.continueShopping : strings.en.continueShopping}</Text>
                             </Button>
                             <Button style={{
                                 backgroundColor: styleColors.barsAndButtonsColor,
@@ -253,7 +255,7 @@ class ItemScreen extends Component {
                                     this.setState({ dialgoBox: false })
                                     navigate('CartScreen')
                                 }}>
-                                <Text style={styles.textBtnsStyle} >View Cart</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? strings.ar.viewCart : strings.en.viewCart}</Text>
                             </Button>
                         </View>
                     </View>
@@ -261,7 +263,7 @@ class ItemScreen extends Component {
                 <View style={styles.addToCartContainerStyle}>
                     <Button full style={styles.addToCartBtnStyle}
                         onPress={() => {
-                            if (this.state.size === 'Select Size') {
+                            if (this.state.size === (I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize)) {
                                 this.setState({ isModalVisible: true })
 
                             } else {
@@ -269,7 +271,7 @@ class ItemScreen extends Component {
                                 this.setState({ dialgoBox: true })
                             }
                         }}>
-                        <Text style={styles.textBtnsStyle} >Add To Cart</Text>
+                        <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? strings.ar.addToCart : strings.en.addToCart}</Text>
                     </Button>
                 </View>
             </View >
@@ -348,12 +350,14 @@ const styles = StyleSheet.create({
     nameTextStyle: {
         padding: 5,
         flex: 1,
+        color: styleColors.barsAndButtonsColor,
         textAlign: 'left',
         fontWeight: 'bold'
     },
     priceTextStyle: {
         padding: 10,
         textAlign: 'left',
+        color: styleColors.barsAndButtonsColor,
         flex: 1,
         fontWeight: 'bold',
         fontSize: 20

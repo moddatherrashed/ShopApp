@@ -14,8 +14,7 @@ import CheckoutScreen from './CheckoutScreen'
 import OrdersScreen from './OrdersScreen'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
-
-
+import strings from './components/strings'
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -57,7 +56,7 @@ class HomeScreen extends Component {
         }).start()
     }
     static navigationOptions = {
-        title: `Catagories`,
+        title: I18nManager.isRTL ? strings.ar.categories : strings.en.categories,
         headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
             backgroundColor: screenColors.mainToolBarColor,
@@ -79,7 +78,7 @@ class HomeScreen extends Component {
 
             </Button>
         ),
-        drawerLabel: 'Catagories',
+        drawerLabel: I18nManager.isRTL ? strings.ar.categories : strings.en.categories,
         drawerIcon: (
             <Icon name='home' style={{ color: '#FFFFFF' }} />
         )

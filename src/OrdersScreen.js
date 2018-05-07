@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, FlatList, Image } from 'react-native'
+import { View, Text, StatusBar, I18nManager, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
-
+import strings from './components/strings'
 class OrdersScreen extends Component {
     constructor(props) {
         super(props)
@@ -54,7 +54,7 @@ class OrdersScreen extends Component {
     }
 
     static navigationOptions = {
-        headerTitle: `All Orders`,
+        headerTitle: I18nManager.isRTL ? strings.ar.orders : strings.en.orders,
         headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
             backgroundColor: screenColors.mainToolBarColor,
@@ -77,6 +77,8 @@ class OrdersScreen extends Component {
 
             </Button>
         ),
+        drawerLabel: I18nManager.isRTL ? strings.ar.orders : strings.en.orders,
+
         drawerIcon: (
             <Icon name='list' style={{ color: '#FFFFFF' }} />
         )
@@ -111,9 +113,9 @@ class OrdersScreen extends Component {
                                     />
                                 </View>
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>name: {item.name}</Text>
-                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>ordered in: {item.date}</Text>
-                                    <Text style={{ fontWeight: 'bold', color: styleColors.ordersScreenTextColor }}>50 JD</Text>
+                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>{I18nManager.isRTL ? strings.ar.name : strings.en.name}: {item.name}</Text>
+                                    <Text style={{ color: styleColors.ordersScreenTextColor }}>{I18nManager.isRTL ? strings.ar.orderderIn : strings.en.orderderIn}: {item.date}</Text>
+                                    <Text style={{ fontWeight: 'bold', color: styleColors.ordersScreenTextColor }}> 50 JD</Text>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
@@ -135,7 +137,7 @@ class OrdersScreen extends Component {
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no orders yet</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.youHaveNoOrdersYet : strings.en.youHaveNoOrdersYet}</Text>
                 </View>
             )
         }

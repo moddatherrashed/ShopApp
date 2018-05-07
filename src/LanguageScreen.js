@@ -5,20 +5,21 @@ import { StackNavigator } from 'react-navigation'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import RNRestart from 'react-native-restart'
+import strings from './components/strings';
 
 class LanguageScreen extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            arabicBtnBackground: styleColors.languageScreenNotSelectedTextColor,
-            englsihBtnBackground: styleColors.barsAndButtonsColor,
-            arabicTextColor: styleColors.barsAndButtonsColor,
-            englishTextColor: styleColors.languageScreenSelectedTextColor,
+            arabicBtnBackground: I18nManager.isRTL ? styleColors.barsAndButtonsColor : styleColors.languageScreenSelectedTextColor,
+            englsihBtnBackground: I18nManager.isRTL ? styleColors.languageScreenSelectedTextColor : styleColors.barsAndButtonsColor,
+            arabicTextColor: I18nManager.isRTL ? styleColors.languageScreenSelectedTextColor : styleColors.barsAndButtonsColor,
+            englishTextColor: I18nManager.isRTL ? styleColors.barsAndButtonsColor : styleColors.languageScreenSelectedTextColor,
         }
     }
     static navigationOptions = {
-        headerTitle: `Language Selector`,
+        headerTitle: I18nManager.isRTL ? strings.ar.language : strings.en.language,
         headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
             backgroundColor: screenColors.mainToolBarColor,
@@ -41,6 +42,7 @@ class LanguageScreen extends Component {
 
             </Button>
         ),
+        drawerLabel: I18nManager.isRTL ? strings.ar.language : strings.en.language,
         drawerIcon: (
             <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
         ),
@@ -76,12 +78,12 @@ class LanguageScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#EF9267"
                     hidden={false} />
-                <Text style={{ margin: 20, fontSize: 20 }}>Choose your Language</Text>
+                <Text style={{ margin: 20, fontSize: 20, fontWeight: 'bold', color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.chooseYourLanguage : strings.en.chooseYourLanguage}</Text>
 
                 <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                     <Button bordered style={{
                         backgroundColor: this.state.englsihBtnBackground,
-                        borderColor: '#363A57',
+                        borderColor: styleColors.barsAndButtonsColor,
                         height: 100,
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -98,7 +100,7 @@ class LanguageScreen extends Component {
                     <Button bordered style={{
                         backgroundColor: this.state.arabicBtnBackground,
                         height: 100,
-                        borderColor: '#363A57',
+                        borderColor: styleColors.barsAndButtonsColor,
                         margin: 20,
                         justifyContent: 'center',
                         flex: 1

@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image } from 'react-native'
+import { View, Text, I18nManager, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
 import ItemScreen from './ItemScreen'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
+import strings from './components/strings'
 
 class FavoritesScreen extends Component {
     constructor(props) {
@@ -59,7 +60,7 @@ class FavoritesScreen extends Component {
         this.getKey()
     }
     static navigationOptions = {
-        title: `Favorites Items`,
+        title: I18nManager.isRTL ? strings.ar.favorites : strings.en.favorites,
         headerTintColor: screenColors.mainToolBarTextColor,
         headerStyle: {
             backgroundColor: screenColors.mainToolBarColor,
@@ -82,6 +83,8 @@ class FavoritesScreen extends Component {
 
             </Button>
         ),
+        drawerLabel: I18nManager.isRTL ? strings.ar.favorites : strings.en.favorites,
+
         drawerIcon: (
             <Icon name='star' style={{ color: '#FFFFFF' }} />
         )
@@ -119,7 +122,7 @@ class FavoritesScreen extends Component {
                                     />
                                 </View>
                                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                                    <Text style={{ color: styleColors.favoriteScreenItemsTextColor }}>name: {item.name}</Text>
+                                    <Text style={{ color: styleColors.favoriteScreenItemsTextColor }}>{I18nManager.isRTL ? strings.ar.name : strings.en.name}: {item.name}</Text>
                                 </View>
                                 <View style={{ flex: 1, alignItems: 'flex-end' }}>
                                     <TouchableOpacity
@@ -143,7 +146,7 @@ class FavoritesScreen extends Component {
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no favorite items</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.youHaveNoFavoriteItems : strings.en.youHaveNoFavoriteItems}</Text>
                 </View>
             )
         }

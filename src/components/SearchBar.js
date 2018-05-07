@@ -1,8 +1,8 @@
 import React from 'react'
-import { TextInput, Image, View } from 'react-native'
+import { TextInput, Image, View, I18nManager } from 'react-native'
 import { Icon } from 'native-base'
 import styleColors from './screenColors'
-
+import strings from './strings'
 const SearchBar = (props) => {
     return (
         <View style={{
@@ -22,8 +22,8 @@ const SearchBar = (props) => {
                 }}
                 onChangeText={props.onChangeText}
                 value={props.value}
-                placeholder='search for...'
-                placeholderTextColor= {styleColors.serachBarTextColor}
+                placeholder={I18nManager.isRTL ? strings.ar.search : strings.en.search}
+                placeholderTextColor={styleColors.serachBarTextColor}
                 underlineColorAndroid="transparent"
 
             />
