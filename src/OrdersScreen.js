@@ -77,11 +77,7 @@ class OrdersScreen extends Component {
 
             </Button>
         ),
-        drawerLabel: I18nManager.isRTL ? strings.ar.orders : strings.en.orders,
-
-        drawerIcon: (
-            <Icon name='list' style={{ color: '#FFFFFF' }} />
-        )
+        
     }
 
     renderList() {

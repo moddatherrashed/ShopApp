@@ -1,15 +1,15 @@
 import React from 'react'
-import { DrawerItems, DrawerNavigator } from 'react-navigation'
+import { DrawerItems, createDrawerNavigator } from 'react-navigation'
 import HomeScreen from './src/HomeScreen'
 import AccountScreen from './src/AccountScreen'
 import { Image, Text, View, I18nManager } from 'react-native'
-import { Container, Header, Body, Content } from 'native-base'
+import { Container, Header, Body, Content, Icon } from 'native-base'
 import OrdersScreen from './src/OrdersScreen'
 import FavoritesScreen from './src/FavoritesScreen'
 import ConnectScreen from './src/ConnectScreen'
 import LanguageScreen from './src/LanguageScreen'
 import styleColors from './src/components/screenColors'
-
+import strings from './src/components/strings'
 const CustomDrawerComponent = (props) => (
   <Container>
     <Content style={{ backgroundColor: styleColors.navigationDrawerItemsBackgroundColor, paddingTop: 50 }}>
@@ -26,13 +26,61 @@ const CustomDrawerComponent = (props) => (
     </Content>
   </Container>
 )
-const App = DrawerNavigator({
-  HomeScreen: { screen: HomeScreen },
-  Account: { screen: AccountScreen },
-  Orders: { screen: OrdersScreen },
-  Favorites: { screen: FavoritesScreen },
-  Language: { screen: LanguageScreen },
-  ConnectScreen: { screen: ConnectScreen }
+const App = createDrawerNavigator({
+  HomeScreen: {
+    screen: HomeScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.categories : strings.en.categories,
+      drawerIcon: (
+        <Icon name='home' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  },
+  Account: {
+    screen: AccountScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.account : strings.en.account,
+      drawerIcon: (
+        <Icon name='person' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  },
+  Orders: {
+    screen: OrdersScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.orders : strings.en.orders,
+      drawerIcon: (
+        <Icon name='list' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  },
+  Favorites: {
+    screen: FavoritesScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.favorites : strings.en.favorites,
+      drawerIcon: (
+        <Icon name='star' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  },
+  Language: {
+    screen: LanguageScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.language : strings.en.language,
+      drawerIcon: (
+        <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  },
+  ConnectScreen: {
+    screen: ConnectScreen,
+    navigationOptions: () => ({
+      drawerLabel: I18nManager.isRTL ? strings.ar.contactUS : strings.en.contactUS,
+      drawerIcon: (
+        <Icon name='ios-call' style={{ color: '#FFFFFF' }} />
+      )
+    })
+  }
 
 },
   {

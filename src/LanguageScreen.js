@@ -41,11 +41,7 @@ class LanguageScreen extends Component {
                 <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
-        ),
-        drawerLabel: I18nManager.isRTL ? strings.ar.language : strings.en.language,
-        drawerIcon: (
-            <Icon name='ios-globe' style={{ color: '#FFFFFF' }} />
-        ),
+        )
     }
 
     languageSelector(lang) {

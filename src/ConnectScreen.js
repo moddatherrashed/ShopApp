@@ -35,10 +35,6 @@ class ConnectScreen extends Component {
                 <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
-        ),
-        drawerLabel: I18nManager.isRTL ? strings.ar.contactUS : strings.en.contactUS,
-        drawerIcon: (
-            <Icon name='ios-call' style={{ color: '#FFFFFF' }} />
         )
     }
     componentWillMount() {

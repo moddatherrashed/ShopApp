@@ -82,11 +82,6 @@ class FavoritesScreen extends Component {
                 <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
-        ),
-        drawerLabel: I18nManager.isRTL ? strings.ar.favorites : strings.en.favorites,
-
-        drawerIcon: (
-            <Icon name='star' style={{ color: '#FFFFFF' }} />
         )
     }
 

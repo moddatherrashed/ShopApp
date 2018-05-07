@@ -4,7 +4,7 @@ import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } fr
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
 import SearchHeader from 'react-native-search-header'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import CatagoryScreen from './CatagoryScreen'
 import ItemScreen from './ItemScreen'
 import Badge from './components/Badge'
@@ -43,7 +43,7 @@ class HomeScreen extends Component {
             textValue: 0,
             searchText: ''
         }
-        YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
+        //YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
     }
     animateBadge() {
@@ -64,7 +64,7 @@ class HomeScreen extends Component {
         headerLeft: (
             <Button transparent
                 onPress={() => {
-                    _this.props.navigation.navigate('DrawerOpen')
+                    _this.props.navigation.openDrawer()
                 }}>
                 <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
             </Button>
@@ -77,10 +77,6 @@ class HomeScreen extends Component {
                 <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
 
             </Button>
-        ),
-        drawerLabel: I18nManager.isRTL ? strings.ar.categories : strings.en.categories,
-        drawerIcon: (
-            <Icon name='home' style={{ color: '#FFFFFF' }} />
         )
     }
 
@@ -205,7 +201,7 @@ class HomeScreen extends Component {
     }
 }
 
-const StackNavigation = StackNavigator({
+const StackNavigation = createStackNavigator({
     HomeScreen: { screen: HomeScreen },
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
