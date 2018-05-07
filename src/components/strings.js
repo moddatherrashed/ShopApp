@@ -34,7 +34,7 @@ const strings = {
     "shipping-info": "Shipping Information",
     "totalAmount": "Total Amount",
     "remove": "Remove",
-    "subtotla": "SUBTOTAL",
+    "subtotal": "SUBTOTAL",
     "cart": "Cart",
     "phoneNumber": "Phone Number",
     "addToCart": "Add To Cart",
@@ -44,6 +44,7 @@ const strings = {
     "adresses": "Addresses",
     "edit": "Edit",
     "cancel": "Cancel",
+    "size": "Size",
     "signOut": "Sign Out",
     "personalInformation": "Personal Information",
     "chooseYourLanguage": "Choose your language",
@@ -52,7 +53,13 @@ const strings = {
     "continueShopping": "Continue Shopping",
     "viewCart": "View Cart",
     "awesomeChoise": "Awesome Choice",
-    "WhatDoYouWantToDoNow": "What do you want to do now ?"
+    "WhatDoYouWantToDoNow": "What do you want to do now ?",
+    "quantity": "Quantity",
+    "youHaveNoItemsYet": "you have no items yet",
+    "JD": "JD",
+    "changeTheLanguage": "Change The Language",
+    "areYouSureYouWantToChangeTheLanguage": "are you sure you want to change the language ?",
+    "yes": "Yes"
   },
   ar: {
     "categories": "الفئات",
@@ -75,6 +82,7 @@ const strings = {
     "register-now": "التسجيل الان!",
     "email": "البريد الالكتروني",
     "password": "الرقم السري",
+    "size": "الحجم",
     "fullName": "الاسم الكامل",
     "or": "أو",
     "register": "التسجيل",
@@ -89,12 +97,13 @@ const strings = {
     "shippingInfo": "Shipping Information",
     "totalAmount": "Total Amount",
     "remove": "حذف",
-    "subtotla": "SUBTOTAL",
+    "subtotal": "المبلغ الإجمالي",
     "cart": "السلة ",
     "phoneNumber": "رقم الهاتف",
     "website": "الموقع الالكتروني",
     "name": "الاسم",
     "orderderIn": "تاريخ الطلب",
+    "quantity": "الكمية",
     "adresses": "الموقع",
     "edit": "تعديل",
     "signOut": "تسجيل خروج",
@@ -105,9 +114,12 @@ const strings = {
     "continueShopping": "مواصلة التسوق",
     "viewCart": "عرض السلة",
     "awesomeChoise": "اختيار رائع",
-    "WhatDoYouWantToDoNow": "ماذا تريد ان تفعل الآن ؟"
-
-
+    "WhatDoYouWantToDoNow": "ماذا تريد ان تفعل الآن ؟",
+    "youHaveNoItemsYet": "لا يوجد لديك عناصر حتى الآن",
+    "JD": "دينار",
+    "changeTheLanguage": "تغيير اللغة",
+    "areYouSureYouWantToChangeTheLanguage": "هل انت متأكد أنك تريد تغيير اللغة ؟",
+    "yes": "نعم"
 
 
   }

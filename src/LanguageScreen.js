@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, I18nManager, StatusBar } from 'react-native'
+import { View, Text, I18nManager, StatusBar, Alert } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import screenColors from './components/screenColors'
@@ -49,25 +49,38 @@ class LanguageScreen extends Component {
     }
 
     languageSelector(lang) {
-        if (lang == 'ar') {
-            I18nManager.forceRTL(true);
-            RNRestart.Restart()
-            this.setState({
-                arabicTextColor: styleColors.languageScreenSelectedTextColor,
-                arabicBtnBackground: styleColors.barsAndButtonsColor,
-                englsihBtnBackground: styleColors.languageScreenSelectedTextColor,
-                englishTextColor: styleColors.barsAndButtonsColor,
-            })
-        } else {
-            I18nManager.forceRTL(false);
-            RNRestart.Restart()
-            this.setState({
-                englsihBtnBackground: styleColors.barsAndButtonsColor,
-                englishTextColor: styleColors.languageScreenSelectedTextColor,
-                arabicTextColor: styleColors.barsAndButtonsColor,
-                arabicBtnBackground: styleColors.languageScreenSelectedTextColor,
-            })
-        }
+        Alert.alert(
+            I18nManager.isRTL ? strings.ar.changeTheLanguage : strings.en.changeTheLanguage,
+            I18nManager.isRTL ? strings.ar.areYouSureYouWantToChangeTheLanguage : strings.en.areYouSureYouWantToChangeTheLanguage,
+            [
+                { text: I18nManager.isRTL ? strings.ar.cancel : strings.en.cancel, onPress: () => { }, style: 'cancel' },
+                {
+                    text: I18nManager.isRTL ? strings.ar.yes : strings.en.yes, onPress: () => {
+                        if (lang == 'ar') {
+                            I18nManager.forceRTL(true);
+                            RNRestart.Restart()
+                            this.setState({
+                                arabicTextColor: styleColors.languageScreenSelectedTextColor,
+                                arabicBtnBackground: styleColors.barsAndButtonsColor,
+                                englsihBtnBackground: styleColors.languageScreenSelectedTextColor,
+                                englishTextColor: styleColors.barsAndButtonsColor,
+                            })
+                        } else {
+                            I18nManager.forceRTL(false);
+                            RNRestart.Restart()
+                            this.setState({
+                                englsihBtnBackground: styleColors.barsAndButtonsColor,
+                                englishTextColor: styleColors.languageScreenSelectedTextColor,
+                                arabicTextColor: styleColors.barsAndButtonsColor,
+                                arabicBtnBackground: styleColors.languageScreenSelectedTextColor,
+                            })
+                        }
+                    }
+                },
+            ],
+            { cancelable: false }
+        )
+
     }
 
     render() {

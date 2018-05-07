@@ -26,7 +26,7 @@ class LoginScreen extends Component {
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF', margin: 10, elevation: 15, borderRadius: 5 }}>
                     <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 20, padding: 10, margin: 10, flex: 0.15, backgroundColor: styleColors.cartScreenColors, borderRadius: 5 }}>Are you member ?</Text>
                     <Item floatingLabel style={{ flex: 0.3 }} >
-                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>Email</Label>
+                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>الايميل</Label>
                         <Input value={this.props.emailValue} onChangeText={this.props.onEmailChange} style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel style={{ flex: 0.3 }} >

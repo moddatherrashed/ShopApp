@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
+import { View, Text, I18nManager, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image, ScrollView, Animated, TouchableHighlight } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import ScreenSize from './ScreenSize';
 import { SafeAreaView } from 'react-navigation'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
+import strings from './components/strings'
 
 class CartScreen extends Component {
     constructor(props) {
@@ -131,30 +132,30 @@ class CartScreen extends Component {
 
                                         }}>
                                         <Icon name='ios-trash-outline' style={{ color: styleColors.cartScreenColors }} />
-                                        <Text style={{ margin: 5 }}>Remove</Text>
+                                        <Text style={{ margin: 5 }}>{I18nManager.isRTL ? strings.ar.remove : strings.en.remove}</Text>
                                     </TouchableOpacity>
                                 </View>
 
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
                                     <Text style={{ color: styleColors.cartScreenColors }}>{item.name}</Text>
                                     <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors }}>{item.price}</Text>
-                                    <Text>Size : M</Text>
+                                    <Text>{I18nManager.isRTL ? strings.ar.size : strings.en.size} : M</Text>
                                 </View>
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text>Number of Items</Text>
+                                    <Text>{I18nManager.isRTL ? strings.ar.quantity : strings.en.quantity}</Text>
                                     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                                         <TouchableOpacity
                                             onPress={() => {
                                                 this.onDecPressed(index)
                                             }}>
-                                            <Icon name='ios-arrow-dropleft-circle-outline' style={{ color: styleColors.cartScreenColors }} />
+                                            <Icon name='ios-remove-circle' style={{ color: styleColors.cartScreenColors }} />
                                         </TouchableOpacity>
                                         <Text style={{ padding: 10 }}>{item.quantity}</Text>
                                         <TouchableOpacity
                                             onPress={() => {
                                                 this.onIncPressed(index)
                                             }}>
-                                            <Icon name='ios-arrow-dropright-circle-outline' style={{ color: styleColors.cartScreenColors }} />
+                                            <Icon name='ios-add-circle' style={{ color: styleColors.cartScreenColors }} />
                                         </TouchableOpacity>
 
                                     </View>
@@ -167,13 +168,13 @@ class CartScreen extends Component {
         } else {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25 }}>you have no items yet</Text>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.youHaveNoItemsYet : strings.en.youHaveNoItemsYet}</Text>
                 </View>
             )
         }
     }
     static navigationOptions = {
-        title: `Cart`,
+        title: I18nManager.isRTL ? strings.ar.cart : strings.en.cart,
         headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
             backgroundColor: styleColors.toolBarColor,
@@ -186,7 +187,7 @@ class CartScreen extends Component {
                 total += (obj.price) * obj.quantity
             })
         }
-        return <Text style={{ color: '#000000', fontWeight: 'bold', margin: 5, }}>{total} JD</Text>
+        return <Text style={{ color: '#000000', fontWeight: 'bold', margin: 5 }}>{total} {I18nManager.isRTL ? strings.ar.JD : strings.en.JD}</Text>
 
     }
     render() {
@@ -225,12 +226,12 @@ class CartScreen extends Component {
                             width: '50%',
 
                         }}>
-                            <Text style={{ color: '#000000', margin: 5, fontWeight: 'bold' }}>SUBTOTAL</Text>
+                            <Text style={{ color: '#000000', margin: 5, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.subtotal : strings.en.subtotal}</Text>
                         </View>
                         <View style={{
                             alignItems: 'flex-end',
                             justifyContent: 'center',
-                            flex : 0.8,
+                            flex: 1,
                             width: '50%',
                         }}>
                             {this.subTotalCounter()}
@@ -244,7 +245,7 @@ class CartScreen extends Component {
                     }} onPress={() => {
                         navigate('CheckoutScreen')
                     }}>
-                        <Text style={{ fontSize: 15, color: 'white' }}>CHECKOUT</Text>
+                        <Text style={{ fontSize: 15, color: 'white' }}>{I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
