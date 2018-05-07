@@ -106,11 +106,11 @@ class ConnectScreen extends Component {
                     hidden={false} />
                 <View style={{ backgroundColor: styleColors.connectWithUsBakgroundColors, margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
                     <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{ I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
                         <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>077777777</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: styleColors.connectWithUsITemsAndTextColor, margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
-                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{ I18nManager.isRTL ? strings.ar.website : strings.en.website}</Text>
+                        <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.website : strings.en.website}</Text>
                         <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>www.test.net</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>

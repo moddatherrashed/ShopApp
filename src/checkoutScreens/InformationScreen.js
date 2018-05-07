@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text, TextInput, ScrollView } from 'react-native'
+import { View, Text, I18nManager, TextInput, ScrollView } from 'react-native'
 import { Button, Item, Input, Icon, Label } from 'native-base'
 import styleColors from '../components/screenColors'
+import strings from '../components/strings'
 
 class InformationScreen extends Component {
     constructor(props) {
@@ -26,19 +27,19 @@ class InformationScreen extends Component {
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
                     <Text style={{ backgroundColor: styleColors.cartScreenColors, color: '#FFFFFF', fontSize: 20, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>Please fill in your information</Text>
                     <Item floatingLabel >
-                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>City</Label>
+                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.city : strings.en.city}</Label>
                         <Input style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
-                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>Street</Label>
+                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.street : strings.en.street}</Label>
                         <Input style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
-                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>Description for the address</Label>
-                        <Input multiline style={{ color: styleColors.cartScreenColors, height: 150 }} />
+                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.buildingNumber : strings.en.buildingNumber}</Label>
+                        <Input style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
-                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>Mobile Number</Label>
+                        <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.mobileNumber : strings.en.mobileNumber}</Label>
                         <Input style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Button full style={{
@@ -47,7 +48,7 @@ class InformationScreen extends Component {
                         elevation: 5,
                         borderRadius: 5
                     }} onPress={this.props.onNextPressed}>
-                        <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>Next</Text>
+                        <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.next : strings.en.next}</Text>
                     </Button>
                 </View>
             </ScrollView>

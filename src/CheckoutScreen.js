@@ -8,6 +8,7 @@ import ScreenSize from './ScreenSize'
 import { Button } from 'native-base'
 import * as Animatable from 'react-native-animatable'
 import styleColors from './components/screenColors'
+import strings from './components/strings'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -50,7 +51,7 @@ class CheckoutScreen extends Component {
         }
     }
     static navigationOptions = {
-        title: `Checkout`,
+        title: I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut,
         headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
             backgroundColor: styleColors.toolBarColor,
@@ -62,13 +63,13 @@ class CheckoutScreen extends Component {
 
     renderAuthFaildFunc() {
         if (this.state.isLoginFailed) {
-            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>Authentication Faild</Animatable.Text>
+            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>{I18nManager.isRTL ? strings.ar.authenticationFailed : strings.en.authenticationFailed}</Animatable.Text>
             )
         }
     }
     renderRegisterFaildFunc() {
         if (this.state.isRegisterFailed) {
-            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>All fields are required</Animatable.Text>
+            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>{I18nManager.isRTL ? strings.ar.allFieldsAreRequired : strings.en.allFieldsAreRequired}</Animatable.Text>
             )
         }
     }
@@ -245,10 +246,12 @@ const styles = StyleSheet.create({
     },
     slide2: {
         flex: 1,
+        width: ScreenSize.width,
         backgroundColor: '#FFFFFF',
     },
     slide3: {
         flex: 1,
+        width: ScreenSize.width,
         backgroundColor: '#FFFFFF',
     },
     text: {

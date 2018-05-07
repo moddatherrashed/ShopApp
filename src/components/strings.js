@@ -17,10 +17,10 @@ const strings = {
     "description": "Description",
     "areYouMember": "Are you member?",
     "login": "login",
-    "register-now": "Register Now!",
+    "registerNow": "Register Now!",
     "email": "Email",
     "password": "Password",
-    "full-name": "full Name",
+    "fullName": "full Name",
     "or": "Or",
     "register": "Register",
     "account": "Account",
@@ -29,7 +29,7 @@ const strings = {
     "fillInfo": "Please Fill your inforamtion",
     "city": "City",
     "street": "Street",
-    "addressDesc": "Description for the address",
+    "buildingNumber": "Building Number",
     "mobileNumber": "Mobile Number",
     "shipping-info": "Shipping Information",
     "totalAmount": "Total Amount",
@@ -59,7 +59,12 @@ const strings = {
     "JD": "JD",
     "changeTheLanguage": "Change The Language",
     "areYouSureYouWantToChangeTheLanguage": "are you sure you want to change the language ?",
-    "yes": "Yes"
+    "yes": "Yes",
+    "repassword": "Re-Password",
+    "authenticationFailed": "Authentication Failed",
+    "allFieldsAreRequired": "All fields are required",
+    "next":"Next"
+
   },
   ar: {
     "categories": "الفئات",
@@ -79,7 +84,7 @@ const strings = {
     "description": "الوصف",
     "areYouMember": "هل انت عضو؟",
     "login": "تسجيل دخول",
-    "register-now": "التسجيل الان!",
+    "registerNow": "سجل الان!",
     "email": "البريد الالكتروني",
     "password": "الرقم السري",
     "size": "الحجم",
@@ -92,7 +97,7 @@ const strings = {
     "fillInfo": "الرجاء ادخال جميع المعلومات ",
     "city": "المدينة",
     "street": "الشارع ",
-    "addressDesc": "نفاصيل عن العنواو ",
+    "buildingNumber": "رقم البناية",
     "mobileNumber": "رقم الهاتف ",
     "shippingInfo": "Shipping Information",
     "totalAmount": "Total Amount",
@@ -119,7 +124,12 @@ const strings = {
     "JD": "دينار",
     "changeTheLanguage": "تغيير اللغة",
     "areYouSureYouWantToChangeTheLanguage": "هل انت متأكد أنك تريد تغيير اللغة ؟",
-    "yes": "نعم"
+    "yes": "نعم",
+    "repassword": "إعادة كلمة السر",
+    "authenticationFailed": "فشل الدخول",
+    "allFieldsAreRequired": "جميع الحقول مطلوبة",
+    "next":"التالي"
+
 
 
   }
