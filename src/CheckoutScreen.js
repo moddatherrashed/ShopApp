@@ -39,7 +39,7 @@ class CheckoutScreen extends Component {
 
         this.state = {
             currentPage: 0,
-            isLoggedIn: false,
+            isLoggedIn: true,
             isLoginFailed: false,
             email: '',
             password: '',
@@ -74,6 +74,11 @@ class CheckoutScreen extends Component {
         }
     }
 
+    scrollListToStart(contentWidth, contentHeight) {
+        if (I18nManager.isRTL) {
+            this.refs.swiper.scrollTo({ x: contentWidth });
+        }
+    }
 
     isLoggedInChecker() {
         if (this.state.isLoggedIn === false) {
@@ -100,7 +105,7 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width })
+                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
                         }}
                         fullNameValue={this.state.fullName}
@@ -127,7 +132,7 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width })
+                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
                         }}
                     />
@@ -153,7 +158,7 @@ class CheckoutScreen extends Component {
                                 this.setState({
                                     currentPage: counter
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width })
+                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }} >
                         <Text style={{ color: '#FFFFFF', fontSize: 20 }}>Continue as <Text style={{ fontWeight: 'bold' }}>moddather</Text></Text>
                     </Button>
@@ -191,6 +196,8 @@ class CheckoutScreen extends Component {
                 <ScrollView
                     horizontal={true}
                     pagingEnabled={true}
+                    style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row' }}
+                    onContentSizeChange={this.scrollListToStart.bind(this)}
                     scrollEnabled={false}
                     ref='swiper'
                 >

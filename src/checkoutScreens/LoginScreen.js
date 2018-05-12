@@ -22,7 +22,7 @@ class LoginScreen extends Component {
 
     render() {
         return (
-            <ScrollView style={{ flex: 2 }}>
+            <ScrollView style={{ flex: 2 }} keyboardShouldPersistTaps="always" >
                 { /*Login from*/}
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF', margin: 10, elevation: 15, borderRadius: 5 }}>
                     <Text style={{ color: '#FFFFFF', fontWeight: 'bold', fontSize: 20, padding: 10, margin: 10, flex: 0.15, backgroundColor: styleColors.cartScreenColors, borderRadius: 5 }}>{I18nManager.isRTL ? strings.ar.areYouMember : strings.en.areYouMember}</Text>
