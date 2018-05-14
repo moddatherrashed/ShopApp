@@ -24,7 +24,7 @@ class InformationScreen extends Component {
     render() {
         return (
             <ScrollView keyboardShouldPersistTaps="always" style={{ flex: 1 }}>
-                <KeyboardAvoidingView style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
+                <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
                     <Text style={{ backgroundColor: styleColors.cartScreenColors, color: '#FFFFFF', fontSize: 20, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>Please fill in your information</Text>
                     <Item floatingLabel >
                         <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.city : strings.en.city}</Label>
@@ -50,7 +50,7 @@ class InformationScreen extends Component {
                     }} onPress={this.props.onNextPressed}>
                         <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.next : strings.en.next}</Text>
                     </Button>
-                </KeyboardAvoidingView>
+                </View>
             </ScrollView>
         )
     }

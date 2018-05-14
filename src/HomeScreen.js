@@ -15,28 +15,13 @@ import OrdersScreen from './OrdersScreen'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
+import apiGetRequests from './components/apiGetRequests'
 
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [
-                {
-                    name: 'Vegetables',
-                    url: { uri: 'https://www.mynutritionclinic.com.au/wp-content/uploads/2018/01/fruits-vegetables-rainbow-hero-getty.jpg' }
-                },
-                {
-                    name: 'Meat',
-                    url: { uri: 'https://www.argiro.gr/wp-content/uploads/2017/05/fresh-meat.jpg' }
-                },
-                {
-                    name: 'Cleaning products',
-                    url: { uri: 'https://cdn.shopify.com/s/files/1/2102/8057/collections/cleaning-products-stock-today-160307-tease_4097ed238bc46047a15831a86dd47267.jpg?v=1501687198' }
-                },
-                {
-                    name: 'Spices',
-                    url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' }
-                }],
+            data: [],
             offerFalg: true,
             wasOfferFlagTrue: false,
             badgeScale: new Animated.Value(0),
@@ -46,6 +31,7 @@ class HomeScreen extends Component {
         YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
     }
+
     animateBadge() {
         const textCounter = ++this.state.textValue
         this.state.badgeScale.setValue(0)
@@ -82,6 +68,12 @@ class HomeScreen extends Component {
 
     componentDidMount() {
         _this = this
+        apiGetRequests.getRequests('getCatagories').then((res) => {
+            this.setState({
+                data: res.cats
+            })
+        })
+
     }
 
     onNavigate(context, params) {
@@ -142,9 +134,10 @@ class HomeScreen extends Component {
             width = width * 0.37
             colNum = 2
         }
+
         let filterSearch = this.state.data.filter(
             (data) => {
-                return data.name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
+                return (I18nManager.isRTL ? data.CatName_ar : data.CatName_en).toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
 
             }
         )
@@ -182,13 +175,13 @@ class HomeScreen extends Component {
                                         elevation: 15,
                                         backgroundColor: '#FFFFFF'
                                     }}
-                                    onPress={() => navigate('CatagoryScreen', { name: item.name })}>
+                                    onPress={() => navigate('CatagoryScreen', { id: item.id, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })}>
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
-                                        source={item.url}
+                                        source={{ uri: item.CatImage_en }}
 
                                     />
-                                    <Text style={styles.textStyle}>{item.name}</Text>
+                                    <Text style={styles.textStyle}>{I18nManager.isRTL ? item.CatName_ar : item.CatName_en}</Text>
                                 </TouchableOpacity>
 
                             </View>

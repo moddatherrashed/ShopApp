@@ -11,10 +11,10 @@
     "jest-worker": "^22.4.3",
     "metro-core": "^0.36.1",
     "metro-source-map": "^0.36.1",
-    "native-base": "^2.4.3",
-    "npm": "^6.0.0",
+    "native-base": "^2.4.4",
+    "npm": "^6.0.1",
     "react": "^16.3.2",
-    "react-native": "^0.55.3",
+    "react-native": "^0.55.4",
     "react-native-animatable": "^1.2.4",
     "react-native-localization": "^1.0.7",
     "react-native-modal": "^6.0.0",
@@ -23,7 +23,7 @@
     "react-native-step-indicator": "0.0.8",
     "react-native-swiper": "^1.5.13",
     "react-native-vector-icons": "^4.6.0",
-    "react-navigation": "^2.0.0-rc.11"
+    "react-navigation": "^2.0.1"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",
@@ -32,7 +32,7 @@
     "eslint-config-rallycoding": "^3.2.0",
     "eslint-plugin-import": "^2.11.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react": "^7.8.2",
     "jest": "22.4.3",
     "react-test-renderer": "16.3.2"
   },

@@ -68,7 +68,7 @@ class FavoritesScreen extends Component {
         headerLeft: (
             <Button transparent
                 onPress={() => {
-                    _this.props.navigation.navigate('DrawerOpen')
+                    _this.props.navigation.openDrawer()
                 }}>
                 <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
@@ -112,7 +112,7 @@ class FavoritesScreen extends Component {
                                 <View style={{ flex: 2 }}>
                                     <Image
                                         style={{ height: 100, width: 100, margin: 5 }}
-                                        source={item.url}
+                                        source={{ uri: item.url }}
                                         resizeMode='contain'
                                     />
                                 </View>

@@ -113,13 +113,13 @@ class ItemScreen extends Component {
                     <View style={styles.imageContainer}>
                         <Image
                             style={styles.imageStyle}
-                            source={params.url}
+                            source={{uri : params.url}}
                             resizeMode='contain'
                         />
                         <View style={styles.priceNameFavContainer}>
                             <View style={styles.namePriceConatiner}>
                                 <Text style={styles.nameTextStyle}>{params.name}</Text>
-                                <Text style={styles.priceTextStyle}>{params.price}</Text>
+                                <Text style={styles.priceTextStyle}>{params.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
                             </View>
                             <View style={styles.sizeSelectorStyle}>
                                 <Button bordered style={styles.sizeBtnStyle}
@@ -163,7 +163,7 @@ class ItemScreen extends Component {
                     <Text style={styles.descriptionTitleStyle}>{I18nManager.isRTL ? strings.ar.description : strings.en.description}</Text>
                     <View style={styles.descrptionContainerStyle}>
                         <Text style={styles.descriptionTextStyle}>
-                            this is a dummy description just to see how it looks like, please do not read it.
+                            {params.description}
                         </Text>
                     </View>
                 </ScrollView>

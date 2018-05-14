@@ -1,14 +1,48 @@
 let apiGetRequests = {
-    getRequests(typeOfGet) {
+    getRequests(typeOfGet, id) {
         switch (typeOfGet) {
             case 'getCatagories':
-
+                return fetch('http://jamrahgroup.com/api/getCategories')
+                    .then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
                 break;
             case 'getProducts':
-
+                return fetch('http://jamrahgroup.com/api/getProduct', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        cat_id: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
                 break;
-            case 'getItemDetails':
-
+            case 'getContactUs':
+                return fetch('http://jamrahgroup.com/api/contactUs', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
                 break;
             case 'getOffer':
 

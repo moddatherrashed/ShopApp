@@ -1,58 +1,30 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, ImageBackground, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, FlatList, ImageBackground,I18nManager, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
 import { Icon } from 'native-base'
 import ScreenSize from './ScreenSize'
 import ItemScreen from './ItemScreen';
 import SearchBar from './components/SearchBar'
 import styleColors from './components/screenColors'
+import apiGetRequests from './components/apiGetRequests'
 
 class CatagoryScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [{
-                name: 'Grssay Jacket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 15
-            },
-            {
-                name: 'Gray Jassscket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 20
-            },
-            {
-                name: 'Gray Jadddcket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 25
-            },
-            {
-                name: 'Gray Jacffffket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 10
-            },
-            {
-                name: 'Gray Jaccccket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 11
-            },
-            {
-                name: 'Gray Jacrrket',
-                url: { uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' },
-                quantity: 1,
-                price: 11.5
-            },
-            ],
+            data: [],
             searchText: ''
         }
     }
 
-    static navigationOptions = ({ navigation }) => ({
+    componentDidMount() {
+        apiGetRequests.getRequests('getProducts', this.props.navigation.state.params.id).then((res) => {
+            this.setState({
+                data: res.products
+            })
+        })
 
+    }
+    static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.name}`,
         headerTintColor: styleColors.toolBarTextColor,
         headerStyle: {
@@ -63,6 +35,7 @@ class CatagoryScreen extends Component {
     search(searchText) {
         this.setState({ searchText: searchText })
     }
+
 
     render() {
         const { params } = this.props.navigation.state
@@ -81,7 +54,7 @@ class CatagoryScreen extends Component {
         }
         let filterSearch = this.state.data.filter(
             (data) => {
-                return data.name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
+                return data.s_name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
 
             }
         )
@@ -93,7 +66,7 @@ class CatagoryScreen extends Component {
                 <FlatList
                     horizontal={false}
                     numColumns={colNum}
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.s_name}
                     contentContainerStyle={styles.contentStyle}
                     data={filterSearch}
                     renderItem={({ item, index }) =>
@@ -108,14 +81,14 @@ class CatagoryScreen extends Component {
                                     elevation: 15,
                                     backgroundColor: '#FFFFFF'
                                 }}
-                                onPress={() => navigate("ItemScreen", { name: item.name, url: item.url, quantity: item.quantity, price: item.price })}>
+                                onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: item.quantity, price: item.price, description : item.description })}>
                                 <Image
                                     style={styles.imageStyle}
-                                    source={item.url}
+                                    source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
                                     resizeMode="contain"
                                 />
-                                <Text style={styles.textStyle}>{item.name}</Text>
-                                <Text style={styles.priceTextStyle}>{item.price} JD</Text>
+                                <Text style={styles.textStyle}>{item.s_name}</Text>
+                                <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
                                 <View style={{ alignItems: 'flex-end' }}>
                                     <TouchableOpacity>
                                         <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />

@@ -27,7 +27,7 @@ class LanguageScreen extends Component {
         headerLeft: (
             <Button transparent
                 onPress={() => {
-                    _this.props.navigation.navigate('DrawerOpen')
+                    _this.props.navigation.openDrawer()
                 }}>
                 <Icon name='menu' style={{ color: screenColors.mainToolBarTextColor }} />
 
