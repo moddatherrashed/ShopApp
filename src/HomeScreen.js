@@ -175,7 +175,9 @@ class HomeScreen extends Component {
                                         elevation: 15,
                                         backgroundColor: '#FFFFFF'
                                     }}
-                                    onPress={() => navigate('CatagoryScreen', { id: item.id, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })}>
+                                    onPress={() => {
+                                        navigate('CatagoryScreen', { id: item.CatID, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })
+                                    }}>
                                     <Image
                                         style={{ height: '80%', width: '100%', margin: 3 }}
                                         source={{ uri: item.CatImage_en }}
