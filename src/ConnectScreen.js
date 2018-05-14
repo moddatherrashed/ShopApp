@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, ScrollView, Image, Slider } from 'react-native'
+import { TouchableOpacity, View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, Linking, ScrollView, Image, Slider } from 'react-native'
 import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'native-base'
 import { StackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
@@ -7,11 +7,21 @@ import ScreenSize from './ScreenSize';
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
+import apiGetRequests from './components/apiGetRequests'
 
 const SCREEN_HEIGHT = ScreenSize.height
 const SCREEN_WIDTH = ScreenSize.width
 class ConnectScreen extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            phone_number: '',
+            website: '',
+            instagram_link: '',
+            facebook_link: ''
+        }
+    }
     static navigationOptions = {
         title: I18nManager.isRTL ? strings.ar.contactUS : strings.en.contactUS,
         headerTintColor: screenColors.mainToolBarTextColor,
@@ -63,6 +73,16 @@ class ConnectScreen extends Component {
 
         })
     }
+    componentDidMount() {
+        apiGetRequests.getRequests('getContactUs').then((res) => {
+            this.setState({
+                phone_number: res.contactUS[0].phone_number,
+                website: res.contactUS[0].website_link,
+                facebook_link: res.contactUS[0].facebook_link,
+                instagram_link: res.contactUS[0].facebook_link
+            })
+        })
+    }
     render() {
         const animatedHeight = {
             transform: this.animation.getTranslateTransform()
@@ -107,15 +127,23 @@ class ConnectScreen extends Component {
                 <View style={{ backgroundColor: styleColors.connectWithUsBakgroundColors, margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
                     <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
-                        <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>077777777</Text>
+                        <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.phone_number}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: styleColors.connectWithUsITemsAndTextColor, margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
                         <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.website : strings.en.website}</Text>
-                        <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>www.test.net</Text>
+                        <Text onPress={() => { Linking.openURL(this.state.website) }} style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.website}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
-                        <Icon name='logo-facebook' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
-                        <Icon name='logo-instagram' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
+                        <TouchableOpacity
+                        onPress={() => { Linking.openURL(this.state.facebook_link) }}
+                        >
+                            <Icon name='logo-facebook' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                        onPress={() => { Linking.openURL(this.state.instagram_link) }}
+                        >
+                            <Icon name='logo-instagram' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
+                        </TouchableOpacity>
                     </View>
                 </View>
 

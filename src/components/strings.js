@@ -38,7 +38,7 @@ const strings = {
     "cart": "Cart",
     "phoneNumber": "Phone Number",
     "addToCart": "Add To Cart",
-    "website": "WebSite",
+    "website": "Website",
     "name": "name",
     "orderderIn": "orderder in",
     "adresses": "Addresses",
