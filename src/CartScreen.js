@@ -11,43 +11,7 @@ class CartScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: [{
-                name: 'Grssay Jacket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            {
-                name: 'Gray Jassscket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            {
-                name: 'Gray Jadddcket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 51
-            },
-            {
-                name: 'Gray Jacffffket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            {
-                name: 'Gray Jaccccket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            {
-                name: 'Gray Jacrrket',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                quantity: 1,
-                price: 50
-            },
-            ],
+            orders: [],
             subTotal: 0,
             cartItems: ''
         }
@@ -63,6 +27,7 @@ class CartScreen extends Component {
             alert("Error retrieving data cart screen" + error);
         }
     }
+
     componentDidMount() {
         this.getCartItems()
     }

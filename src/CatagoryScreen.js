@@ -40,7 +40,7 @@ class CatagoryScreen extends Component {
         this.setState({ searchText: searchText })
     }
 
-    renderProductsList(filterSearch, width) {
+    renderProductsList(filterSearch, width,navigate) {
         if (JSON.stringify(this.state.data) === JSON.stringify([])) {
             return (
                 <View style={{ alignItems: 'center', justifyContent: 'center' }}>
@@ -122,7 +122,7 @@ class CatagoryScreen extends Component {
                         </View>
                         :
 
-                        this.renderProductsList(filterSearch, width)
+                        this.renderProductsList(filterSearch, width,navigate)
                 }
             </ScrollView>
         )

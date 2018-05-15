@@ -2,7 +2,7 @@ let apiGetRequests = {
     getRequests(typeOfGet, id) {
         switch (typeOfGet) {
             case 'getCatagories':
-                return fetch('http://jamrahgroup.com/api/getCategories')
+                return fetch('http://www.jamrahgroup.com/api/getCategories')
                     .then((response) => response.json())
                     .then((responseJson) => {
                         return responseJson
@@ -12,7 +12,7 @@ let apiGetRequests = {
                     })
                 break;
             case 'getProducts':
-                return fetch('http://jamrahgroup.com/api/getProduct', {
+                return fetch('http://www.jamrahgroup.com/api/getProduct', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
@@ -30,7 +30,7 @@ let apiGetRequests = {
                     })
                 break;
             case 'getContactUs':
-                return fetch('http://jamrahgroup.com/api/contactUs', {
+                return fetch('http://www.jamrahgroup.com/api/contactUs', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
@@ -45,7 +45,7 @@ let apiGetRequests = {
                     })
                 break;
             case 'getUserInfo':
-                return fetch('http://jamrahgroup.com/api/getUserInfo', {
+                return fetch('http://www.jamrahgroup.com/api/getUserInfo', {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
