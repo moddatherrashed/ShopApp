@@ -44,8 +44,23 @@ let apiGetRequests = {
                         console.error(error);
                     })
                 break;
-            case 'getOffer':
-
+            case 'getUserInfo':
+                return fetch('http://jamrahgroup.com/api/getUserInfo', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        c_id: 1
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    })
                 break;
             case 'getItemDetails':
 

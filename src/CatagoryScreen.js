@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, ImageBackground,I18nManager, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, FlatList, ActivityIndicator, ImageBackground, I18nManager, TouchableOpacity, Image, StyleSheet, ScrollView } from 'react-native'
 import { Icon } from 'native-base'
 import ScreenSize from './ScreenSize'
 import ItemScreen from './ItemScreen';
@@ -12,18 +12,20 @@ class CatagoryScreen extends Component {
         super(props)
         this.state = {
             data: [],
-            searchText: ''
+            searchText: '',
+            loading: true
         }
     }
 
     componentDidMount() {
         apiGetRequests.getRequests('getProducts', this.props.navigation.state.params.id).then((res) => {
             this.setState({
-                data: res.products
+                data: res.products,
+                loading: false
             })
         })
-
     }
+    
     static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.name}`,
         headerTintColor: styleColors.toolBarTextColor,
@@ -63,42 +65,48 @@ class CatagoryScreen extends Component {
                 <SearchBar
                     onChangeText={(searchText) => this.search(searchText)}
                 />
-                <FlatList
-                    horizontal={false}
-                    numColumns={colNum}
-                    keyExtractor={item => item.s_name}
-                    contentContainerStyle={styles.contentStyle}
-                    data={filterSearch}
-                    renderItem={({ item, index }) =>
-                        <View>
-                            <TouchableOpacity
-                                style={{
-                                    flex: 1,
-                                    height: width * 1.4,
-                                    width: width * 1.28,
-                                    margin: 0.2,
-                                    padding: 8,
-                                    elevation: 15,
-                                    backgroundColor: '#FFFFFF'
-                                }}
-                                onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: item.quantity, price: item.price, description : item.description })}>
-                                <Image
-                                    style={styles.imageStyle}
-                                    source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
-                                    resizeMode="contain"
-                                />
-                                <Text style={styles.textStyle}>{item.s_name}</Text>
-                                <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
-                                <View style={{ alignItems: 'flex-end' }}>
-                                    <TouchableOpacity>
-                                        <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
-                                    </TouchableOpacity>
-                                </View>
-                            </TouchableOpacity>
-
+                {
+                    this.state.loading ?
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <ActivityIndicator size="large" color={styleColors.mainToolBarColor} />
                         </View>
-                    }
-                />
+                        :
+                        <FlatList
+                            horizontal={false}
+                            numColumns={colNum}
+                            keyExtractor={item => item.s_name}
+                            contentContainerStyle={styles.contentStyle}
+                            data={filterSearch}
+                            renderItem={({ item, index }) =>
+                                <View>
+                                    <TouchableOpacity
+                                        style={{
+                                            flex: 1,
+                                            height: width * 1.4,
+                                            width: width * 1.28,
+                                            margin: 0.2,
+                                            padding: 8,
+                                            elevation: 15,
+                                            backgroundColor: '#FFFFFF'
+                                        }}
+                                        onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: item.quantity, price: item.price, description: item.description })}>
+                                        <Image
+                                            style={styles.imageStyle}
+                                            source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
+                                            resizeMode="contain"
+                                        />
+                                        <Text style={styles.textStyle}>{item.s_name}</Text>
+                                        <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
+                                        <View style={{ alignItems: 'flex-end' }}>
+                                            <TouchableOpacity>
+                                                <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
+                                            </TouchableOpacity>
+                                        </View>
+                                    </TouchableOpacity>
+
+                                </View>
+                            }
+                        />}
             </ScrollView>
         )
     }

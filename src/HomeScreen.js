@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, I18nManager, FlatList, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { View, Text, I18nManager, FlatList, ActivityIndicator, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
 import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
@@ -26,7 +26,8 @@ class HomeScreen extends Component {
             wasOfferFlagTrue: false,
             badgeScale: new Animated.Value(0),
             textValue: 0,
-            searchText: ''
+            searchText: '',
+            loading: true
         }
         YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 
@@ -70,8 +71,10 @@ class HomeScreen extends Component {
         _this = this
         apiGetRequests.getRequests('getCatagories').then((res) => {
             this.setState({
-                data: res.cats
+                data: res.cats,
+                loading: false
             })
+
         })
 
     }
@@ -151,45 +154,52 @@ class HomeScreen extends Component {
                 <SearchBar
                     onChangeText={(searchText) => this.search(searchText)}
                 />
-                <Content>
-                    {this.renderOffer(this.state.offerFalg)}
-                    <FlatList
-                        contentContainerStyle={{ margin: 2 }}
-                        horizontal={false}
-                        numColumns={colNum}
-                        keyExtractor={item => item.name}
-                        contentContainerStyle={styles.contentContainerStyle}
-                        data={filterSearch}
-                        renderItem={({ item, index }) =>
-                            <View>
-                                <TouchableOpacity
-                                    style={{
-                                        flex: 1,
-                                        margin: 0.5,
-                                        height: width * 1.4,
-                                        width: width * 1.28,
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        borderColor: '#FFFFFF',
-                                        borderWidth: 1,
-                                        elevation: 15,
-                                        backgroundColor: '#FFFFFF'
-                                    }}
-                                    onPress={() => {
-                                        navigate('CatagoryScreen', { id: item.CatID, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })
-                                    }}>
-                                    <Image
-                                        style={{ height: '80%', width: '100%', margin: 3 }}
-                                        source={{ uri: item.CatImage_en }}
+                {
+                    this.state.loading ?
+                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <ActivityIndicator size="large" color={screenColors.mainToolBarColor} />
+                        </View>
+                        :
+                        <Content>
+                            {this.renderOffer(this.state.offerFalg)}
+                            <FlatList
+                                contentContainerStyle={{ margin: 2 }}
+                                horizontal={false}
+                                numColumns={colNum}
+                                keyExtractor={item => item.name}
+                                contentContainerStyle={styles.contentContainerStyle}
+                                data={filterSearch}
+                                renderItem={({ item, index }) =>
+                                    <View>
+                                        <TouchableOpacity
+                                            style={{
+                                                flex: 1,
+                                                margin: 0.5,
+                                                height: width * 1.4,
+                                                width: width * 1.28,
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                borderColor: '#FFFFFF',
+                                                borderWidth: 1,
+                                                elevation: 15,
+                                                backgroundColor: '#FFFFFF'
+                                            }}
+                                            onPress={() => {
+                                                navigate('CatagoryScreen', { id: item.CatID, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })
+                                            }}>
+                                            <Image
+                                                style={{ height: '80%', width: '100%', margin: 3 }}
+                                                source={{ uri: item.CatImage_en }}
+                                                resizeMode="contain"
+                                            />
+                                            <Text style={styles.textStyle}>{I18nManager.isRTL ? item.CatName_ar : item.CatName_en}</Text>
+                                        </TouchableOpacity>
 
-                                    />
-                                    <Text style={styles.textStyle}>{I18nManager.isRTL ? item.CatName_ar : item.CatName_en}</Text>
-                                </TouchableOpacity>
-
-                            </View>
-                        }
-                    />
-                </Content>
+                                    </View>
+                                }
+                            />
+                        </Content>
+                }
 
             </Container>
         )
