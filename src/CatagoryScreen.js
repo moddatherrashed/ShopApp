@@ -20,7 +20,6 @@ class CatagoryScreen extends Component {
 
     componentDidMount() {
         apiGetRequests.getRequests('getProducts', this.props.navigation.state.params.id).then((res) => {
-            //alert(typeof res.products)
             this.setState({
                 data: res.products,
                 loading: false

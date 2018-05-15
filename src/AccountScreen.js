@@ -58,7 +58,7 @@ class AccountScreen extends Component {
             this.setState({
                 name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
                 email: res.userInforamtion[0].email,
-                number: res.userInforamtion[0].mobile_number,
+                number: res.userInforamtion[0].mobileNumber,
                 address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
                 loading: false
             })
@@ -140,7 +140,7 @@ class AccountScreen extends Component {
                                 placeholder={this.state.name}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
-                                underlineColorAndroid="#363A57" />
+                                underlineColorAndroid={styleColors.barsAndButtonsColor}/>
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
