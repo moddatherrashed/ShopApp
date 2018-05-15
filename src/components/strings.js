@@ -63,7 +63,8 @@ const strings = {
     "repassword": "Re-Password",
     "authenticationFailed": "Authentication Failed",
     "allFieldsAreRequired": "All fields are required",
-    "next":"Next"
+    "next":"Next",
+    "ThereIsNoProductsAvailable":"No products available"
 
   },
   ar: {
@@ -128,7 +129,9 @@ const strings = {
     "repassword": "إعادة كلمة السر",
     "authenticationFailed": "فشل الدخول",
     "allFieldsAreRequired": "جميع الحقول مطلوبة",
-    "next":"التالي"
+    "next":"التالي",
+    "ThereIsNoProductsAvailable":"لايوجد منتجات متاحة"
+
 
 
 

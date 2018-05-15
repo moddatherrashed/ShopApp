@@ -6,6 +6,7 @@ import ItemScreen from './ItemScreen';
 import SearchBar from './components/SearchBar'
 import styleColors from './components/screenColors'
 import apiGetRequests from './components/apiGetRequests'
+import strings from './components/strings'
 
 class CatagoryScreen extends Component {
     constructor(props) {
@@ -19,13 +20,14 @@ class CatagoryScreen extends Component {
 
     componentDidMount() {
         apiGetRequests.getRequests('getProducts', this.props.navigation.state.params.id).then((res) => {
+            //alert(typeof res.products)
             this.setState({
                 data: res.products,
                 loading: false
             })
         })
     }
-    
+
     static navigationOptions = ({ navigation }) => ({
         title: `${navigation.state.params.name}`,
         headerTintColor: styleColors.toolBarTextColor,
@@ -38,6 +40,54 @@ class CatagoryScreen extends Component {
         this.setState({ searchText: searchText })
     }
 
+    renderProductsList(filterSearch, width) {
+        if (JSON.stringify(this.state.data) === JSON.stringify([])) {
+            return (
+                <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                    <Text style={{ fontWeight: 'bold', marginTop: '10%', fontSize: 25, color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.ThereIsNoProductsAvailable : strings.en.ThereIsNoProductsAvailable}</Text>
+                </View>
+            )
+        } else {
+            return (
+                <FlatList
+                    horizontal={false}
+                    numColumns={colNum}
+                    keyExtractor={item => item.s_name}
+                    contentContainerStyle={styles.contentStyle}
+                    data={filterSearch}
+                    renderItem={({ item, index }) =>
+                        <View>
+                            <TouchableOpacity
+                                style={{
+                                    flex: 1,
+                                    height: width * 1.4,
+                                    width: width * 1.28,
+                                    margin: 0.2,
+                                    padding: 8,
+                                    elevation: 15,
+                                    backgroundColor: '#FFFFFF'
+                                }}
+                                onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: item.quantity, price: item.price, description: item.description })}>
+                                <Image
+                                    style={styles.imageStyle}
+                                    source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
+                                    resizeMode="contain"
+                                />
+                                <Text style={styles.textStyle}>{item.s_name}</Text>
+                                <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
+                                <View style={{ alignItems: 'flex-end' }}>
+                                    <TouchableOpacity>
+                                        <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
+                                    </TouchableOpacity>
+                                </View>
+                            </TouchableOpacity>
+
+                        </View>
+                    }
+                />
+            )
+        }
+    }
 
     render() {
         const { params } = this.props.navigation.state
@@ -71,42 +121,9 @@ class CatagoryScreen extends Component {
                             <ActivityIndicator size="large" color={styleColors.mainToolBarColor} />
                         </View>
                         :
-                        <FlatList
-                            horizontal={false}
-                            numColumns={colNum}
-                            keyExtractor={item => item.s_name}
-                            contentContainerStyle={styles.contentStyle}
-                            data={filterSearch}
-                            renderItem={({ item, index }) =>
-                                <View>
-                                    <TouchableOpacity
-                                        style={{
-                                            flex: 1,
-                                            height: width * 1.4,
-                                            width: width * 1.28,
-                                            margin: 0.2,
-                                            padding: 8,
-                                            elevation: 15,
-                                            backgroundColor: '#FFFFFF'
-                                        }}
-                                        onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: item.quantity, price: item.price, description: item.description })}>
-                                        <Image
-                                            style={styles.imageStyle}
-                                            source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
-                                            resizeMode="contain"
-                                        />
-                                        <Text style={styles.textStyle}>{item.s_name}</Text>
-                                        <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
-                                        <View style={{ alignItems: 'flex-end' }}>
-                                            <TouchableOpacity>
-                                                <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
-                                            </TouchableOpacity>
-                                        </View>
-                                    </TouchableOpacity>
 
-                                </View>
-                            }
-                        />}
+                        this.renderProductsList(filterSearch, width)
+                }
             </ScrollView>
         )
     }
