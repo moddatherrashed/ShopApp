@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, ActivityIndicator, View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, Linking, ScrollView, Image, Slider } from 'react-native'
 import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'native-base'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
 import ScreenSize from './ScreenSize';
 import screenColors from './components/screenColors'
@@ -207,7 +207,7 @@ class ConnectScreen extends Component {
     }
 }
 
-const ConnectStackNavigator = StackNavigator({
+const ConnectStackNavigator = createStackNavigator({
     ConnectScreen: { screen: ConnectScreen }
 })
 

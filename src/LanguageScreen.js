@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, I18nManager, StatusBar, Alert } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import RNRestart from 'react-native-restart'
@@ -128,7 +128,7 @@ class LanguageScreen extends Component {
     }
 }
 
-const LanguageStackNavigation = StackNavigator({
+const LanguageStackNavigation = createStackNavigator({
     LanguageScreen: { screen: LanguageScreen }
 })
 

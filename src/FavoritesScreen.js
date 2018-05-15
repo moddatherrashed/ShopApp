@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, I18nManager, StatusBar, TouchableOpacity, AsyncStorage, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize';
 import ItemScreen from './ItemScreen'
 import screenColors from './components/screenColors'
@@ -163,7 +163,7 @@ class FavoritesScreen extends Component {
     }
 }
 
-const FavoritesStackNavigator = StackNavigator({
+const FavoritesStackNavigator = createStackNavigator({
     FavoritesScreen: { screen: FavoritesScreen },
     ItemScreen: { screen: ItemScreen }
 })

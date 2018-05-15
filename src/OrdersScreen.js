@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, StatusBar, I18nManager, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
-import { StackNavigator } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
@@ -154,7 +154,7 @@ class OrdersScreen extends Component {
         )
     }
 }
-const OrdersStackNavigator = StackNavigator({
+const OrdersStackNavigator = createStackNavigator({
     OrdersScreen: { screen: OrdersScreen },
 })
 export default OrdersStackNavigator
