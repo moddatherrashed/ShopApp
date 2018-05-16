@@ -113,7 +113,7 @@ class ItemScreen extends Component {
                     <View style={styles.imageContainer}>
                         <Image
                             style={styles.imageStyle}
-                            source={{uri : params.url}}
+                            source={{ uri: params.url }}
                             resizeMode='contain'
                         />
                         <View style={styles.priceNameFavContainer}>
@@ -121,7 +121,7 @@ class ItemScreen extends Component {
                                 <Text style={styles.nameTextStyle}>{params.name}</Text>
                                 <Text style={styles.priceTextStyle}>{params.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
                             </View>
-                            <View style={styles.sizeSelectorStyle}>
+                           {/* <View style={styles.sizeSelectorStyle}>
                                 <Button bordered style={styles.sizeBtnStyle}
                                     onPress={() => {
                                         this.setState({
@@ -131,7 +131,7 @@ class ItemScreen extends Component {
                                 >
                                     <Text style={styles.sizeTextStyle}>{this.state.size}</Text>
                                 </Button>
-                            </View>
+                            </View>*/}
                             <TouchableOpacity style={styles.iconTouchStyle}
                                 onPress={() => {
                                     if (this.state.favBtn === 'ios-star-outline') {
@@ -167,7 +167,7 @@ class ItemScreen extends Component {
                         </Text>
                     </View>
                 </ScrollView>
-                <Modal isVisible={this.state.isModalVisible}
+                {/*<Modal isVisible={this.state.isModalVisible}
                     style={styles.ModalStyle}>
                     <View style={styles.conatainerModalStyle}>
                         <Text style={{
@@ -218,7 +218,7 @@ class ItemScreen extends Component {
                             </Button>
                         </View>
                     </View>
-                </Modal>
+                    </Modal>*/}
                 <Modal
                     isVisible={this.state.dialgoBox}>
                     <View style={{ height: ScreenSize.height * 0.4, backgroundColor: '#FFFFFF', borderRadius: 10, justifyContent: 'space-around' }}>
@@ -263,13 +263,13 @@ class ItemScreen extends Component {
                 <View style={styles.addToCartContainerStyle}>
                     <Button full style={styles.addToCartBtnStyle}
                         onPress={() => {
-                            if (this.state.size === (I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize)) {
-                                this.setState({ isModalVisible: true })
+                            //  if (this.state.size === (I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize)) {
+                            //     this.setState({ isModalVisible: true })
 
-                            } else {
-                                this.setCartItems(params)
-                                this.setState({ dialgoBox: true })
-                            }
+                            // } else {
+                            this.setCartItems(params)
+                            this.setState({ dialgoBox: true })
+                            //  }
                         }}>
                         <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? strings.ar.addToCart : strings.en.addToCart}</Text>
                     </Button>
