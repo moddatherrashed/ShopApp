@@ -104,7 +104,7 @@ class CartScreen extends Component {
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'flex-start' }}>
                                     <Text style={{ color: styleColors.cartScreenColors }}>{item.name}</Text>
                                     <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors }}>{item.price}</Text>
-                                    <Text>{I18nManager.isRTL ? strings.ar.size : strings.en.size} : M</Text>
+                                    {/*<Text>{I18nManager.isRTL ? strings.ar.size : strings.en.size} : M</Text>*/}
                                 </View>
                                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center' }}>
                                     <Text>{I18nManager.isRTL ? strings.ar.quantity : strings.en.quantity}</Text>
