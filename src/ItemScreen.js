@@ -121,7 +121,7 @@ class ItemScreen extends Component {
                                 <Text style={styles.nameTextStyle}>{params.name}</Text>
                                 <Text style={styles.priceTextStyle}>{params.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
                             </View>
-                           {/* <View style={styles.sizeSelectorStyle}>
+                            {/* <View style={styles.sizeSelectorStyle}>
                                 <Button bordered style={styles.sizeBtnStyle}
                                     onPress={() => {
                                         this.setState({
