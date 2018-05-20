@@ -6,7 +6,7 @@
 
 *you can take the source code but in terms to learn not to copy and paste ;)*
 
-all data showen in the screenshots is dummy data, just in order to see how the data is listed : 
+all data showen in the screenshots are dummy data, just in order to see how the data are listed : 
 
 # screenshots
 
