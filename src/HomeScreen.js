@@ -16,6 +16,7 @@ import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
+import SearchModal from './components/SearchModal'
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -158,6 +159,12 @@ class HomeScreen extends Component {
                     </View>
                     :
                     <Content>
+                        <Button
+                            onPress={() => {
+                                navigate('SearchModal')
+                            }}>
+                            <Text>openSearch</Text>
+                        </Button>
                         {this.renderOffer(this.state.offerFalg)}
                         <FlatList
                             contentContainerStyle={{ margin: 2 }}
@@ -206,7 +213,8 @@ const StackNavigation = createStackNavigator({
     CatagoryScreen: { screen: CatagoryScreen },
     ItemScreen: { screen: ItemScreen },
     CartScreen: { screen: CartScreen },
-    CheckoutScreen: { screen: CheckoutScreen }
+    CheckoutScreen: { screen: CheckoutScreen },
+    SearchModal: { screen: SearchModal }
 })
 
 const styles = StyleSheet.create({

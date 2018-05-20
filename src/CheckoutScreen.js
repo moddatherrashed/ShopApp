@@ -47,7 +47,10 @@ class CheckoutScreen extends Component {
             regEmail: '',
             regPassword: '',
             regRePassword: '',
-            isRegisterFailed: false
+            isRegisterFailed: false,
+            isLogin: true,
+            isFillInfo: false,
+            isDone: false
         }
     }
     static navigationOptions = {
@@ -81,7 +84,7 @@ class CheckoutScreen extends Component {
     }
 
     isLoggedInChecker() {
-        if (this.state.isLoggedIn === false) {
+        if (this.state.isLoggedIn === false && this.state.isLogin === true) {
             return (
                 <View style={styles.slide}>
                     <LoginScreen
@@ -103,9 +106,13 @@ class CheckoutScreen extends Component {
                                 let counter = this.state.currentPage
                                 counter++
                                 this.setState({
-                                    currentPage: counter
+                                    currentPage: counter,
+                                    isLogin: false,
+                                    isLoggedIn: false,
+                                    isDone: false,
+                                    isFillInfo: true
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
+                                //this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
                         }}
                         fullNameValue={this.state.fullName}
@@ -125,7 +132,7 @@ class CheckoutScreen extends Component {
                                 || this.state.regRePassword === '') {
                                 this.setState({ isRegisterFailed: true })
                             }
-                            else {
+                            else if (this.state.isLogin) {
                                 this.setState({ isRegisterFailed: false })
                                 let counter = this.state.currentPage
                                 counter++
@@ -138,7 +145,7 @@ class CheckoutScreen extends Component {
                     />
                 </View>
             )
-        } else {
+        } else if (this.state.isLoggedIn) {
             return (
                 <View style={{ flex: 1, width: ScreenSize.width, justifyContent: 'center', alignItems: 'center' }}>
                     <Button
@@ -154,11 +161,14 @@ class CheckoutScreen extends Component {
                         onPress={
                             () => {
                                 let counter = this.state.currentPage
-                                counter++
+                                counter=+2
                                 this.setState({
-                                    currentPage: counter
+                                    currentPage: counter,
+                                    isLogin: false,
+                                    isLoggedIn: false,
+                                    isDone: true
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
+                                // this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }} >
                         <Text style={{ color: '#FFFFFF', fontSize: 20 }}>Continue as <Text style={{ fontWeight: 'bold' }}>moddather</Text></Text>
                     </Button>
@@ -176,12 +186,47 @@ class CheckoutScreen extends Component {
                         onPress={
                             () => {
                                 this.setState({
-                                    isLoggedIn: false
+                                    isLoggedIn: false,
+                                    isLogin: true,
+                                    isFillInfo: false
                                 })
                             }} >
                         <Text style={{ color: '#FFFFFF', fontSize: 20 }} >Login with another account</Text>
                     </Button>
 
+                </View>
+            )
+        }
+    }
+    isFillInfoChecker() {
+        if (this.state.isFillInfo) {
+            return (<View style={styles.slide}>
+                <InformationScreen onNextPressed={
+                    () => {
+                        let counter = this.state.currentPage
+                        counter++
+                        this.setState({
+                            currentPage: counter,
+                            isDone: true,
+                            isFillInfo: false
+                        })
+                        // this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
+                    }
+                } />
+            </View>)
+        }
+    }
+    isDoneChecker() {
+        if (this.state.isDone) {
+            return (
+                <View style={styles.slide}>
+                    <DoneScreen onDonePressed={() => {
+                        let counter = this.state.currentPage
+                        counter++
+                        this.setState({
+                            currentPage: counter
+                        })
+                    }} />
                 </View>
             )
         }
@@ -193,37 +238,9 @@ class CheckoutScreen extends Component {
                 <View style={styles.stepIndicator}>
                     <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Information", "Done"]} />
                 </View>
-                <ScrollView
-                    horizontal={true}
-                    pagingEnabled={true}
-                    style={{ flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row' }}
-                    onContentSizeChange={this.scrollListToStart.bind(this)}
-                    scrollEnabled={false}
-                    ref='swiper'
-                >
-                    {this.isLoggedInChecker()}
-                    <View style={styles.slide}>
-                        <InformationScreen onNextPressed={
-                            () => {
-                                let counter = this.state.currentPage
-                                counter++
-                                this.setState({
-                                    currentPage: counter
-                                })
-                                this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
-                            }
-                        } />
-                    </View>
-                    <View style={styles.slide}>
-                        <DoneScreen onDonePressed={() => {
-                            let counter = this.state.currentPage
-                            counter++
-                            this.setState({
-                                currentPage: counter
-                            })
-                        }} />
-                    </View>
-                </ScrollView>
+                {this.isLoggedInChecker()}
+                {this.isFillInfoChecker()}
+                {this.isDoneChecker()}
             </View>
         );
     }
