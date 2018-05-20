@@ -137,9 +137,11 @@ class CheckoutScreen extends Component {
                                 let counter = this.state.currentPage
                                 counter++
                                 this.setState({
-                                    currentPage: counter
+                                    currentPage: counter,
+                                    isLogin : false,
+                                    isFillInfo : true
                                 })
-                                this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
+                               // this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
                         }}
                     />
