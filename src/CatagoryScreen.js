@@ -82,18 +82,18 @@ class CatagoryScreen extends Component {
                                     elevation: 15,
                                     backgroundColor: '#FFFFFF'
                                 }}
-                                onPress={() => navigate("ItemScreen", { name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: "1", price: item.price, description: item.description })}>
+                                onPress={() => navigate("ItemScreen", { name: I18nManager.isRTL ? item.full_name_ar : item.full_name_en, url: item.image, quantity: "1", price: item.price, description: I18nManager.isRTL ? item.description_ar : item.description_en })}>
                                 <Image
                                     style={styles.imageStyle}
-                                    source={{ uri: "http://cart.jamrahgroup.com/storage/" + item.image }}
+                                    source={{ uri: item.image }}
                                     resizeMode="contain"
                                 />
-                                <Text style={styles.textStyle}>{item.s_name}</Text>
+                                <Text style={styles.textStyle}>{I18nManager.isRTL ? item.name_ar : item.name_en}</Text>
                                 <Text style={styles.priceTextStyle}>{item.price} {I18nManager.isRTL ? "دينار" : "JD"}</Text>
                                 <View style={{ alignItems: 'flex-end' }}>
                                     <TouchableOpacity
                                         onPress={() => {
-                                            this.setCartItems({ name: item.f_name, url: "http://cart.jamrahgroup.com/storage/" + item.image, quantity: "1", price: item.price, description: item.description })
+                                            this.setCartItems({ name: item.f_name, url: item.image, quantity: "1", price: item.price, description: I18nManager.isRTL ? item.description_ar : item.description_en})
                                             this.setState({ dialgoBox: true })
                                         }}>
                                         <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />
@@ -171,8 +171,8 @@ class CatagoryScreen extends Component {
         }
         let filterSearch = this.state.data.filter(
             (data) => {
-                return data.s_name.toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
-
+                if(data.name_ar !== null || data.name_en !== null)
+                return (I18nManager.isRTL ? data.name_ar : data.name_en).toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
             }
         )
         return (

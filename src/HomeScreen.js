@@ -139,8 +139,7 @@ class HomeScreen extends Component {
 
         let filterSearch = this.state.data.filter(
             (data) => {
-                return (I18nManager.isRTL ? data.CatName_ar : data.CatName_en).toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
-
+                return (I18nManager.isRTL ? data.name_ar : data.name_en).toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
             }
         )
         return (
@@ -170,7 +169,7 @@ class HomeScreen extends Component {
                             contentContainerStyle={{ margin: 2 }}
                             horizontal={false}
                             numColumns={colNum}
-                            keyExtractor={item => item.name}
+                            keyExtractor={item => item.id}
                             contentContainerStyle={styles.contentContainerStyle}
                             data={filterSearch}
                             renderItem={({ item, index }) =>
@@ -189,14 +188,14 @@ class HomeScreen extends Component {
                                             backgroundColor: '#FFFFFF'
                                         }}
                                         onPress={() => {
-                                            navigate('CatagoryScreen', { id: item.CatID, name: I18nManager.isRTL ? item.CatName_ar : item.CatName_en })
+                                            navigate('CatagoryScreen', { id: item.id, name: I18nManager.isRTL ? item.name_ar : item.name_en })
                                         }}>
                                         <Image
                                             style={{ height: '80%', width: '100%', margin: 3 }}
-                                            source={{ uri: item.CatImage_en }}
+                                            source={{ uri: item.Image_en }}
                                             resizeMode="contain"
                                         />
-                                        <Text style={styles.textStyle}>{I18nManager.isRTL ? item.CatName_ar : item.CatName_en}</Text>
+                                        <Text style={styles.textStyle}>{I18nManager.isRTL ? item.name_ar : item.name_en}</Text>
                                     </TouchableOpacity>
 
                                 </View>
