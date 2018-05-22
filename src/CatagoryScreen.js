@@ -93,7 +93,7 @@ class CatagoryScreen extends Component {
                                 <View style={{ alignItems: 'flex-end' }}>
                                     <TouchableOpacity
                                         onPress={() => {
-                                            this.setCartItems({ name: I18nManager.isRTL ? item.name_ar : item.name_en, url: item.image, quantity: "1", price: item.price, description: I18nManager.isRTL ? item.description_ar : item.description_en })
+                                            this.setCartItems({ id: item.id, name: I18nManager.isRTL ? item.name_ar : item.name_en, url: item.image, quantity: "1", price: item.price, description: I18nManager.isRTL ? item.description_ar : item.description_en })
                                             this.setState({ dialgoBox: true })
                                         }}>
                                         <Icon name='ios-add' style={{ fontWeight: 'bold', color: styleColors.barsAndButtonsColor }} />

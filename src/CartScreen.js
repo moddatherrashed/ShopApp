@@ -55,7 +55,7 @@ class CartScreen extends Component {
         if ((this.state.cartItems).length !== 0) {
             return (
                 <FlatList
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.id}
                     contentContainerStyle={{
                         flex: 1.7
                     }}
