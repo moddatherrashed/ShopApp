@@ -67,7 +67,7 @@ class CatagoryScreen extends Component {
                 <FlatList
                     horizontal={false}
                     numColumns={colNum}
-                    keyExtractor={item => item.s_name}
+                    keyExtractor={item => item.id}
                     contentContainerStyle={styles.contentStyle}
                     data={filterSearch}
                     renderItem={({ item, index }) =>

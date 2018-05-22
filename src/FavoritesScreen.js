@@ -90,7 +90,7 @@ class FavoritesScreen extends Component {
             return (
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
-                    keyExtractor={item => item.name}
+                    keyExtractor={item => item.id}
                     contentContainerStyle={{
                         justifyContent: 'center',
                         alignItems: 'center'
