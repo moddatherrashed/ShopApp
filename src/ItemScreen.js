@@ -22,7 +22,7 @@ class ItemScreen extends Component {
         super(props)
         this.state = {
             isModalVisible: false,
-            size: I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize,
+           // size: I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize,
             favBtn: 'ios-star-outline',
             dialgoBox: false,
             fav: ''
@@ -79,12 +79,12 @@ class ItemScreen extends Component {
         }
     }
 
-    itemIsFav(namesArray, name) {
+    itemIsFav(namesArray, id) {
         if (namesArray === null) {
             return false
         }
         for (let i = 0; i < namesArray.length; i++) {
-            if (namesArray[i].name === name) {
+            if (namesArray[i].id === id) {
                 return true
             }
 
@@ -95,7 +95,7 @@ class ItemScreen extends Component {
         try {
             const value = JSON.parse(await AsyncStorage.getItem('fav'))
             this.setState({ fav: value });
-            this.itemIsFav(this.state.fav, this.props.navigation.state.params.name) ? this.setState({ favBtn: 'ios-star' }) : this.setState({ favBtn: 'ios-star-outline' })
+            this.itemIsFav(this.state.fav, this.props.navigation.state.params.id) ? this.setState({ favBtn: 'ios-star' }) : this.setState({ favBtn: 'ios-star-outline' })
         } catch (error) {
             alert("Error retrieving data get key " + error);
         }
