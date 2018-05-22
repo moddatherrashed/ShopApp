@@ -28,19 +28,19 @@ class InformationScreen extends Component {
                     <Text style={{ backgroundColor: styleColors.cartScreenColors, color: '#FFFFFF', fontSize: 20, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>Please fill in your information</Text>
                     <Item floatingLabel >
                         <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.city : strings.en.city}</Label>
-                        <Input autoFocus={false} style={{ color: styleColors.cartScreenColors }} />
+                        <Input value={this.props.city} onChangeText={this.props.onCityChanged} style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
                         <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.street : strings.en.street}</Label>
-                        <Input style={{ color: styleColors.cartScreenColors }} />
+                        <Input value={this.props.street} onChangeText={this.props.onStreetChanged} style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
                         <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.buildingNumber : strings.en.buildingNumber}</Label>
-                        <Input style={{ color: styleColors.cartScreenColors }} />
+                        <Input value={this.props.buildingNumber} onChangeText={this.props.onBuildingNumberChanged} style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Item floatingLabel >
                         <Label style={{ color: styleColors.cartScreenColors, paddingLeft: 5 }}>{I18nManager.isRTL ? strings.ar.mobileNumber : strings.en.mobileNumber}</Label>
-                        <Input style={{ color: styleColors.cartScreenColors }} />
+                        <Input alue={this.props.mobileNumber} onChangeText={this.props.onMobileNumberChanged} style={{ color: styleColors.cartScreenColors }} />
                     </Item>
                     <Button full style={{
                         backgroundColor: styleColors.cartScreenColors,

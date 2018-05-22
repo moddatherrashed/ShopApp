@@ -9,6 +9,7 @@ import { Button } from 'native-base'
 import * as Animatable from 'react-native-animatable'
 import styleColors from './components/screenColors'
 import strings from './components/strings'
+import apiPostRequests from './components/apiPostRequests'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -48,9 +49,14 @@ class CheckoutScreen extends Component {
             regPassword: '',
             regRePassword: '',
             isRegisterFailed: false,
+            city: '',
+            buildingNumber: '',
+            mobileNumber: '',
+            street: '',
             isLogin: true,
             isFillInfo: false,
-            isDone: false
+            isDone: false,
+            userID: null
         }
     }
     static navigationOptions = {
@@ -102,15 +108,24 @@ class CheckoutScreen extends Component {
                                 this.setState({ isLoginFailed: true })
                             }
                             else {
-                                this.setState({ isLoginFailed: false })
-                                let counter = this.state.currentPage
-                                counter++
-                                this.setState({
-                                    currentPage: counter,
-                                    isLogin: false,
-                                    isLoggedIn: false,
-                                    isDone: false,
-                                    isFillInfo: true
+
+                                apiPostRequests.postRequests('signIn', { email: this.state.email, password: this.state.password }).then((res) => {
+                                    alert(JSON.stringify(res.userID))
+                                    if (res.status === 1) {
+                                        this.setState({ isLoginFailed: false })
+                                        let counter = this.state.currentPage
+                                        counter++
+                                        this.setState({
+                                            currentPage: counter,
+                                            isLogin: false,
+                                            isLoggedIn: false,
+                                            isDone: false,
+                                            isFillInfo: true,
+                                            userID: res.userID
+                                        })
+                                    } else {
+                                        this.setState({ isLoginFailed: true })
+                                    }
                                 })
                                 //this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
@@ -129,19 +144,27 @@ class CheckoutScreen extends Component {
                             if (reg.test(this.state.regEmail) === false
                                 || this.state.fullName === ''
                                 || this.state.regPassword === ''
-                                || this.state.regRePassword === '') {
+                                || this.state.regRePassword === ''
+                                || this.state.regPassword !== this.state.regRePassword) {
                                 this.setState({ isRegisterFailed: true })
                             }
                             else if (this.state.isLogin) {
-                                this.setState({ isRegisterFailed: false })
-                                let counter = this.state.currentPage
-                                counter++
-                                this.setState({
-                                    currentPage: counter,
-                                    isLogin : false,
-                                    isFillInfo : true
+                                apiPostRequests.postRequests('signUp', { userEmail: this.state.regEmail, userName: this.state.fullName, pass: this.state.regPassword }).then((res) => {
+                                    //alert(res.status)
+                                    if (res.status === 1) {
+                                        this.setState({ isRegisterFailed: false })
+                                        let counter = this.state.currentPage
+                                        counter++
+                                        this.setState({
+                                            currentPage: counter,
+                                            isLogin: false,
+                                            isFillInfo: true
+                                        })
+                                    } else {
+                                        this.setState({ isRegisterFailed: true })
+                                    }
                                 })
-                               // this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
+
                             }
                         }}
                     />
@@ -163,7 +186,7 @@ class CheckoutScreen extends Component {
                         onPress={
                             () => {
                                 let counter = this.state.currentPage
-                                counter=+2
+                                counter = +2
                                 this.setState({
                                     currentPage: counter,
                                     isLogin: false,
@@ -203,18 +226,37 @@ class CheckoutScreen extends Component {
     isFillInfoChecker() {
         if (this.state.isFillInfo) {
             return (<View style={styles.slide}>
-                <InformationScreen onNextPressed={
-                    () => {
-                        let counter = this.state.currentPage
-                        counter++
-                        this.setState({
-                            currentPage: counter,
-                            isDone: true,
-                            isFillInfo: false
-                        })
-                        // this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
-                    }
-                } />
+                <InformationScreen
+                    city={this.state.city}
+                    onCityChanged={(city) => this.setState({ city })}
+                    street={this.state.street}
+                    onStreetChanged={(street) => this.setState({ street })}
+                    buildingNumber={this.state.buildingNumber}
+                    onBuildingNumberChanged={(buildingNumber) => this.setState({ buildingNumber })}
+                    mobileNumber={this.state.mobileNumber}
+                    onMobileNumberChanged={(mobileNumber) => this.setState({ mobileNumber })}
+
+                    onNextPressed={
+                        () => {
+                            apiPostRequests.postRequests('fillInfo', { userID: this.state.userID, area: this.state.city, street: this.state.street, bldg_num: this.state.buildingNumber, mobile_number: this.state.mobileNumber }).then((res) => {
+                                alert(this.state.userID)
+                                if (res.status === 1) {
+                                    this.setState({ isRegisterFailed: false })
+                                    let counter = this.state.currentPage
+                                    counter++
+                                    this.setState({
+                                        currentPage: counter,
+                                        isDone: true,
+                                        isFillInfo: false
+                                    })
+                                } else {
+                                    this.setState({ isRegisterFailed: true })
+                                }
+                            })
+
+                            // this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
+                        }
+                    } />
             </View>)
         }
     }
