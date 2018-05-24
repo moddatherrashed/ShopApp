@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Button, TextInput, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
 import { Icon } from 'native-base'
 import styleColors from './screenColors'
 import strings from './strings'
@@ -104,6 +104,7 @@ class SearchModal extends React.Component {
             <Icon name='ios-close' style={{ color: 'white', fontSize: 40 }} />
           </TouchableOpacity>
         </View>
+       
         {this.renderResult()}
       </View>
     )
