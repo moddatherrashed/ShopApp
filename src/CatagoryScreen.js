@@ -182,11 +182,7 @@ class CatagoryScreen extends Component {
                 {
                     this.state.loading ?
                         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <ActivityIndicator size={120} color={styleColors.mainToolBarColor} />
-                            <Image
-                                source={require('./icons/loading.png')}
-                                style={{ height: 50, width: 50, position: 'absolute' }}
-                            />
+                            <ActivityIndicator size="large" color={styleColors.mainToolBarColor} />
                         </View>
                         :
 

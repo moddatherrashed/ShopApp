@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, I18nManager, ScrollView, StyleSheet, View, Text } from 'react-native';
+import { AppRegistry, KeyboardAvoidingView,I18nManager, ScrollView, StyleSheet, View, Text,Platform } from 'react-native';
 import StepIndicator from 'react-native-step-indicator'
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
@@ -92,7 +92,7 @@ class CheckoutScreen extends Component {
     isLoggedInChecker() {
         if (this.state.isLoggedIn === false && this.state.isLogin === true) {
             return (
-                <View style={styles.slide}>
+                <KeyboardAvoidingView style={styles.slide} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 0} enabled>
                     <LoginScreen
                         isLoginFailed={this.state.isLoginFailed}
                         emailValue={this.state.email}
@@ -168,7 +168,7 @@ class CheckoutScreen extends Component {
                             }
                         }}
                     />
-                </View>
+                </KeyboardAvoidingView>
             )
         } else if (this.state.isLoggedIn) {
             return (
@@ -265,11 +265,37 @@ class CheckoutScreen extends Component {
             return (
                 <View style={styles.slide}>
                     <DoneScreen onDonePressed={() => {
-                        let counter = this.state.currentPage
-                        counter++
-                        this.setState({
-                            currentPage: counter
+                        apiPostRequests.postRequests('addOrder', 
+                        {
+                            C_ID:"33",
+                            delivery_cost:"1",
+                            price:"2",
+                            total_price:"10101010",
+                            products:[
+                              {
+                                quantity:1,
+                                id:2
+                              },
+                              
+                               {
+                                quantity:1,
+                                id:3
+                              }
+                              
+                              ]
+                          }).then((res) => {
+                            alert("successssssss")
+                            if (res.status === 1) {
+                                let counter = this.state.currentPage
+                                counter++
+                                this.setState({
+                                    currentPage: counter
+                                })
+                            } else {
+                                this.setState({ isRegisterFailed: true })
+                            }
                         })
+
                     }} />
                 </View>
             )

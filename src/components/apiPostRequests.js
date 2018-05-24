@@ -49,6 +49,22 @@ let apiPostRequests = {
                         console.error(error);
                     })
                 break;
+                case 'addOrder':
+                return fetch('http://www.jamrahgroup.com/api/addOrder', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
         }
     }
 }
