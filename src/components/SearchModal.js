@@ -3,81 +3,57 @@ import { View, Text, TextInput, TouchableOpacity, FlatList, Image, I18nManager }
 import { Icon } from 'native-base'
 import styleColors from './screenColors'
 import strings from './strings'
+import apiGetRequests from '../components/apiGetRequests'
+
 class SearchModal extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       isChanged: false,
-      orders: [{
-        name: '11111',
-        url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: '22222',
-        url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: '33333',
-        url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: '444444',
-        url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: '5555555',
-        url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: 'Adidas Jacket',
-        url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: 'Water Prof Jacket',
-        url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-        date: '02-06-2018'
-      },
-      {
-        name: 'White T-shirt',
-        url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-        date: '02-06-2018'
-      }]
+      searchedProducts: [],
+      searchText: ''
     }
   }
   static navigationOptions = {
     header: null
   }
 
-  renderResult() {
-    if (this.state.isChanged) {
-      return (<Text style={{ color: '#FFFFFF', fontSize: 35 }}>Results</Text>
+  componentDidMount() {
+    apiGetRequests.getRequests('getProducts', 0).then((res) => {
+      //alert(JSON.stringify(res))
+      this.setState({
+        searchedProducts: res.products
+      })
+    })
+  }
+  renderResult(filterSearch) {
+    const { navigate } = this.props.navigation
+
+    if (filterSearch.length === 0) {
+      return (<Text style={{ color: 'gray', fontSize: 35, textAlign: 'center' }}>No Results</Text>
       )
     } else {
       return (
         <FlatList
           contentContainerStyle={{ margin: 2 }}
-          keyExtractor={item => item.name}
+          keyExtractor={item => item.id}
           contentContainerStyle={{
             justifyContent: 'center',
             alignItems: 'center'
           }}
-          data={this.state.orders}
+          data={filterSearch}
           renderItem={({ item, index }) =>
             <TouchableOpacity style={{
               flexDirection: 'row',
               backgroundColor: '#FFFFFF',
               width: '100%',
               marginBottom: 5,
+            }} onPress={() => {
+              navigate("ItemScreen", { id: item.id, name: I18nManager.isRTL ? item.full_name_ar : item.full_name_en, url: item.image, quantity: "1", price: item.price, description: I18nManager.isRTL ? item.description_ar : item.description_en })
             }}>
               <View style={{ flexDirection: 'row', flex: 6 }}>
                 <View style={{ flex: 3, justifyContent: 'center', alignItems: 'flex-start' }}>
-                  <Text style={{ fontSize: 20, padding: 10, color: styleColors.ordersScreenTextColor }}> {item.name}</Text>
+                  <Text style={{ fontSize: 20, padding: 10, color: styleColors.ordersScreenTextColor }}> {I18nManager.isRTL ? item.name_ar : item.name_en}</Text>
                 </View>
               </View>
             </TouchableOpacity>
@@ -87,6 +63,11 @@ class SearchModal extends React.Component {
     }
   }
   render() {
+    let filterSearch = this.state.searchedProducts.filter(
+      (data) => {
+        return (I18nManager.isRTL ? data.name_ar : data.name_en).toLowerCase().indexOf(this.state.searchText.toLowerCase()) !== -1
+      }
+    )
     return (
       <View style={{ flex: 2 }}>
         <View style={{ backgroundColor: '#F26422', flexDirection: 'row' }}>
@@ -94,7 +75,10 @@ class SearchModal extends React.Component {
             style={{ flex: 1.9, height: 50 }}
             underlineColorAndroid="#FFFFFF"
             placeholderTextColor="#FFFFFF"
-            placeholder='search for ..'
+            placeholder='Search for all product ..'
+            onChangeText={(searchText) => {
+              this.setState({ searchText: searchText })
+            }}
           />
           <TouchableOpacity style={{ flex: 0.1, padding: 5 }}
             onPress={() => {
@@ -104,8 +88,8 @@ class SearchModal extends React.Component {
             <Icon name='ios-close' style={{ color: 'white', fontSize: 40 }} />
           </TouchableOpacity>
         </View>
-       
-        {this.renderResult()}
+
+        {this.renderResult(filterSearch)}
       </View>
     )
   }

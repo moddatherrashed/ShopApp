@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, KeyboardAvoidingView,I18nManager, ScrollView, StyleSheet, View, Text,Platform } from 'react-native';
+import { AppRegistry, KeyboardAvoidingView, I18nManager, ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
 import StepIndicator from 'react-native-step-indicator'
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
@@ -10,6 +10,7 @@ import * as Animatable from 'react-native-animatable'
 import styleColors from './components/screenColors'
 import strings from './components/strings'
 import apiPostRequests from './components/apiPostRequests'
+import apiGetRequests from './components/apiGetRequests'
 
 const firstIndicatorStyles = {
     stepIndicatorSize: 30,
@@ -56,8 +57,23 @@ class CheckoutScreen extends Component {
             isLogin: true,
             isFillInfo: false,
             isDone: false,
-            userID: null
+            userID: null,
+            total: this.props.navigation.state.params.total,
+            delivery: 0
         }
+    }
+
+    componentDidMount() {
+        // if (this.state.total)
+        apiGetRequests.getRequests('getCost').then((res) => {
+            for (let obj of res.deliveryCost) {
+                if (parseFloat(obj.max_amount) >= parseFloat(obj.id) === 3) {
+                    alert(obj.delivery_cost)
+                }
+            }
+        })
+        //alert(this.state.delivery)
+
     }
     static navigationOptions = {
         title: I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut,
@@ -100,6 +116,9 @@ class CheckoutScreen extends Component {
                         onEmailChange={(email) => this.setState({ email, isLoginFailed: false })}
                         renderAuthFaild={this.renderAuthFaildFunc()}
                         onPasswordChange={(password) => this.setState({ password, isLoginFailed: false })}
+                        onPressForget={() =>
+                            this.props.navigation.navigate('forgetPassword')
+                        }
                         onLoginPressed={() => {
                             let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
                             if (reg.test(this.state.email) === false
@@ -265,36 +284,34 @@ class CheckoutScreen extends Component {
             return (
                 <View style={styles.slide}>
                     <DoneScreen onDonePressed={() => {
-                        apiPostRequests.postRequests('addOrder', 
-                        {
-                            C_ID:"33",
-                            delivery_cost:"1",
-                            price:"2",
-                            total_price:"10101010",
-                            products:[
-                              {
-                                quantity:1,
-                                id:2
-                              },
-                              
-                               {
-                                quantity:1,
-                                id:3
-                              }
-                              
-                              ]
-                          }).then((res) => {
-                            alert("successssssss")
-                            if (res.status === 1) {
-                                let counter = this.state.currentPage
-                                counter++
-                                this.setState({
-                                    currentPage: counter
-                                })
-                            } else {
-                                this.setState({ isRegisterFailed: true })
-                            }
-                        })
+                        apiPostRequests.postRequests('addOrder',
+                            {
+                                C_ID: this.state.userID,
+                                delivery_cost: "1",
+                                price: "2",
+                                total_price: "10101010",
+                                products: [
+                                    {
+                                        quantity: 1,
+                                        id: 2
+                                    },
+                                    {
+                                        quantity: 1,
+                                        id: 3
+                                    }
+                                ]
+                            }).then((res) => {
+                                alert("successssssss")
+                                if (res.status === 1) {
+                                    let counter = this.state.currentPage
+                                    counter++
+                                    this.setState({
+                                        currentPage: counter
+                                    })
+                                } else {
+                                    this.setState({ isRegisterFailed: true })
+                                }
+                            })
 
                     }} />
                 </View>

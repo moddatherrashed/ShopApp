@@ -65,6 +65,38 @@ let apiPostRequests = {
                         console.error(error);
                     })
                 break;
+                case 'updateUserInfo':
+                return fetch('http://www.jamrahgroup.com/api/updateUserInfo', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
+                case 'updateUserAddress':
+                return fetch('http://www.jamrahgroup.com/api/updateUserAddress', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(dataToSend),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
         }
     }
 }

@@ -177,6 +177,8 @@ class CatagoryScreen extends Component {
         return (
             <ScrollView>
                 <SearchBar
+                    editable={true}
+                    selectTextOnFocus={true}
                     onChangeText={(searchText) => this.search(searchText)}
                 />
                 {

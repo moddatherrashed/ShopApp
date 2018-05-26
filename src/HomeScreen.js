@@ -17,7 +17,7 @@ import styleColors from './components/screenColors';
 import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
 import SearchModal from './components/SearchModal'
-
+import forgetPassword from './components/forgetPassword'
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -108,7 +108,6 @@ class HomeScreen extends Component {
         }
     }
     search(searchText) {
-        this.setState({ searchText: searchText })
         if (this.state.offerFalg) {
             this.setState({
                 offerFalg: false,
@@ -149,21 +148,22 @@ class HomeScreen extends Component {
                     barStyle="light-content"
                     backgroundColor="#EF9267"
                     hidden={false} />
-                <SearchBar
-                    onChangeText={(searchText) => this.search(searchText)}
-                />
+                <TouchableOpacity
+                    onPress={() => {
+                        navigate('SearchModal')
+                    }}>
+                    <SearchBar
+                        editable={false}
+                        selectTextOnFocus={false}
+                        onChangeText={(searchText) => this.search(searchText)}
+                    />
+                </TouchableOpacity>
                 {this.state.loading ?
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                         <ActivityIndicator size="large" color={screenColors.mainToolBarColor} />
                     </View>
                     :
                     <Content>
-                        <Button
-                            onPress={() => {
-                                navigate('SearchModal')
-                            }}>
-                            <Text>openSearch</Text>
-                        </Button>
                         {this.renderOffer(this.state.offerFalg)}
                         <FlatList
                             contentContainerStyle={{ margin: 2 }}
@@ -197,7 +197,6 @@ class HomeScreen extends Component {
                                         />
                                         <Text style={styles.textStyle}>{I18nManager.isRTL ? item.name_ar : item.name_en}</Text>
                                     </TouchableOpacity>
-
                                 </View>
                             }
                         />
@@ -213,7 +212,8 @@ const StackNavigation = createStackNavigator({
     ItemScreen: { screen: ItemScreen },
     CartScreen: { screen: CartScreen },
     CheckoutScreen: { screen: CheckoutScreen },
-    SearchModal: { screen: SearchModal }
+    SearchModal: { screen: SearchModal },
+    forgetPassword : {screen : forgetPassword}
 })
 
 const styles = StyleSheet.create({

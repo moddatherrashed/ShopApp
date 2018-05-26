@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, I18nManager, TextInput, ScrollView } from 'react-native'
+import { View, Text, I18nManager, TextInput, ScrollView, TouchableOpacity } from 'react-native'
 import { Button, Item, Input, Icon, Label } from 'native-base'
 import * as Animatable from 'react-native-animatable'
 import styleColors from '../components/screenColors'
@@ -21,6 +21,7 @@ class LoginScreen extends Component {
     })
 
     render() {
+
         return (
             <ScrollView style={{ flex: 2 }} keyboardShouldPersistTaps="always" >
                 { /*Login from*/}
@@ -48,6 +49,10 @@ class LoginScreen extends Component {
                         }}>
                         <Text style={{ color: '#FFFFFF', fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.login : strings.en.login}</Text>
                     </Button>
+                    <TouchableOpacity
+                        onPress={this.props.onPressForget}>
+                        <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>Forget Password ?</Text>
+                    </TouchableOpacity>
                 </View>
                 <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>
                 {/*Registration from*/}

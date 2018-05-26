@@ -22,7 +22,7 @@ class ItemScreen extends Component {
         super(props)
         this.state = {
             isModalVisible: false,
-           // size: I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize,
+            // size: I18nManager.isRTL ? strings.ar.selectSize : strings.en.selectSize,
             favBtn: 'ios-star-outline',
             dialgoBox: false,
             fav: ''

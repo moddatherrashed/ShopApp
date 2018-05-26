@@ -152,7 +152,7 @@ class CartScreen extends Component {
                 total += (obj.price) * obj.quantity
             })
         }
-        return <Text style={{ color: '#000000', fontWeight: 'bold', margin: 5 }}>{total} {I18nManager.isRTL ? strings.ar.JD : strings.en.JD}</Text>
+        return total
 
     }
     render() {
@@ -199,7 +199,8 @@ class CartScreen extends Component {
                             flex: 1,
                             width: '50%',
                         }}>
-                            {this.subTotalCounter()}
+                            <Text style={{ color: '#000000', fontWeight: 'bold', margin: 5 }}>{this.subTotalCounter()} {I18nManager.isRTL ? strings.ar.JD : strings.en.JD}</Text>
+
                         </View>
                     </View>
                     <TouchableOpacity style={{
@@ -208,7 +209,7 @@ class CartScreen extends Component {
                         alignItems: 'center',
                         flex: 1
                     }} onPress={() => {
-                        navigate('CheckoutScreen')
+                        navigate('CheckoutScreen', { total: this.subTotalCounter() })
                     }}>
                         <Text style={{ fontSize: 15, color: 'white' }}>{I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut}</Text>
                     </TouchableOpacity>

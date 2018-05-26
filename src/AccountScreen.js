@@ -54,15 +54,15 @@ class AccountScreen extends Component {
     }
     componentDidMount() {
         _this = this
-        apiGetRequests.getRequests('getUserInfo').then((res) => {
-            this.setState({
-                name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
-                email: res.userInforamtion[0].email,
-                number: res.userInforamtion[0].mobileNumber,
-                address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
-                loading: false
-            })
-        })
+         apiGetRequests.getRequests('getUserInfo').then((res) => {
+             this.setState({
+                 name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
+                 email: res.userInforamtion[0].email,
+                 number: res.userInforamtion[0].mobileNumber,
+                 address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
+                 loading: false
+             })
+         })
     }
     render() {
         return (
@@ -104,12 +104,20 @@ class AccountScreen extends Component {
                                                 </View>
                                                 <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                             </View>
+                                            <View style={{ padding: 10 }}>
+                                                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                                                    <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor }} />
+                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? 'كلمة السر' : 'password'}</Text>
+                                                </View>
+                                                <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
+                                            </View>
                                         </View>
                                         <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
                                             <TouchableOpacity onPress={() => { this.setState({ EditModal: true }) }} >
                                                 <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.edit : strings.en.edit}</Text>
                                             </TouchableOpacity>
                                         </View>
+
                                     </View>
                                 </View>
                                 <TouchableOpacity
@@ -140,7 +148,7 @@ class AccountScreen extends Component {
                                 placeholder={this.state.name}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
-                                underlineColorAndroid={styleColors.barsAndButtonsColor}/>
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
@@ -152,6 +160,14 @@ class AccountScreen extends Component {
                         </View>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
+                            <TextInput
+                                placeholder={this.state.email}
+                                style={{ width: ScreenSize.width * 0.8 }}
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
+                        </View>
+                        <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                            <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.email}
                                 style={{ width: ScreenSize.width * 0.8 }}
@@ -175,9 +191,30 @@ class AccountScreen extends Component {
                     <View style={{ backgroundColor: '#FFFFFF' }}>
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>{this.state.address}</Text>
+
+                        </View>
+                        <View style={{ alignItems: 'center' }} >
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>city</Text>
                             <TextInput
                                 placeholder={this.state.address}
-                                style={{ width: ScreenSize.width * 0.8 }}
+                                style={{ width: ScreenSize.width * 0.4 }}
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
+                        </View>
+                        <View style={{ alignItems: 'center' }} >
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>Street</Text>
+                            <TextInput
+                                placeholder={this.state.address}
+                                style={{ width: ScreenSize.width * 0.4 }}
+                                placeholderTextColor={styleColors.barsAndButtonsColor}
+                                underlineColorAndroid={styleColors.barsAndButtonsColor} />
+                        </View>
+                        <View style={{ alignItems: 'center' }} >
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>bulding Number</Text>
+                            <TextInput
+                                placeholder={this.state.address}
+                                style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
@@ -223,8 +260,10 @@ const styles = StyleSheet.create({
         flex: 2
     },
     ModalStyle: {
-        justifyContent: "flex-end",
-        margin: 0
+
+        flex: 1,
+        //justifyContent: "flex-end",
+        margin: 1
     },
     sizeTouchTextStyle: {
         borderWidth: 0.5,

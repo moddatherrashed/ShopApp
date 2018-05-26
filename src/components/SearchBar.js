@@ -21,6 +21,8 @@ const SearchBar = (props) => {
                     width: '90%',
                 }}
                 onChangeText={props.onChangeText}
+                editable={props.editable}
+                selectTextOnFocus={props.selectTextOnFocus}
                 value={props.value}
                 placeholder={I18nManager.isRTL ? strings.ar.search : strings.en.search}
                 placeholderTextColor={styleColors.serachBarTextColor}

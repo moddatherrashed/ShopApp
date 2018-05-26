@@ -62,22 +62,39 @@ let apiGetRequests = {
                         alert(error);
                     })
                 break;
-            case 'getItemDetails':
-
+            case 'getCost':
+                return fetch('http://www.jamrahgroup.com/api/getDeliveryCost', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    }
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        alert(error);
+                    })
                 break;
-            case 'getProfile':
-
+            case 'getUserOrder':
+                return fetch('http://www.jamrahgroup.com/api/getUserOrder', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userId: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
                 break;
-            case 'getOrders':
-
-                break;
-            case 'getConnectDetails':
-
-                break;
-            case 'getDistroy':
-
-                break;
-
         }
     }
 }
