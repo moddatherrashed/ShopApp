@@ -51,7 +51,7 @@ class LoginScreen extends Component {
                     </Button>
                     <TouchableOpacity
                         onPress={this.props.onPressForget}>
-                        <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>Forget Password ?</Text>
+                        <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>{I18nManager ? 'هل نسيت كلمة السر ؟' : 'Forget Password ?'}</Text>
                     </TouchableOpacity>
                 </View>
                 <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>
