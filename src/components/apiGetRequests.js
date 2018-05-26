@@ -95,6 +95,24 @@ let apiGetRequests = {
                         console.error(error);
                     })
                 break;
+            case 'forgetPassword':
+                return fetch('http://www.jamrahgroup.com/api/forgetPassword', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userEmail: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
         }
     }
 }

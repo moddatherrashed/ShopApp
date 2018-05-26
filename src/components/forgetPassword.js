@@ -12,20 +12,15 @@ class forgetPassword extends React.Component {
         this.state = {
             isChanged: false,
             searchedProducts: [],
-            searchText: ''
+            searchText: '',
+            email: '',
+            message: '',
+            isSuccess: null,
+            showMessage: ''
         }
     }
     static navigationOptions = {
         header: null
-    }
-
-    componentDidMount() {
-        apiGetRequests.getRequests('getProducts', 0).then((res) => {
-            //alert(JSON.stringify(res))
-            this.setState({
-                searchedProducts: res.products
-            })
-        })
     }
 
     render() {
@@ -43,6 +38,7 @@ class forgetPassword extends React.Component {
                     <TextInput
                         placeholder={I18nManager.isRTL ? 'ايميلك' : 'your email'}
                         style={{ width: ScreenSize.width * 0.8 }}
+                        onChangeText={(email) => { this.setState({ email }) }}
                         placeholderTextColor={styleColors.barsAndButtonsColor}
                         underlineColorAndroid={styleColors.barsAndButtonsColor} />
                 </View>
@@ -57,11 +53,35 @@ class forgetPassword extends React.Component {
                         elevation: 5,
                         borderRadius: 5
                     }}
-                    onPress={
-                        () => {
-                        }} >
+                    onPress={() => {
+                        if (this.state.email === '') {
+
+                        } else {
+                            apiGetRequests.getRequests('forgetPassword', this.state.email).then((res) => {
+                                if (res.status === 0) {
+                                    this.setState({
+                                        isSuccess: false,
+                                        message: I18nManager.isRTL ? res.message_ar : res.message_en
+                                    })
+                                } else {
+                                    this.setState({
+                                        isSuccess: true,
+                                        message: I18nManager.isRTL ? res.message_ar : res.message_en
+                                    })
+                                }
+                            })
+                        }
+                    }} >
                     <Text style={{ color: '#FFFFFF', fontSize: 20 }}>{I18nManager.isRTL ? 'طلب كلمة سر جديدة' : 'Request a new password'}</Text>
+
                 </Button>
+
+                {
+                    this.state.isSuccess ?
+                        <Text style={{ color: 'green', fontSize: 30, textAlign: 'center', margin : 10 }}>{this.state.message}</Text>
+                        :
+                        <Text style={{ color: 'red', fontSize: 30, textAlign: 'center' }}>{this.state.message}</Text>
+                }
             </View>
         )
     }
