@@ -52,7 +52,7 @@ let apiGetRequests = {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        c_id: 1
+                        c_id: id
                     }),
                 }).then((response) => response.json())
                     .then((responseJson) => {

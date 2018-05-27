@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, I18nManager, ActivityIndicator, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StatusBar, AsyncStorage, I18nManager, ActivityIndicator, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
@@ -18,9 +18,46 @@ class AccountScreen extends Component {
             name: '',
             number: '',
             email: '',
+            password: '',
             addressModal: false,
             address: '',
-            loading: true
+            loading: true,
+            isLoggedIn: false,
+        }
+    }
+    async signOut() {
+        try {
+            await AsyncStorage.removeItem('@MySuperStore:key');
+            this.setState({
+                isLoggedIn: false
+            })
+        } catch (error) {
+            alert(error)
+        }
+    }
+
+    async getUserLoggedIn() {
+        try {
+            const value = await AsyncStorage.getItem('@MySuperStore:key');
+            if (value !== null) {
+                apiGetRequests.getRequests('getUserInfo', value).then((res) => {
+                    this.setState({
+                        name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
+                        email: res.userInforamtion[0].email,
+                        number: res.userInforamtion[0].mobileNumber,
+                        address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
+                        loading: false,
+                        isLoggedIn: true,
+                    })
+                })
+            } else {
+                this.setState({
+                    loading: false,
+                    isLoggedIn: false,
+                })
+            }
+        } catch (error) {
+            alert(error)
         }
     }
     static navigationOptions = {
@@ -53,16 +90,9 @@ class AccountScreen extends Component {
         )
     }
     componentDidMount() {
+        this.getUserLoggedIn()
         _this = this
-         apiGetRequests.getRequests('getUserInfo').then((res) => {
-             this.setState({
-                 name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
-                 email: res.userInforamtion[0].email,
-                 number: res.userInforamtion[0].mobileNumber,
-                 address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
-                 loading: false
-             })
-         })
+
     }
     render() {
         return (
@@ -77,68 +107,74 @@ class AccountScreen extends Component {
                             <ActivityIndicator size="large" color={screenColors.mainToolBarColor} />
                         </View>
                         :
-                        <Content>
-                            <View style={{ flex: 6 }}>
-                                <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
-                                    <Text style={{ color: styleColors.accountScreenBarTextColor, fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.personalInformation : strings.en.personalInformation}</Text>
-                                    <View style={{ flexDirection: 'row', flex: 5 }}>
-                                        <View style={{ flex: 4, padding: 15, justifyContent: 'center' }}>
-                                            <View style={{ padding: 10 }}>
-                                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                    <Icon name='person' style={{ color: styleColors.barsAndButtonsColor }} />
-                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.name : strings.en.name}</Text>
+                        this.state.isLoggedIn ?
+                            <Content>
+                                <View style={{ flex: 6 }}>
+                                    <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
+                                        <Text style={{ color: styleColors.accountScreenBarTextColor, fontWeight: 'bold', margin: 10, padding: 10, borderRadius: 5, backgroundColor: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? strings.ar.personalInformation : strings.en.personalInformation}</Text>
+                                        <View style={{ flexDirection: 'row', flex: 5 }}>
+                                            <View style={{ flex: 4, padding: 15, justifyContent: 'center' }}>
+                                                <View style={{ padding: 10 }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                        <Icon name='person' style={{ color: styleColors.barsAndButtonsColor }} />
+                                                        <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.name : strings.en.name}</Text>
+                                                    </View>
+                                                    <Text style={{ marginLeft: 30 }}>{this.state.name}</Text>
                                                 </View>
-                                                <Text style={{ marginLeft: 30 }}>{this.state.name}</Text>
-                                            </View>
-                                            <View style={{ padding: 10 }}>
-                                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                                                    <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor }} />
-                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
+                                                <View style={{ padding: 10 }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                                        <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor }} />
+                                                        <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
+                                                    </View>
+                                                    <Text style={{ marginLeft: 30 }}>{this.state.number}</Text>
                                                 </View>
-                                                <Text style={{ marginLeft: 30 }}>{this.state.number}</Text>
-                                            </View>
-                                            <View style={{ padding: 10 }}>
-                                                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                                                    <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor }} />
-                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.email : strings.en.email}</Text>
+                                                <View style={{ padding: 10 }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                                                        <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor }} />
+                                                        <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? strings.ar.email : strings.en.email}</Text>
+                                                    </View>
+                                                    <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                                 </View>
-                                                <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
-                                            </View>
-                                            <View style={{ padding: 10 }}>
-                                                <View style={{ flexDirection: 'row', alignItems: 'center', }}>
-                                                    <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor }} />
-                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? 'كلمة السر' : 'password'}</Text>
+                                                <View style={{ padding: 10 }}>
+                                                    <View style={{ flexDirection: 'row', alignItems: 'center', }}>
+                                                        <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor }} />
+                                                        <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? 'كلمة السر' : 'password'}</Text>
+                                                    </View>
+                                                    <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                                 </View>
-                                                <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
                                             </View>
-                                        </View>
-                                        <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
-                                            <TouchableOpacity onPress={() => { this.setState({ EditModal: true }) }} >
-                                                <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.edit : strings.en.edit}</Text>
-                                            </TouchableOpacity>
-                                        </View>
+                                            <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
+                                                <TouchableOpacity onPress={() => { this.setState({ EditModal: true }) }} >
+                                                    <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.edit : strings.en.edit}</Text>
+                                                </TouchableOpacity>
+                                            </View>
 
+                                        </View>
                                     </View>
-                                </View>
-                                <TouchableOpacity
-                                    style={{ flex: 0.5, flexDirection: 'column', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}
-                                    onPress={() => { this.setState({ addressModal: true }) }}
-                                >
-                                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
-                                        <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor }} />
-                                        <Text style={{ marginLeft: 10, color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.address : strings.en.address}</Text>
-                                    </View>
-                                    <Text style={{ textAlign: 'left' }}>{this.state.address}</Text>
-                                </TouchableOpacity>
-
-                                <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
-                                    <TouchableOpacity style={{ width: 100, borderRadius: 50, height: 100, elevation: 15, backgroundColor: '#FFFFFF', padding: 10, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Icon name='power' style={{ color: styleColors.barsAndButtonsColor }} />
-                                        <Text style={{ color: styleColors.barsAndButtonsColor }} >{I18nManager.isRTL ? strings.ar.signOut : strings.en.signOut}</Text>
+                                    <TouchableOpacity
+                                        style={{ flex: 0.5, flexDirection: 'column', padding: 10, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}
+                                        onPress={() => { this.setState({ addressModal: true }) }}
+                                    >
+                                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-start', width: '100%' }}>
+                                            <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor }} />
+                                            <Text style={{ marginLeft: 10, color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.address : strings.en.address}</Text>
+                                        </View>
+                                        <Text style={{ textAlign: 'left' }}>{this.state.address}</Text>
                                     </TouchableOpacity>
+
+                                    <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
+                                        <TouchableOpacity
+                                            onPress={() => {
+                                                this.signOut()
+                                            }}
+                                            style={{ width: 100, borderRadius: 50, height: 100, elevation: 15, backgroundColor: '#FFFFFF', padding: 10, margin: 10, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Icon name='power' style={{ color: styleColors.barsAndButtonsColor }} />
+                                            <Text style={{ color: styleColors.barsAndButtonsColor }} >{I18nManager.isRTL ? strings.ar.signOut : strings.en.signOut}</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
-                            </View>
-                        </Content>}
+                            </Content>
+                            : <Text>you are not logged in checkout to login</Text>}
                 <Modal isVisible={this.state.EditModal}
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
@@ -169,7 +205,7 @@ class AccountScreen extends Component {
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
-                                placeholder={this.state.email}
+                                placeholder={this.state.password}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -177,11 +213,11 @@ class AccountScreen extends Component {
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ EditModal: false })}>
-                                <Text style={styles.textBtnsStyle} >Done</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'تم' : 'Done'}</Text>
                             </Button>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ EditModal: false })}>
-                                <Text style={styles.textBtnsStyle} >Cancel</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'إغلاق' : 'Cancel'}</Text>
                             </Button>
                         </View>
                     </View>
@@ -195,7 +231,7 @@ class AccountScreen extends Component {
 
                         </View>
                         <View style={{ alignItems: 'center' }} >
-                            <Text style={{ color: styleColors.barsAndButtonsColor }}>city</Text>
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'المدينة' : 'City'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
                                 style={{ width: ScreenSize.width * 0.4 }}
@@ -203,7 +239,7 @@ class AccountScreen extends Component {
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ alignItems: 'center' }} >
-                            <Text style={{ color: styleColors.barsAndButtonsColor }}>Street</Text>
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'الشارع' : 'ٍStreet'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
                                 style={{ width: ScreenSize.width * 0.4 }}
@@ -211,7 +247,7 @@ class AccountScreen extends Component {
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ alignItems: 'center' }} >
-                            <Text style={{ color: styleColors.barsAndButtonsColor }}>bulding Number</Text>
+                            <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'رقم البناية' : 'Building Number'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
                                 style={{ width: ScreenSize.width * 0.4 }}

@@ -9,9 +9,9 @@ import strings from './components/strings'
 
 class CartScreen extends Component {
     constructor(props) {
+     // AsyncStorage.clear()
         super(props)
         this.state = {
-            orders: [],
             subTotal: 0,
             cartItems: ''
         }
@@ -22,6 +22,7 @@ class CartScreen extends Component {
             const value = JSON.parse(await AsyncStorage.getItem('cartItems'))
             if (value !== null) {
                 this.setState({ cartItems: value });
+               // alert(JSON.stringify(value))
             }
         } catch (error) {
             alert("Error retrieving data cart screen" + error);

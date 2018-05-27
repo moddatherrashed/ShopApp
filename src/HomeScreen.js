@@ -68,6 +68,7 @@ class HomeScreen extends Component {
     }
 
     componentDidMount() {
+        
         _this = this
         apiGetRequests.getRequests('getCatagories').then((res) => {
             this.setState({

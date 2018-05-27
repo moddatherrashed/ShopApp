@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, KeyboardAvoidingView, I18nManager, ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
+import { AppRegistry, AsyncStorage, KeyboardAvoidingView, I18nManager, ScrollView, StyleSheet, View, Text, Platform } from 'react-native';
 import StepIndicator from 'react-native-step-indicator'
 import LoginScreen from '../src/checkoutScreens/LoginScreen'
 import InformationScreen from '../src/checkoutScreens/InformationScreen'
@@ -41,7 +41,7 @@ class CheckoutScreen extends Component {
 
         this.state = {
             currentPage: 0,
-            isLoggedIn: true,
+            isLoggedIn: false,
             isLoginFailed: false,
             email: '',
             password: '',
@@ -56,15 +56,41 @@ class CheckoutScreen extends Component {
             street: '',
             isLogin: true,
             isFillInfo: false,
+            username: '',
             isDone: false,
             userID: null,
             total: this.props.navigation.state.params.total,
-            delivery: 0
+            delivery: 0,
+        }
+    }
+    async getUserLoggedIn() {
+        try {
+            const value = await AsyncStorage.getItem('@MySuperStore:key');
+            if (value !== null) {
+                // We have data!!
+                this.setState({
+                    isLoggedIn: true
+                })
+            }
+        } catch (error) {
+            alert(error)
+        }
+    }
+    async setUserLoggedIn(userID) {
+        try {
+            // AsyncStorage.clear()
+            alert('user id' + userID)
+            await AsyncStorage.setItem('@MySuperStore:key', userID);
+        } catch (error) {
+            alert(error)
         }
     }
 
     componentDidMount() {
+        this.getUserLoggedIn()
+        // alert(this.state.userInfos)
         // if (this.state.total)
+
         apiGetRequests.getRequests('getCost').then((res) => {
             for (let obj of res.deliveryCost) {
                 if (parseFloat(obj.max_amount) >= parseFloat(obj.id) === 3) {
@@ -105,6 +131,7 @@ class CheckoutScreen extends Component {
         }
     }
 
+
     isLoggedInChecker() {
         if (this.state.isLoggedIn === false && this.state.isLogin === true) {
             return (
@@ -129,7 +156,7 @@ class CheckoutScreen extends Component {
                             else {
 
                                 apiPostRequests.postRequests('signIn', { email: this.state.email, password: this.state.password }).then((res) => {
-                                    alert(JSON.stringify(res.userID))
+                                    //alert(JSON.stringify(res.userID))
                                     if (res.status === 1) {
                                         this.setState({ isLoginFailed: false })
                                         let counter = this.state.currentPage
@@ -142,6 +169,7 @@ class CheckoutScreen extends Component {
                                             isFillInfo: true,
                                             userID: res.userID
                                         })
+                                        this.setUserLoggedIn(this.state.userID)
                                     } else {
                                         this.setState({ isLoginFailed: true })
                                     }
