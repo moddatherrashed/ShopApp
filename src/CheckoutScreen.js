@@ -69,7 +69,8 @@ class CheckoutScreen extends Component {
             if (value !== null) {
                 // We have data!!
                 this.setState({
-                    isLoggedIn: true
+                    isLoggedIn: true,
+                    userID: value
                 })
             }
         } catch (error) {
@@ -86,12 +87,28 @@ class CheckoutScreen extends Component {
 
     componentDidMount() {
         this.getUserLoggedIn()
+        const { params } = this.props.navigation.state
         apiGetRequests.getRequests('getCost').then((res) => {
-            for (let obj of res.deliveryCost) {
-                if (parseFloat(obj.max_amount) >= parseFloat(obj.id) === 3) {
-                    alert(obj.delivery_cost)
+            if (res.deliveryCost[0].min_amount >= params.total) {
+                this.setState({
+                    delivery: res.deliveryCost[0].delivery_cost
+                })
+            } else {
+                for (let obj of res.deliveryCost) {
+                    if (obj.max_amount >= params.total) {
+                        this.setState({
+                            delivery: obj.delivery_cost
+                        })
+                        break;
+                    }
                 }
             }
+            if (res.deliveryCost[res.deliveryCost.length - 1].max_amount <= params.total) {
+                this.setState({
+                    delivery: res.deliveryCost[res.deliveryCost.length - 1].delivery_cost
+                })
+            }
+
         })
     }
     static navigationOptions = {
@@ -277,7 +294,6 @@ class CheckoutScreen extends Component {
                         onNextPressed={
                             () => {
                                 apiPostRequests.postRequests('fillInfo', { userID: this.state.userID, area: this.state.city, street: this.state.street, bldg_num: this.state.buildingNumber, mobile_number: this.state.mobileNumber }).then((res) => {
-                                    alert(this.state.userID)
                                     if (res.status === 1) {
                                         this.setState({ isRegisterFailed: false })
                                         let counter = this.state.currentPage
@@ -304,9 +320,9 @@ class CheckoutScreen extends Component {
                         apiPostRequests.postRequests('addOrder',
                             {
                                 C_ID: this.state.userID,
-                                delivery_cost: "1",
-                                price: "2",
-                                total_price: "10101010",
+                                delivery_cost: this.state.delivery,
+                                price: this.props.navigation.state.params.total,
+                                total_price: parseFloat(this.state.delivery) + parseFloat(this.props.navigation.state.params.total),
                                 products: [
                                     {
                                         quantity: 1,
