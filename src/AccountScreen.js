@@ -382,7 +382,7 @@ class AccountScreen extends Component {
                         <View style={{ alignItems: 'center' }} >
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'المدينة' : 'City'}</Text>
                             <TextInput
-                                placeholder={this.state.address}
+                                placeholder={this.state.city}
                                 onChangeText={(city) => this.setState({ city })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
@@ -391,7 +391,7 @@ class AccountScreen extends Component {
                         <View style={{ alignItems: 'center' }} >
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'الشارع' : 'ٍStreet'}</Text>
                             <TextInput
-                                placeholder={this.state.address}
+                                placeholder={this.state.street}
                                 onChangeText={(street) => this.setState({ street })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
@@ -400,7 +400,7 @@ class AccountScreen extends Component {
                         <View style={{ alignItems: 'center' }} >
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'رقم البناية' : 'Building Number'}</Text>
                             <TextInput
-                                placeholder={this.state.address}
+                                placeholder={this.state.buildingNumber}
                                 onChangeText={(buildingNumber) => this.setState({ buildingNumber })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
