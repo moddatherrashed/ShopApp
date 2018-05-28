@@ -8,7 +8,6 @@ import strings from '../components/strings'
 class LoginScreen extends Component {
     constructor(props) {
         super(props)
-
     }
 
     static navigationOptions = ({ navigation }) => ({
@@ -51,7 +50,7 @@ class LoginScreen extends Component {
                     </Button>
                     <TouchableOpacity
                         onPress={this.props.onPressForget}>
-                        <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>{I18nManager ? 'هل نسيت كلمة السر ؟' : 'Forget Password ?'}</Text>
+                        <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>{I18nManager.isRTL ? 'هل نسيت كلمة السر ؟' : 'Forget Password ?'}</Text>
                     </TouchableOpacity>
                 </View>
                 <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>

@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, AsyncStorage, I18nManager, ActivityIndicator, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
+import { View, Text, StatusBar, AsyncStorage, KeyboardAvoidingView, Platform, I18nManager, ActivityIndicator, TouchableOpacity, StyleSheet, TextInput } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
+import * as Animatable from 'react-native-animatable'
 import ScreenSize from './ScreenSize'
 import Modal from "react-native-modal"
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
-
+import apiPostRequests from './components/apiPostRequests'
+import LoginScreen from './checkoutScreens/LoginScreen'
 class AccountScreen extends Component {
 
     constructor(props) {
@@ -23,6 +25,16 @@ class AccountScreen extends Component {
             address: '',
             loading: true,
             isLoggedIn: false,
+            email: '',
+            password: '',
+            fullName: '',
+            regEmail: '',
+            regPassword: '',
+            regRePassword: '',
+            isRegisterFailed: false,
+            isLoginFailed: false,
+            userID: null,
+            LoggedInPassword: ''
         }
     }
     async signOut() {
@@ -35,6 +47,25 @@ class AccountScreen extends Component {
             alert(error)
         }
     }
+    async setUserLoggedIn(userID) {
+        try {
+            await AsyncStorage.setItem('@MySuperStore:key', userID);
+        } catch (error) {
+            alert("set  " + error)
+        }
+    }
+    renderAuthFaildFunc() {
+        if (this.state.isLoginFailed) {
+            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>{I18nManager.isRTL ? strings.ar.authenticationFailed : strings.en.authenticationFailed}</Animatable.Text>
+            )
+        }
+    }
+    renderRegisterFaildFunc() {
+        if (this.state.isRegisterFailed) {
+            return (<Animatable.Text animation="bounce" easing="ease-out" style={{ color: 'red', fontWeight: 'bold', textAlign: 'center' }}>{I18nManager.isRTL ? strings.ar.allFieldsAreRequired : strings.en.allFieldsAreRequired}</Animatable.Text>
+            )
+        }
+    }
 
     async getUserLoggedIn() {
         try {
@@ -42,10 +73,12 @@ class AccountScreen extends Component {
             if (value !== null) {
                 apiGetRequests.getRequests('getUserInfo', value).then((res) => {
                     this.setState({
-                        name: res.userInforamtion[0].firstName + " " + res.userInforamtion[0].lastName,
+                        userID: value,
+                        name: res.userInforamtion[0].firstName,
                         email: res.userInforamtion[0].email,
                         number: res.userInforamtion[0].mobileNumber,
                         address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
+                        LoggedInPassword: res.userInforamtion[0].password,
                         loading: false,
                         isLoggedIn: true,
                     })
@@ -57,7 +90,7 @@ class AccountScreen extends Component {
                 })
             }
         } catch (error) {
-            alert(error)
+            alert("get  " + error)
         }
     }
     static navigationOptions = {
@@ -140,7 +173,7 @@ class AccountScreen extends Component {
                                                         <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor }} />
                                                         <Text style={{ color: styleColors.barsAndButtonsColor, fontWeight: 'bold', marginLeft: 10 }}>{I18nManager.isRTL ? 'كلمة السر' : 'password'}</Text>
                                                     </View>
-                                                    <Text style={{ marginLeft: 30 }}>{this.state.email}</Text>
+                                                    <Text style={{ marginLeft: 30 }}>{this.state.LoggedInPassword}</Text>
                                                 </View>
                                             </View>
                                             <View style={{ flex: 1, alignItems: 'flex-end', padding: 10 }}>
@@ -159,7 +192,7 @@ class AccountScreen extends Component {
                                             <Icon name='ios-home' style={{ color: styleColors.barsAndButtonsColor }} />
                                             <Text style={{ marginLeft: 10, color: styleColors.barsAndButtonsColor, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.address : strings.en.address}</Text>
                                         </View>
-                                        <Text style={{ textAlign: 'left' }}>{this.state.address}</Text>
+                                        <Text style={{ textAlign: 'left' }}>{this.state.address === 'null null null' ? I18nManager.isRTL ? 'لا يوجد عنوان' : 'No address' : this.state.address}</Text>
                                     </TouchableOpacity>
 
                                     <View style={{ flex: 4.5, justifyContent: 'center', alignItems: 'center', margin: 15 }}>
@@ -174,7 +207,99 @@ class AccountScreen extends Component {
                                     </View>
                                 </View>
                             </Content>
-                            : <Text>you are not logged in checkout to login</Text>}
+                            :
+                            <KeyboardAvoidingView style={{
+                                flex: 1,
+                                width: ScreenSize.width,
+                                backgroundColor: '#FFFFFF'
+                            }} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -500} enabled>
+                                <LoginScreen
+                                    isLoginFailed={this.state.isLoginFailed}
+                                    emailValue={this.state.email}
+                                    passwordValue={this.state.password}
+                                    onEmailChange={(email) => this.setState({ email, isLoginFailed: false })}
+                                    renderAuthFaild={this.renderAuthFaildFunc()}
+                                    onPasswordChange={(password) => this.setState({ password, isLoginFailed: false })}
+                                    onPressForget={() =>
+                                        this.props.navigation.navigate('forgetPassword')
+                                    }
+                                    onLoginPressed={() => {
+                                        this.setState({
+                                            loading: true
+                                        })
+                                        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                                        if (reg.test(this.state.email) === false
+                                            || this.state.email === ''
+                                            || this.state.password === '') {
+                                            this.setState({ isLoginFailed: true, loading: false })
+                                        }
+                                        else {
+
+                                            apiPostRequests.postRequests('signIn', { email: this.state.email, password: this.state.password }).then((res) => {
+                                                //alert(JSON.stringify(res.userID))
+                                                if (res.status === 1) {
+                                                    this.setState({
+                                                        isLoggedIn: true,
+                                                        userID: res.userID,
+                                                        isLoginFailed: false,
+                                                        loading: false
+
+                                                    })
+                                                    this.setUserLoggedIn(this.state.userID)
+                                                } else {
+                                                    this.setState({
+                                                        isLoginFailed: true,
+                                                        loading: false
+                                                    })
+                                                }
+                                            })
+                                        }
+                                    }}
+                                    fullNameValue={this.state.fullName}
+                                    regEmailValue={this.state.regEmail}
+                                    regPasswordValue={this.state.regPassword}
+                                    regRePasswordValue={this.state.regRePassword}
+                                    onFullNameChanged={(fullName) => this.setState({ fullName, isRegisterFailed: false })}
+                                    onRegEmailChanged={(regEmail) => this.setState({ regEmail, isRegisterFailed: false })}
+                                    onRegPasswordChanged={(regPassword) => this.setState({ regPassword, isRegisterFailed: false })}
+                                    onRegRePasswordChanged={(regRePassword) => this.setState({ regRePassword, isRegisterFailed: false })}
+                                    renderRegisterFaild={this.renderRegisterFaildFunc()}
+                                    onRegisterPressed={() => {
+                                        this.setState({
+                                            loading: true
+                                        })
+                                        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                                        if (reg.test(this.state.regEmail) === false
+                                            || this.state.fullName === ''
+                                            || this.state.regPassword === ''
+                                            || this.state.regRePassword === ''
+                                            || this.state.regPassword !== this.state.regRePassword) {
+                                            this.setState({ isRegisterFailed: true, loading: false })
+                                        }
+                                        else {
+                                            apiPostRequests.postRequests('signUp', { userEmail: this.state.regEmail, userName: this.state.fullName, pass: this.state.regPassword }).then((res) => {
+                                                if (res.status === 1) {
+                                                    this.setState({
+                                                        isLoggedIn: true,
+                                                        loading: false,
+                                                        isRegisterFailed: false,
+                                                        userID: res.userID
+                                                    })
+                                                    this.setUserLoggedIn(JSON.stringify(this.state.userID))
+                                                    this.getUserLoggedIn()
+                                                } else {
+                                                    this.setState({
+                                                        isRegisterFailed: true,
+                                                        loading: false
+                                                    })
+                                                }
+                                            })
+
+                                        }
+                                    }}
+                                />
+                            </KeyboardAvoidingView>
+                }
                 <Modal isVisible={this.state.EditModal}
                     style={styles.ModalStyle}>
                     <View style={{ backgroundColor: '#FFFFFF' }}>
@@ -182,6 +307,7 @@ class AccountScreen extends Component {
                             <Icon name='person' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.name}
+                                onChangeText={(name) => this.setState({ name })}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -190,6 +316,7 @@ class AccountScreen extends Component {
                             <Icon name='ios-call' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.number}
+                                onChangeText={(number) => this.setState({ number })}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -198,6 +325,7 @@ class AccountScreen extends Component {
                             <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
                                 placeholder={this.state.email}
+                                onChangeText={(email) => this.setState({ email })}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -205,14 +333,22 @@ class AccountScreen extends Component {
                         <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                             <Icon name='ios-lock' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                             <TextInput
-                                placeholder={this.state.password}
+                                placeholder={this.state.LoggedInPassword}
+                                onChangeText={(LoggedInPassword) => this.setState({ LoggedInPassword })}
                                 style={{ width: ScreenSize.width * 0.8 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
-                                onPress={() => this.setState({ EditModal: false })}>
+                                onPress={() => {
+                                    apiPostRequests.postRequests('updateUserInfo', { F_name: this.state.name, email: this.state.email, userID: this.state.userID, password: this.state.LoggedInPassword, mobileNumber: this.state.number }).then((res) => {
+                                        if (res.status === 1) {
+                                            alert(I18nManager.isRTL ? 'تم بنجاح' : 'Done successfully')
+                                        }
+                                    })
+                                    this.setState({ EditModal: false })
+                                }}>
                                 <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'تم' : 'Done'}</Text>
                             </Button>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}

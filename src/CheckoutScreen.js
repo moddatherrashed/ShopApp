@@ -79,7 +79,7 @@ class CheckoutScreen extends Component {
     async setUserLoggedIn(userID) {
         try {
             // AsyncStorage.clear()
-            alert('user id' + userID)
+            //alert('user id' + userID)
             await AsyncStorage.setItem('@MySuperStore:key', userID);
         } catch (error) {
             alert(error)
@@ -98,8 +98,6 @@ class CheckoutScreen extends Component {
                 }
             }
         })
-        //alert(this.state.delivery)
-
     }
     static navigationOptions = {
         title: I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut,
@@ -135,7 +133,7 @@ class CheckoutScreen extends Component {
     isLoggedInChecker() {
         if (this.state.isLoggedIn === false && this.state.isLogin === true) {
             return (
-                <KeyboardAvoidingView style={styles.slide} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : 0} enabled>
+                <KeyboardAvoidingView style={styles.slide} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -500} enabled>
                     <LoginScreen
                         isLoginFailed={this.state.isLoginFailed}
                         emailValue={this.state.email}
@@ -158,7 +156,6 @@ class CheckoutScreen extends Component {
                                 apiPostRequests.postRequests('signIn', { email: this.state.email, password: this.state.password }).then((res) => {
                                     //alert(JSON.stringify(res.userID))
                                     if (res.status === 1) {
-                                        this.setState({ isLoginFailed: false })
                                         let counter = this.state.currentPage
                                         counter++
                                         this.setState({
@@ -167,14 +164,14 @@ class CheckoutScreen extends Component {
                                             isLoggedIn: false,
                                             isDone: false,
                                             isFillInfo: true,
-                                            userID: res.userID
+                                            userID: res.userID,
+                                            isLoginFailed: false
                                         })
                                         this.setUserLoggedIn(this.state.userID)
                                     } else {
                                         this.setState({ isLoginFailed: true })
                                     }
                                 })
-                                //this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }
                         }}
                         fullNameValue={this.state.fullName}
@@ -272,39 +269,38 @@ class CheckoutScreen extends Component {
     }
     isFillInfoChecker() {
         if (this.state.isFillInfo) {
-            return (<View style={styles.slide}>
-                <InformationScreen
-                    city={this.state.city}
-                    onCityChanged={(city) => this.setState({ city })}
-                    street={this.state.street}
-                    onStreetChanged={(street) => this.setState({ street })}
-                    buildingNumber={this.state.buildingNumber}
-                    onBuildingNumberChanged={(buildingNumber) => this.setState({ buildingNumber })}
-                    mobileNumber={this.state.mobileNumber}
-                    onMobileNumberChanged={(mobileNumber) => this.setState({ mobileNumber })}
+            return (
+                <KeyboardAvoidingView style={styles.slide} behavior="padding" keyboardVerticalOffset={Platform.OS === 'ios' ? 50 : -500} enabled>
+                    <InformationScreen
+                        city={this.state.city}
+                        onCityChanged={(city) => this.setState({ city })}
+                        street={this.state.street}
+                        onStreetChanged={(street) => this.setState({ street })}
+                        buildingNumber={this.state.buildingNumber}
+                        onBuildingNumberChanged={(buildingNumber) => this.setState({ buildingNumber })}
+                        mobileNumber={this.state.mobileNumber}
+                        onMobileNumberChanged={(mobileNumber) => this.setState({ mobileNumber })}
 
-                    onNextPressed={
-                        () => {
-                            apiPostRequests.postRequests('fillInfo', { userID: this.state.userID, area: this.state.city, street: this.state.street, bldg_num: this.state.buildingNumber, mobile_number: this.state.mobileNumber }).then((res) => {
-                                alert(this.state.userID)
-                                if (res.status === 1) {
-                                    this.setState({ isRegisterFailed: false })
-                                    let counter = this.state.currentPage
-                                    counter++
-                                    this.setState({
-                                        currentPage: counter,
-                                        isDone: true,
-                                        isFillInfo: false
-                                    })
-                                } else {
-                                    this.setState({ isRegisterFailed: true })
-                                }
-                            })
-
-                            // this.refs.swiper.scrollTo({ x: I18nManager.isRTL ? -2 : 2 * ScreenSize.width })
-                        }
-                    } />
-            </View>)
+                        onNextPressed={
+                            () => {
+                                apiPostRequests.postRequests('fillInfo', { userID: this.state.userID, area: this.state.city, street: this.state.street, bldg_num: this.state.buildingNumber, mobile_number: this.state.mobileNumber }).then((res) => {
+                                    alert(this.state.userID)
+                                    if (res.status === 1) {
+                                        this.setState({ isRegisterFailed: false })
+                                        let counter = this.state.currentPage
+                                        counter++
+                                        this.setState({
+                                            currentPage: counter,
+                                            isDone: true,
+                                            isFillInfo: false
+                                        })
+                                    } else {
+                                        this.setState({ isRegisterFailed: true })
+                                    }
+                                })
+                            }
+                        } />
+                </KeyboardAvoidingView>)
         }
     }
     isDoneChecker() {

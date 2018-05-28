@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
+import { View, Text, TextInput, StatusBar, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
 import { Icon } from 'native-base'
 import styleColors from './screenColors'
 import strings from './strings'
@@ -70,6 +70,10 @@ class SearchModal extends React.Component {
     )
     return (
       <View style={{ flex: 2 }}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="#EF9267"
+          hidden={false} />
         <View style={{ backgroundColor: '#F26422', flexDirection: 'row' }}>
           <TextInput
             style={{ flex: 1.9, height: 50 }}
