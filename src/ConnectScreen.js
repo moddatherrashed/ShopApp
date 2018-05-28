@@ -8,9 +8,12 @@ import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
+import webView from './components/webView'
+import Communications from 'react-native-communications';
 
 const SCREEN_HEIGHT = ScreenSize.height
 const SCREEN_WIDTH = ScreenSize.width
+
 class ConnectScreen extends Component {
 
     constructor(props) {
@@ -86,6 +89,8 @@ class ConnectScreen extends Component {
         })
     }
     render() {
+        const { navigate } = this.props.navigation
+
         const animatedHeight = {
             transform: this.animation.getTranslateTransform()
         }
@@ -135,20 +140,20 @@ class ConnectScreen extends Component {
                         <View style={{ backgroundColor: styleColors.connectWithUsBakgroundColors, margin: 15, padding: 20, borderRadius: 5, borderColor: '#363A57', elevation: 15 }}>
                             <View style={{ flexDirection: 'row', borderColor: styleColors.connectWithUsITemsAndTextColor, justifyContent: 'space-around', margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
                                 <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.phoneNumber : strings.en.phoneNumber}</Text>
-                                <Text style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.phone_number}</Text>
+                                <Text onPress={() => Communications.phonecall(this.state.phone_number, true)} style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.phone_number}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', borderColor: styleColors.connectWithUsITemsAndTextColor, margin: 20, padding: 10, borderBottomWidth: 1.5 }}>
                                 <Text style={{ fontWeight: 'bold', textAlign: 'center', color: styleColors.connectWithUsITemsAndTextColor }}>{I18nManager.isRTL ? strings.ar.website : strings.en.website}</Text>
-                                <Text onPress={() => { Linking.openURL(this.state.website) }} style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.website}</Text>
+                                <Text onPress={() => { navigate('webView', { url: this.state.website }) }} style={{ color: styleColors.connectWithUsITemsAndTextColor }}>{this.state.website}</Text>
                             </View>
                             <View style={{ flexDirection: 'row', justifyContent: 'space-around', margin: 10 }}>
                                 <TouchableOpacity
-                                    onPress={() => { Linking.openURL(this.state.facebook_link) }}
+                                    onPress={() => { navigate('webView', { url: this.state.facebook_link }) }}
                                 >
                                     <Icon name='logo-facebook' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
                                 </TouchableOpacity>
                                 <TouchableOpacity
-                                    onPress={() => { Linking.openURL(this.state.instagram_link) }}
+                                    onPress={() => { navigate('webView', { url: this.state.instagram_link }) }}
                                 >
                                     <Icon name='logo-instagram' style={{ color: styleColors.connectWithUsITemsAndTextColor, fontSize: 60 }} />
                                 </TouchableOpacity>
@@ -208,7 +213,8 @@ class ConnectScreen extends Component {
 }
 
 const ConnectStackNavigator = createStackNavigator({
-    ConnectScreen: { screen: ConnectScreen }
+    ConnectScreen: { screen: ConnectScreen },
+    webView: { screen: webView }
 })
 
 
