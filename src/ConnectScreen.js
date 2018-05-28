@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { TouchableOpacity, ActivityIndicator, View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, Linking, ScrollView, Image, Slider } from 'react-native'
+import { TouchableOpacity, SafeAreaView, ActivityIndicator, View, Text, I18nManager, StatusBar, StyleSheet, Animated, PanResponder, Linking, ScrollView, Image, Slider } from 'react-native'
 import { Container, Content, Icon, Header, Left, Button, Body, Title } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
 import StackNavigation from './HomeScreen';
@@ -126,7 +126,7 @@ class ConnectScreen extends Component {
         })
         return (
 
-            <View style={{ flex: 1, justifyContent: 'center', }}>
+            <SafeAreaView style={{ flex: 1, justifyContent: 'center', }}>
                 <StatusBar
                     barStyle="light-content"
                     backgroundColor="#EF9267"
@@ -207,7 +207,7 @@ class ConnectScreen extends Component {
                     </Animated.Text>
                 </Animated.View>
 
-            </View>
+            </SafeAreaView >
         )
     }
 }

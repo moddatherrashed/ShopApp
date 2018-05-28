@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, StatusBar, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
+import { View, Text, TextInput, SafeAreaView, StatusBar, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
 import { Icon } from 'native-base'
 import styleColors from './screenColors'
 import strings from './strings'
@@ -69,7 +69,7 @@ class SearchModal extends React.Component {
       }
     )
     return (
-      <View style={{ flex: 2 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <StatusBar
           barStyle="light-content"
           backgroundColor="#EF9267"
@@ -94,7 +94,7 @@ class SearchModal extends React.Component {
         </View>
 
         {this.renderResult(filterSearch)}
-      </View>
+      </SafeAreaView >
     )
   }
 }

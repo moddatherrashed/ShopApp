@@ -168,7 +168,6 @@ class CartScreen extends Component {
                 <ScrollView style={{ flex: 1.8 }}>
                     {this.renderList()}
                 </ScrollView>
-
                 <View style={
                     {
                         backgroundColor: styleColors.cartScreenColors,
@@ -210,7 +209,11 @@ class CartScreen extends Component {
                         alignItems: 'center',
                         flex: 1
                     }} onPress={() => {
-                        navigate('CheckoutScreen', { total: this.subTotalCounter(), cartItems : this.state.cartItems })
+                        if ((this.state.cartItems).length !== 0) {
+                            navigate('CheckoutScreen', { total: this.subTotalCounter(), cartItems: this.state.cartItems })
+                        } else {
+                            alert('you do not have products')
+                        }
                     }}>
                         <Text style={{ fontSize: 15, color: 'white' }}>{I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut}</Text>
                     </TouchableOpacity>

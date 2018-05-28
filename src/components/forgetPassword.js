@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
+import { View, Text, SafeAreaView, TextInput, TouchableOpacity, FlatList, Image, I18nManager } from 'react-native'
 import { Icon, Button } from 'native-base'
 import styleColors from './screenColors'
 import strings from './strings'
@@ -25,7 +25,7 @@ class forgetPassword extends React.Component {
 
     render() {
         return (
-            <View style={{ flex: 1 }}>
+            <SafeAreaView style={{ flex: 1 }}>
                 <TouchableOpacity style={{ alignItems: 'flex-end', padding: 20, }}
                     onPress={() => {
                         this.props.navigation.goBack()
@@ -78,11 +78,11 @@ class forgetPassword extends React.Component {
 
                 {
                     this.state.isSuccess ?
-                        <Text style={{ color: 'green', fontSize: 30, textAlign: 'center', margin : 10 }}>{this.state.message}</Text>
+                        <Text style={{ color: 'green', fontSize: 30, textAlign: 'center', margin: 10 }}>{this.state.message}</Text>
                         :
                         <Text style={{ color: 'red', fontSize: 30, textAlign: 'center' }}>{this.state.message}</Text>
                 }
-            </View>
+            </SafeAreaView >
         )
     }
 }

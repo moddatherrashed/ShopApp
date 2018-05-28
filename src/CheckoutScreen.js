@@ -341,7 +341,7 @@ class CheckoutScreen extends Component {
                                     total_price: parseFloat(this.state.delivery) + parseFloat(this.props.navigation.state.params.total),
                                     products: this.state.productsToSend
                                 }).then((res) => {
-                                    alert("successssssss")
+                                    alert('your order has been sent')
                                     if (res.status === 1) {
                                         let counter = this.state.currentPage
                                         counter++

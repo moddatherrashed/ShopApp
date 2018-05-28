@@ -58,18 +58,27 @@ class HomeScreen extends Component {
             </Button>
         ),
         headerRight: (
-            <Button transparent
-                onPress={() => {
-                    _this.props.navigation.navigate('CartScreen')
-                }}>
-                <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
+            <View style={{flexDirection : 'row'}}>
+                <Button transparent
+                    onPress={() => {
+                        _this.props.navigation.navigate('SearchModal')
+                    }}>
+                    <Icon name='search' style={{ color: screenColors.mainToolBarTextColor }} />
 
-            </Button>
+                </Button>
+                <Button transparent
+                    onPress={() => {
+                        _this.props.navigation.navigate('CartScreen')
+                    }}>
+                    <Icon name='cart' style={{ color: screenColors.mainToolBarTextColor }} />
+
+                </Button>
+            </View>
         )
     }
 
     componentDidMount() {
-        
+
         _this = this
         apiGetRequests.getRequests('getCatagories').then((res) => {
             this.setState({
@@ -154,11 +163,6 @@ class HomeScreen extends Component {
                     onPress={() => {
                         navigate('SearchModal')
                     }}>
-                    <SearchBar
-                        editable={false}
-                        selectTextOnFocus={false}
-                        onChangeText={(searchText) => this.search(searchText)}
-                    />
                 </TouchableOpacity>
                 {this.state.loading ?
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -215,8 +219,8 @@ const StackNavigation = createStackNavigator({
     CartScreen: { screen: CartScreen },
     CheckoutScreen: { screen: CheckoutScreen },
     SearchModal: { screen: SearchModal },
-    forgetPassword : {screen : forgetPassword},
-    AccountScreen : {screen : AccountScreen}
+    forgetPassword: { screen: forgetPassword },
+    AccountScreen: { screen: AccountScreen }
 })
 
 const styles = StyleSheet.create({
