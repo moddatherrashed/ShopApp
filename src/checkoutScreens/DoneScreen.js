@@ -1,9 +1,32 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView } from 'react-native'
+import { View, Text, ScrollView, I18nManager } from 'react-native'
 import { Icon, Button } from 'native-base'
 import styleColors from '../components/screenColors'
+import apiGetRequests from '../components/apiGetRequests'
 
 class DoneScreen extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+        
+            name: '',
+            address: '',
+            number: ''
+        }
+    }
+
+
+    componentDidMount() {
+        apiGetRequests.getRequests('getUserInfo', this.props.userID).then((res) => {
+            this.setState({
+                name: res.userInforamtion[0].firstName,
+                email: res.userInforamtion[0].email,
+                number: res.userInforamtion[0].mobileNumber,
+                address: (res.userInforamtion[0].area === null ? '-' : res.userInforamtion[0].area) + " " + (res.userInforamtion[0].street === null ? '-' : res.userInforamtion[0].street) + " " + (res.userInforamtion[0].buldingNumber === null ? '-' : res.userInforamtion[0].buldingNumber),
+            })
+        })
+    }
     render() {
         return (
             <ScrollView style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
@@ -13,10 +36,10 @@ class DoneScreen extends Component {
                 </View>
                 <View>
                     <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center', fontSize: 25 }}>Shipping Information</Text>
-                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>Full Name: moddather rashed</Text>
-                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>Address: Eptingerstrasse 28, Basel</Text>
-                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>Mobile Number: 0774044019</Text>
-                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>Total ammount: 50 JOD</Text>
+                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>{I18nManager.isRTL ? 'الاسم الكامل' : 'Full Name'}:{this.state.name}</Text>
+                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>{I18nManager.isRTL ? 'العنوان' : 'Address'}: {this.state.address}</Text>
+                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>{I18nManager.isRTL ? 'رقم الهاتف' : 'Mobile Number'}: {this.state.number}</Text>
+                    <Text style={{ fontWeight: 'bold', color: styleColors.cartScreenColors, padding: 15, textAlign: 'center' }}>{I18nManager.isRTL ? 'المجموع الكلي' : 'Total Amount'}: {this.state.total} JOD</Text>
                 </View>
                 <Button full style={{
                     backgroundColor: styleColors.cartScreenColors,

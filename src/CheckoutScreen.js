@@ -65,6 +65,8 @@ class CheckoutScreen extends Component {
             productsToSend: []
         }
     }
+
+
     async getUserLoggedIn() {
         try {
             const value = await AsyncStorage.getItem('@MySuperStore:key');
@@ -93,11 +95,12 @@ class CheckoutScreen extends Component {
             array.push({ quantity: obj.quantity, id: obj.id })
         }
         this.setState({
-            productsToSend : array
+            productsToSend: array
         })
 
         this.getUserLoggedIn()
         const { params } = this.props.navigation.state
+
         apiGetRequests.getRequests('getCost').then((res) => {
             if (res.deliveryCost[0].min_amount >= params.total) {
                 this.setState({
@@ -118,8 +121,8 @@ class CheckoutScreen extends Component {
                     delivery: res.deliveryCost[res.deliveryCost.length - 1].delivery_cost
                 })
             }
-
         })
+
     }
     static navigationOptions = {
         title: I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut,
@@ -326,28 +329,31 @@ class CheckoutScreen extends Component {
         if (this.state.isDone) {
             return (
                 <View style={styles.slide}>
-                    <DoneScreen onDonePressed={() => {
-                        apiPostRequests.postRequests('addOrder',
-                            {
-                                C_ID: this.state.userID,
-                                delivery_cost: this.state.delivery,
-                                price: this.props.navigation.state.params.total,
-                                total_price: parseFloat(this.state.delivery) + parseFloat(this.props.navigation.state.params.total),
-                                products: this.state.productsToSend
-                            }).then((res) => {
-                                alert("successssssss")
-                                if (res.status === 1) {
-                                    let counter = this.state.currentPage
-                                    counter++
-                                    this.setState({
-                                        currentPage: counter
-                                    })
-                                } else {
-                                    this.setState({ isRegisterFailed: true })
-                                }
-                            })
+                    <DoneScreen
+                        userID={this.state.userID}
+                        total={parseFloat(this.state.total) + parseFloat(this.state.delivery)}
+                        onDonePressed={() => {
+                            apiPostRequests.postRequests('addOrder',
+                                {
+                                    C_ID: this.state.userID,
+                                    delivery_cost: this.state.delivery,
+                                    price: this.props.navigation.state.params.total,
+                                    total_price: parseFloat(this.state.delivery) + parseFloat(this.props.navigation.state.params.total),
+                                    products: this.state.productsToSend
+                                }).then((res) => {
+                                    alert("successssssss")
+                                    if (res.status === 1) {
+                                        let counter = this.state.currentPage
+                                        counter++
+                                        this.setState({
+                                            currentPage: counter
+                                        })
+                                    } else {
+                                        this.setState({ isRegisterFailed: true })
+                                    }
+                                })
 
-                    }} />
+                        }} />
                 </View>
             )
         }
