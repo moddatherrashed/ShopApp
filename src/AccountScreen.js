@@ -406,11 +406,11 @@ class AccountScreen extends Component {
                                     })
                                     this.setState({ EditModal: false, addressModal: false })
                                 }}>
-                                <Text style={styles.textBtnsStyle} >Done</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'تم' : 'Done'}</Text>
                             </Button>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ addressModal: false })}>
-                                <Text style={styles.textBtnsStyle} >Cancel</Text>
+                                <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'إغلاق' : 'Cancel'}</Text>
                             </Button>
                         </View>
                     </View>

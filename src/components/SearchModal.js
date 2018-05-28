@@ -79,7 +79,7 @@ class SearchModal extends React.Component {
             style={{ flex: 1.9, height: 50 }}
             underlineColorAndroid="#FFFFFF"
             placeholderTextColor="#FFFFFF"
-            placeholder='Search for all product ..'
+            placeholder={I18nManager.isRTL ? '... ابحث عن جميع المنتجات' : 'Search for all product ..'}
             onChangeText={(searchText) => {
               this.setState({ searchText: searchText })
             }}
