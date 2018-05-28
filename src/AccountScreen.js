@@ -11,6 +11,8 @@ import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
 import apiPostRequests from './components/apiPostRequests'
 import LoginScreen from './checkoutScreens/LoginScreen'
+import forgetPassword from './components/forgetPassword'
+
 class AccountScreen extends Component {
 
     constructor(props) {
@@ -568,7 +570,8 @@ const styles = StyleSheet.create({
     }
 })
 const AccountStackNavigator = createStackNavigator({
-    AccountScreen: { screen: AccountScreen }
+    AccountScreen: { screen: AccountScreen },
+    forgetPassword: { screen: forgetPassword }
 })
 
 export default AccountStackNavigator

@@ -86,9 +86,6 @@ class CheckoutScreen extends Component {
 
     componentDidMount() {
         this.getUserLoggedIn()
-        // alert(this.state.userInfos)
-        // if (this.state.total)
-
         apiGetRequests.getRequests('getCost').then((res) => {
             for (let obj of res.deliveryCost) {
                 if (parseFloat(obj.max_amount) >= parseFloat(obj.id) === 3) {

@@ -77,7 +77,7 @@ let apiGetRequests = {
                         alert(error);
                     })
                 break;
-            case 'getUserOrder':
+            case 'getUserOrders':
                 return fetch('http://www.jamrahgroup.com/api/getUserOrder', {
                     method: 'POST',
                     headers: {

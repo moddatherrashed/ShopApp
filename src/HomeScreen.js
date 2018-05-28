@@ -18,6 +18,7 @@ import strings from './components/strings'
 import apiGetRequests from './components/apiGetRequests'
 import SearchModal from './components/SearchModal'
 import forgetPassword from './components/forgetPassword'
+import AccountScreen from './AccountScreen'
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -214,7 +215,8 @@ const StackNavigation = createStackNavigator({
     CartScreen: { screen: CartScreen },
     CheckoutScreen: { screen: CheckoutScreen },
     SearchModal: { screen: SearchModal },
-    forgetPassword : {screen : forgetPassword}
+    forgetPassword : {screen : forgetPassword},
+    AccountScreen : {screen : AccountScreen}
 })
 
 const styles = StyleSheet.create({

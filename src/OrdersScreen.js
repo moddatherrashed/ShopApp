@@ -1,55 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, StatusBar, I18nManager, TouchableOpacity, FlatList, Image } from 'react-native'
+import { View, Text, StatusBar, I18nManager, AsyncStorage, TouchableOpacity, FlatList, Image } from 'react-native'
 import { Container, Content, Icon, Title, Header, Left, Body, Button } from 'native-base'
 import { createStackNavigator } from 'react-navigation'
 import ScreenSize from './ScreenSize'
 import screenColors from './components/screenColors'
 import styleColors from './components/screenColors';
 import strings from './components/strings'
+import apiGetRequests from './components/apiGetRequests'
+
 class OrdersScreen extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: [{
-                name: '11111',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: '22222',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: '33333',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: '444444',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: '5555555',
-                url: { uri: 'https://4fstore.com/gfx/1510748446.4518.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: 'Adidas Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: 'Water Prof Jacket',
-                url: { uri: 'http://www.blackhoodies.co.uk/image/cache/catalog/BLKREDTS011-540x720.jpg' },
-                date: '02-06-2018'
-            },
-            {
-                name: 'White T-shirt',
-                url: { uri: 'https://4f.com.pl/gfx/big/1508938910.8935.jpg' },
-                date: '02-06-2018'
-            }]
+            orders: []
         }
     }
 
@@ -77,11 +40,33 @@ class OrdersScreen extends Component {
 
             </Button>
         ),
-        
+
+    }
+    async getUserLoggedIn() {
+        try {
+            const value = await AsyncStorage.getItem('@MySuperStore:key');
+            if (value !== null) {
+                return value
+            } else {
+                return null
+            }
+        } catch (error) {
+            alert("get  " + error)
+        }
+    }
+    componentDidMount() {
+        let id = this.getUserLoggedIn();
+        if (id !== null) {
+            apiGetRequests.getRequests('getProducts', id).then((res) => {
+                this.setState({
+                    orders: res.ordersHistory
+                })
+            })
+        }
     }
 
     renderList() {
-        if (this.state.orders.length !== 0) {
+        if (JSON.stringify(this.state.orders) === JSON.stringify([])) {
             return (
                 <FlatList
                     contentContainerStyle={{ margin: 2 }}
