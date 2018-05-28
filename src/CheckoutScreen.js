@@ -78,8 +78,6 @@ class CheckoutScreen extends Component {
     }
     async setUserLoggedIn(userID) {
         try {
-            // AsyncStorage.clear()
-            //alert('user id' + userID)
             await AsyncStorage.setItem('@MySuperStore:key', userID);
         } catch (error) {
             alert(error)
@@ -194,7 +192,6 @@ class CheckoutScreen extends Component {
                             }
                             else if (this.state.isLogin) {
                                 apiPostRequests.postRequests('signUp', { userEmail: this.state.regEmail, userName: this.state.fullName, pass: this.state.regPassword }).then((res) => {
-                                    //alert(res.status)
                                     if (res.status === 1) {
                                         this.setState({ isRegisterFailed: false })
                                         let counter = this.state.currentPage
@@ -237,11 +234,10 @@ class CheckoutScreen extends Component {
                                     isLoggedIn: false,
                                     isDone: true
                                 })
-                                // this.refs.swiper.scrollTo({ x: 1 * ScreenSize.width, animated: true })
                             }} >
-                        <Text style={{ color: '#FFFFFF', fontSize: 20 }}>Continue as <Text style={{ fontWeight: 'bold' }}>moddather</Text></Text>
+                        <Text style={{ color: '#FFFFFF', fontSize: 20 }}>{I18nManager.isRTL ? 'الإستمرار كالمستخدم المسجل' : 'Continue as registerd user'} </Text>
                     </Button>
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', padding: 20, textAlign: 'center' }}>Or</Text>
+                    <Text style={{ fontSize: 20, color: 'gray', fontWeight: 'bold', padding: 20, textAlign: 'center' }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>
                     <Button
                         style={{
                             backgroundColor: styleColors.cartScreenColors,
@@ -260,7 +256,7 @@ class CheckoutScreen extends Component {
                                     isFillInfo: false
                                 })
                             }} >
-                        <Text style={{ color: '#FFFFFF', fontSize: 20 }} >Login with another account</Text>
+                        <Text style={{ color: '#FFFFFF', fontSize: 20 }} >{I18nManager.isRTL ? 'التسجيل بحساب اخر' : 'Login with another account'}</Text>
                     </Button>
 
                 </View>
@@ -347,7 +343,7 @@ class CheckoutScreen extends Component {
         return (
             <View style={styles.container}>
                 <View style={styles.stepIndicator}>
-                    <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={["Account", "Information", "Done"]} />
+                    <StepIndicator stepCount={3} customStyles={firstIndicatorStyles} currentPosition={this.state.currentPage} labels={[I18nManager.isRTL ? 'الحساب' : 'Account', I18nManager.isRTL ? 'المعلومات' : 'Information', I18nManager.isRTL ? 'المعلومات' : 'Done']} />
                 </View>
                 {this.isLoggedInChecker()}
                 {this.isFillInfoChecker()}

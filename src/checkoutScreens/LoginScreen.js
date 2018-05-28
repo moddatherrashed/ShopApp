@@ -53,7 +53,7 @@ class LoginScreen extends Component {
                         <Text style={{ color: styleColors.barsAndButtonsColor, textAlign: 'center', padding: 5 }}>{I18nManager.isRTL ? 'هل نسيت كلمة السر ؟' : 'Forget Password ?'}</Text>
                     </TouchableOpacity>
                 </View>
-                <Text style={{ textAlign: 'center', fontWeight: 'bold', fontSize: 20 }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>
+                <Text style={{ textAlign: 'center', color: 'gray', fontWeight: 'bold', fontSize: 20 }}>{I18nManager.isRTL ? strings.ar.or : strings.en.or}</Text>
                 {/*Registration from*/}
                 <View style={{ flex: 1, backgroundColor: '#FFFFFF', elevation: 15, margin: 10, borderRadius: 5 }}>
                     <Text style={{ backgroundColor: styleColors.cartScreenColors, color: '#FFFFFF', fontSize: 20, margin: 10, padding: 10, borderRadius: 5, fontWeight: 'bold' }}>{I18nManager.isRTL ? strings.ar.registerNow : strings.en.registerNow}</Text>
