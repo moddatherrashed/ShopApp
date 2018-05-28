@@ -44,7 +44,14 @@ class AccountScreen extends Component {
         try {
             await AsyncStorage.removeItem('@MySuperStore:key');
             this.setState({
-                isLoggedIn: false
+                isLoggedIn: false,
+                name: '',
+                email: '',
+                number: '',
+                address: '',
+                password: '',
+                LoggedInPassword: ''
+
             })
         } catch (error) {
             alert(error)
@@ -80,7 +87,7 @@ class AccountScreen extends Component {
                         name: res.userInforamtion[0].firstName,
                         email: res.userInforamtion[0].email,
                         number: res.userInforamtion[0].mobileNumber,
-                        address: res.userInforamtion[0].area + " " + res.userInforamtion[0].street + " " + res.userInforamtion[0].buldingNumber,
+                        address: (res.userInforamtion[0].area === null ? '-' : res.userInforamtion[0].area) + " " + (res.userInforamtion[0].street === null ? '-' : res.userInforamtion[0].street) + " " + (res.userInforamtion[0].buldingNumber === null ? '-' : res.userInforamtion[0].buldingNumber),
                         LoggedInPassword: res.userInforamtion[0].password,
                         loading: false,
                         isLoggedIn: true,
@@ -249,6 +256,7 @@ class AccountScreen extends Component {
 
                                                     })
                                                     this.setUserLoggedIn(this.state.userID)
+                                                    this.getUserLoggedIn()
                                                 } else {
                                                     this.setState({
                                                         isLoginFailed: true,
@@ -404,7 +412,11 @@ class AccountScreen extends Component {
                                             alert(I18nManager.isRTL ? 'تم بنجاح' : 'Done successfully')
                                         }
                                     })
-                                    this.setState({ EditModal: false, addressModal: false })
+                                    this.setState({
+                                        EditModal: false,
+                                        addressModal: false,
+                                        address: this.state.city + " " + this.state.street + " " + this.state.buildingNumber
+                                    })
                                 }}>
                                 <Text style={styles.textBtnsStyle} >{I18nManager.isRTL ? 'تم' : 'Done'}</Text>
                             </Button>
