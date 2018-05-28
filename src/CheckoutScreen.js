@@ -61,6 +61,8 @@ class CheckoutScreen extends Component {
             userID: null,
             total: this.props.navigation.state.params.total,
             delivery: 0,
+            cartItems: this.props.navigation.state.params.cartItems,
+            productsToSend: []
         }
     }
     async getUserLoggedIn() {
@@ -86,6 +88,14 @@ class CheckoutScreen extends Component {
     }
 
     componentDidMount() {
+        let array = [];
+        for (let obj of this.state.cartItems) {
+            array.push({ quantity: obj.quantity, id: obj.id })
+        }
+        this.setState({
+            productsToSend : array
+        })
+
         this.getUserLoggedIn()
         const { params } = this.props.navigation.state
         apiGetRequests.getRequests('getCost').then((res) => {
@@ -323,16 +333,7 @@ class CheckoutScreen extends Component {
                                 delivery_cost: this.state.delivery,
                                 price: this.props.navigation.state.params.total,
                                 total_price: parseFloat(this.state.delivery) + parseFloat(this.props.navigation.state.params.total),
-                                products: [
-                                    {
-                                        quantity: 1,
-                                        id: 2
-                                    },
-                                    {
-                                        quantity: 1,
-                                        id: 3
-                                    }
-                                ]
+                                products: this.state.productsToSend
                             }).then((res) => {
                                 alert("successssssss")
                                 if (res.status === 1) {

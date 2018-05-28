@@ -9,7 +9,7 @@ import strings from './components/strings'
 
 class CartScreen extends Component {
     constructor(props) {
-     // AsyncStorage.clear()
+        // AsyncStorage.clear()
         super(props)
         this.state = {
             subTotal: 0,
@@ -22,7 +22,7 @@ class CartScreen extends Component {
             const value = JSON.parse(await AsyncStorage.getItem('cartItems'))
             if (value !== null) {
                 this.setState({ cartItems: value });
-               // alert(JSON.stringify(value))
+                // alert(JSON.stringify(value))
             }
         } catch (error) {
             alert("Error retrieving data cart screen" + error);
@@ -210,7 +210,7 @@ class CartScreen extends Component {
                         alignItems: 'center',
                         flex: 1
                     }} onPress={() => {
-                        navigate('CheckoutScreen', { total: this.subTotalCounter() })
+                        navigate('CheckoutScreen', { total: this.subTotalCounter(), cartItems : this.state.cartItems })
                     }}>
                         <Text style={{ fontSize: 15, color: 'white' }}>{I18nManager.isRTL ? strings.ar.checkOut : strings.en.checkOut}</Text>
                     </TouchableOpacity>
