@@ -34,7 +34,10 @@ class AccountScreen extends Component {
             isRegisterFailed: false,
             isLoginFailed: false,
             userID: null,
-            LoggedInPassword: ''
+            LoggedInPassword: '',
+            buildingNumber: '',
+            city: '',
+            street: ''
         }
     }
     async signOut() {
@@ -370,6 +373,7 @@ class AccountScreen extends Component {
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'المدينة' : 'City'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
+                                onChangeText={(city) => this.setState({ city })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -378,6 +382,7 @@ class AccountScreen extends Component {
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'الشارع' : 'ٍStreet'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
+                                onChangeText={(street) => this.setState({ street })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
@@ -386,14 +391,22 @@ class AccountScreen extends Component {
                             <Text style={{ color: styleColors.barsAndButtonsColor }}>{I18nManager.isRTL ? 'رقم البناية' : 'Building Number'}</Text>
                             <TextInput
                                 placeholder={this.state.address}
+                                onChangeText={(buildingNumber) => this.setState({ buildingNumber })}
                                 style={{ width: ScreenSize.width * 0.4 }}
                                 placeholderTextColor={styleColors.barsAndButtonsColor}
                                 underlineColorAndroid={styleColors.barsAndButtonsColor} />
                         </View>
                         <View style={{ flexDirection: 'row', padding: 5, justifyContent: 'center' }}>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
-                                onPress={() => this.setState({ addressModal: false })}>
-                                <Text style={styles.textBtnsStyle} >Edit</Text>
+                                onPress={() => {
+                                    apiPostRequests.postRequests('updateUserAddress', { userID: this.state.userID, area: this.state.city, street: this.state.street, buildingNumber: this.state.buildingNumber }).then((res) => {
+                                        if (res.status === 1) {
+                                            alert(I18nManager.isRTL ? 'تم بنجاح' : 'Done successfully')
+                                        }
+                                    })
+                                    this.setState({ EditModal: false, addressModal: false })
+                                }}>
+                                <Text style={styles.textBtnsStyle} >Done</Text>
                             </Button>
                             <Button full style={{ width: ScreenSize.width * 0.4, margin: 5, backgroundColor: styleColors.barsAndButtonsColor, borderRadius: 5 }}
                                 onPress={() => this.setState({ addressModal: false })}>
