@@ -33,7 +33,7 @@ class forgetPassword extends React.Component {
                 >
                     <Icon name='ios-close' style={{ color: styleColors.barsAndButtonsColor, fontSize: 40 }} />
                 </TouchableOpacity>
-                <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
+                <SafeAreaView style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: ScreenSize.width }}>
                     <Icon name='ios-mail' style={{ color: styleColors.barsAndButtonsColor, paddingRight: 10 }} />
                     <TextInput
                         placeholder={I18nManager.isRTL ? 'ايميلك' : 'your email'}
@@ -41,7 +41,7 @@ class forgetPassword extends React.Component {
                         onChangeText={(email) => { this.setState({ email }) }}
                         placeholderTextColor={styleColors.barsAndButtonsColor}
                         underlineColorAndroid={styleColors.barsAndButtonsColor} />
-                </View>
+                </SafeAreaView>
                 <Button
                     style={{
                         backgroundColor: styleColors.cartScreenColors,

@@ -74,7 +74,7 @@ class SearchModal extends React.Component {
           barStyle="light-content"
           backgroundColor="#EF9267"
           hidden={false} />
-        <View style={{ backgroundColor: '#F26422', flexDirection: 'row' }}>
+        <SafeAreaView style={{ backgroundColor: '#F26422', flexDirection: 'row' }}>
           <TextInput
             style={{ flex: 1.9, height: 50 }}
             underlineColorAndroid="#FFFFFF"
@@ -91,7 +91,7 @@ class SearchModal extends React.Component {
           >
             <Icon name='ios-close' style={{ color: 'white', fontSize: 40 }} />
           </TouchableOpacity>
-        </View>
+        </SafeAreaView>
 
         {this.renderResult(filterSearch)}
       </SafeAreaView >
