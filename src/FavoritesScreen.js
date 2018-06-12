@@ -67,6 +67,7 @@ class FavoritesScreen extends Component {
         },
         headerLeft: (
             <Button transparent
+                style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => {
                     _this.props.navigation.openDrawer()
                 }}>
@@ -76,6 +77,7 @@ class FavoritesScreen extends Component {
         ),
         headerRight: (
             <Button transparent
+                style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => {
                     _this.props.navigation.navigate('CartScreen')
                 }}>

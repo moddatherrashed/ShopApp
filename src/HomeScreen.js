@@ -51,6 +51,7 @@ class HomeScreen extends Component {
         },
         headerLeft: (
             <Button transparent
+                style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => {
                     _this.props.navigation.openDrawer()
                 }}>
@@ -58,8 +59,10 @@ class HomeScreen extends Component {
             </Button>
         ),
         headerRight: (
-            <View style={{flexDirection : 'row'}}>
+            <View style={{ flexDirection: 'row' }}>
                 <Button transparent
+
+                    style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
                         _this.props.navigation.navigate('SearchModal')
                     }}>
@@ -67,6 +70,8 @@ class HomeScreen extends Component {
 
                 </Button>
                 <Button transparent
+
+                    style={{ height: '100%', justifyContent: 'center', alignItems: 'center' }}
                     onPress={() => {
                         _this.props.navigation.navigate('CartScreen')
                     }}>
@@ -109,7 +114,7 @@ class HomeScreen extends Component {
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
-                        source={{ uri: 'http://www.readersdigest.ca/wp-content/uploads/2011/11/use-spices-to-scent-home.jpg' }}
+                        source={{ uri: 'https://image.freepik.com/vetores-gratis/projeto-do-fundo-do-e-commerce_1223-90.jpg' }}
                         resizeMode="cover"
                     >
                         <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 7, margin: 15, borderRadius: 3 }}>Offer Title</Text>
