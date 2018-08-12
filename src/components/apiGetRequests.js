@@ -113,6 +113,60 @@ let apiGetRequests = {
                         console.error(error);
                     })
                 break;
+            case 'getOffers':
+                return fetch('http://www.jamrahgroup.com/api/getOffres', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userEmail: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
+            case 'getOrderHistory':
+                return fetch('http://www.jamrahgroup.com/api/getUserOrder', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userEmail: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
+            case 'getSingleOrderHistory':
+                return fetch('http://www.jamrahgroup.com/api/getUserHistoryOrderDeatials', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        userEmail: id
+                    }),
+                }).then((response) => response.json())
+                    .then((responseJson) => {
+                        return responseJson
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    })
+                break;
         }
     }
 }
