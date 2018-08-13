@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, I18nManager, FlatList, ActivityIndicator, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar } from 'react-native'
+import { View, Text, I18nManager, FlatList, ActivityIndicator, Animated, YellowBox, TextInput, ImageBackground, TouchableOpacity, StyleSheet, Image, ScrollView, StatusBar, Dimensions } from 'react-native'
 import { Content, Container, Body, Button, Icon, Header, Left, Right, Title } from 'native-base';
 import ScreenSize from './ScreenSize'
 import SearchBar from './components/SearchBar'
@@ -19,6 +19,12 @@ import apiGetRequests from './components/apiGetRequests'
 import SearchModal from './components/SearchModal'
 import forgetPassword from './components/forgetPassword'
 import AccountScreen from './AccountScreen'
+import { Pagination } from 'react-native-snap-carousel'
+import ViewPagerComponent from './components/ViewPagerComponent'
+
+const sliderWidth = Dimensions.get('window').width
+const itemWidth = (Dimensions.get('window').height) * 0.49
+
 class HomeScreen extends Component {
     constructor(props) {
         super(props)
@@ -29,7 +35,9 @@ class HomeScreen extends Component {
             badgeScale: new Animated.Value(0),
             textValue: 0,
             searchText: '',
-            loading: true
+            loading: true,
+            offers: [],
+            slider1ActiveSlide: 1
         }
         YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
     }
@@ -92,6 +100,13 @@ class HomeScreen extends Component {
             })
 
         })
+        apiGetRequests.getRequests('getOffers').then((res) => {
+            this.setState({
+                offers: res.OfferProducts,
+                offerFalg: res.status === 1 ? true : false
+            })
+
+        })
 
     }
 
@@ -102,26 +117,36 @@ class HomeScreen extends Component {
     renderOffer(offerFalg) {
         if (offerFalg) {
             return (
-                <View style={{
-                    borderWidth: 1, borderColor: '#FFFFFF', margin: 5, backgroundColor: '#FFFFFF',
-                    elevation: 15, borderRadius: 5
-                }}>
-                    <ImageBackground
-                        style={{
-                            height: ScreenSize.height * 0.3,
-                            borderRadius: 5,
-                            width: '100%',
-                            justifyContent: 'center',
-                            alignItems: 'center'
-                        }}
-                        source={{ uri: 'https://image.freepik.com/vetores-gratis/projeto-do-fundo-do-e-commerce_1223-90.jpg' }}
-                        resizeMode="cover"
-                    >
-                        <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.7)', padding: 7, margin: 15, borderRadius: 3 }}>Offer Title</Text>
-                    </ImageBackground>
+                <View style={{ marginTop: 10 }}>
+                    <ViewPagerComponent
+                        renderItem={this._renderItem}
+                        offers={this.state.offers}
+                        slider1ActiveSlide={(index) => this.setState({ slider1ActiveSlide: index })}
+                        sliderWidth={sliderWidth}
+                        itemWidth={itemWidth}
+                    />
+                    <Pagination
+                        dotsLength={this.state.offers.length}
+                        activeDotIndex={this.state.slider1ActiveSlide}
+                        dotColor={'orange'}
+                        dotStyle={styles.dotStyle}
+                        containerStyle={styles.paginationContainerStyle}
+                        inactiveDotColor={'white'}
+                        inactiveDotOpacity={1}
+                        inactiveDotStyle={styles.inactiveDotStyle}
+                        inactiveDotScale={1}
+                        carouselRef={this._carousel}
+                        tappableDots={!!this._carousel} />
                 </View>
             )
         }
+    }
+    _renderItem({ item }) {
+        return (
+            <ImageBackground style={styles.offerItemStyle}
+                source={{ uri: item.image }}            >
+            </ImageBackground>
+        );
     }
     search(searchText) {
         if (this.state.offerFalg) {
@@ -177,7 +202,6 @@ class HomeScreen extends Component {
                     <Content>
                         {this.renderOffer(this.state.offerFalg)}
                         <FlatList
-                            contentContainerStyle={{ margin: 2 }}
                             horizontal={false}
                             numColumns={colNum}
                             keyExtractor={item => item.id}
@@ -244,7 +268,33 @@ const styles = StyleSheet.create({
     contentContainerStyle: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 10,
+        marginTop: 10
+    },
+    dotStyle: {
+        width: 10,
+        height: 10,
+        borderRadius: 30,
+        borderColor: 'orange',
+    },
+    inactiveDotStyle: {
+        borderColor: 'orange',
+        borderWidth: 1,
+        width: 10,
+        height: 10,
+        borderRadius: 30,
+    },
+    paginationContainerStyle: {
+        marginTop: 0
+    },
+    offerItemStyle: {
+        height: ScreenSize.width * 0.5,
+        elevation: 25,
+        borderColor: 'orange',
+        borderWidth: 0.5,
+        shadowOffset: { height: 0, width: 0 },
+        shadowColor: 'black',
+        shadowOpacity: 0.4
     }
 })
 

@@ -3486,9 +3486,9 @@
       }
     },
     "eslint-plugin-import": {
-      "version": "2.13.0",
-      "resolved": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.13.0.tgz",
-      "integrity": "sha512-t6hGKQDMIt9N8R7vLepsYXgDfeuhp6ZJSgtrLEDxonpSubyxUZHjhm6LsAaZX8q6GYVxkbT3kTsV9G5mBCFR6A==",
+      "version": "2.14.0",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-import/-/eslint-plugin-import-2.14.0.tgz",
+      "integrity": "sha512-FpuRtniD/AY6sXByma2Wr0TXvXJ4nA/2/04VPlfpmUDPOpOY264x+ILiwnrk/k4RINgDAyFZByxqPUbSQ5YE7g==",
       "dev": true,
       "requires": {
         "contains-path": "0.1.0",
@@ -6990,9 +6990,9 @@
       }
     },
     "npm": {
-      "version": "6.2.0",
-      "resolved": "https://registry.npmjs.org/npm/-/npm-6.2.0.tgz",
-      "integrity": "sha512-GnlNsOnxwVJX4WSfyQY0gY3LnUX2cc46XU0eu1g+WSuZgDRUGmw8tuptitJu6byp0RWGT8ZEAKajblwdhQHN8A==",
+      "version": "6.3.0",
+      "resolved": "https://registry.npmjs.org/npm/-/npm-6.3.0.tgz",
+      "integrity": "sha512-oDtLFo3wXue/xe3pU/oks9VHS5501OAWlYrZrApZkFv7l2LXk+9CfPMbjbfZWK7Jqlc1jbNcJMkB6KZC7K/vEA==",
       "requires": {
         "abbrev": "1.1.1",
         "ansicolors": "0.3.2",
@@ -7002,7 +7002,7 @@
         "bin-links": "1.1.2",
         "bluebird": "3.5.1",
         "byte-size": "4.0.3",
-        "cacache": "11.0.2",
+        "cacache": "11.1.0",
         "call-limit": "1.1.0",
         "chownr": "1.0.1",
         "cli-columns": "3.1.2",
@@ -7015,7 +7015,7 @@
         "detect-newline": "2.1.0",
         "dezalgo": "1.0.3",
         "editor": "1.0.0",
-        "figgy-pudding": "3.1.0",
+        "figgy-pudding": "3.2.0",
         "find-npm-prefix": "1.0.2",
         "fs-vacuum": "1.2.10",
         "fs-write-stream-atomic": "1.0.10",
@@ -7096,6 +7096,7 @@
         "sorted-object": "2.0.1",
         "sorted-union-stream": "2.1.3",
         "ssri": "6.0.0",
+        "stringify-package": "1.0.0",
         "tar": "4.4.4",
         "text-table": "0.2.0",
         "tiny-relative-date": "1.3.0",
@@ -7109,7 +7110,6 @@
         "validate-npm-package-name": "3.0.0",
         "which": "1.3.1",
         "worker-farm": "1.6.0",
-        "wrappy": "1.0.2",
         "write-file-atomic": "2.3.0"
       },
       "dependencies": {
@@ -7280,12 +7280,12 @@
           "bundled": true
         },
         "cacache": {
-          "version": "11.0.2",
+          "version": "11.1.0",
           "bundled": true,
           "requires": {
             "bluebird": "3.5.1",
             "chownr": "1.0.1",
-            "figgy-pudding": "3.1.0",
+            "figgy-pudding": "3.2.0",
             "glob": "7.1.2",
             "graceful-fs": "4.1.11",
             "lru-cache": "4.1.3",
@@ -7696,7 +7696,7 @@
           "bundled": true
         },
         "figgy-pudding": {
-          "version": "3.1.0",
+          "version": "3.2.0",
           "bundled": true
         },
         "find-npm-prefix": {
@@ -8223,7 +8223,7 @@
           "version": "4.0.1",
           "bundled": true,
           "requires": {
-            "figgy-pudding": "3.1.0",
+            "figgy-pudding": "3.2.0",
             "npm-registry-fetch": "3.1.1"
           },
           "dependencies": {
@@ -8232,7 +8232,7 @@
               "bundled": true,
               "requires": {
                 "bluebird": "3.5.1",
-                "figgy-pudding": "3.1.0",
+                "figgy-pudding": "3.2.0",
                 "lru-cache": "4.1.3",
                 "make-fetch-happen": "4.0.1",
                 "npm-package-arg": "6.1.0"
@@ -8360,7 +8360,7 @@
           "bundled": true,
           "requires": {
             "agentkeepalive": "3.4.1",
-            "cacache": "11.0.2",
+            "cacache": "11.1.0",
             "http-cache-semantics": "3.8.1",
             "http-proxy-agent": "2.1.0",
             "https-proxy-agent": "2.2.1",
@@ -8859,7 +8859,7 @@
           "bundled": true,
           "requires": {
             "bluebird": "3.5.1",
-            "cacache": "11.0.2",
+            "cacache": "11.1.0",
             "get-stream": "3.0.0",
             "glob": "7.1.2",
             "lru-cache": "4.1.3",
@@ -9407,6 +9407,10 @@
               }
             }
           }
+        },
+        "stringify-package": {
+          "version": "1.0.0",
+          "bundled": true
         },
         "stringstream": {
           "version": "0.0.6",
@@ -10384,14 +10388,23 @@
       "integrity": "sha1-9JvmtIeJTdxA3MlKMi9hEJLgDV4="
     },
     "react": {
-      "version": "16.4.1",
-      "resolved": "https://registry.npmjs.org/react/-/react-16.4.1.tgz",
-      "integrity": "sha512-3GEs0giKp6E0Oh/Y9ZC60CmYgUPnp7voH9fbjWsvXtYFb4EWtgQub0ADSq0sJR0BbHc4FThLLtzlcFaFXIorwg==",
+      "version": "16.4.2",
+      "resolved": "https://registry.npmjs.org/react/-/react-16.4.2.tgz",
+      "integrity": "sha512-dMv7YrbxO4y2aqnvA7f/ik9ibeLSHQJTI6TrYAenPSaQ6OXfb+Oti+oJiy8WBxgRzlKatYqtCjphTgDSCEiWFg==",
       "requires": {
         "fbjs": "0.8.16",
         "loose-envify": "1.3.1",
         "object-assign": "4.1.1",
         "prop-types": "15.6.0"
+      }
+    },
+    "react-addons-shallow-compare": {
+      "version": "15.6.2",
+      "resolved": "https://registry.npmjs.org/react-addons-shallow-compare/-/react-addons-shallow-compare-15.6.2.tgz",
+      "integrity": "sha1-GYoAuR/DdiPbZKKP0XtZa6NicC8=",
+      "requires": {
+        "fbjs": "0.8.16",
+        "object-assign": "4.1.1"
       }
     },
     "react-clone-referenced-element": {
@@ -10451,7 +10464,7 @@
       "integrity": "sha512-gErwTCkF116eV/+crqIcMNBuYMbRhxCmv7bS+Zpdvx6H5f1owi8NrDhlZDXZ+Btv+ZOroof5/QqpEmGM5r+u8w==",
       "requires": {
         "localized-strings": "0.0.11",
-        "react": "16.4.1"
+        "react": "16.4.2"
       }
     },
     "react-native": {
@@ -10623,11 +10636,11 @@
       }
     },
     "react-native-localization": {
-      "version": "1.0.11",
-      "resolved": "https://registry.npmjs.org/react-native-localization/-/react-native-localization-1.0.11.tgz",
-      "integrity": "sha512-uh/qUKZ60RBHcbf8GGIgRIYIT40RI7Q1ffdsP4rrWvlFlpjHbzxivdEG01pVQ560k1COavetKlhgOXo0orPrwA==",
+      "version": "1.0.12",
+      "resolved": "https://registry.npmjs.org/react-native-localization/-/react-native-localization-1.0.12.tgz",
+      "integrity": "sha512-+JcR7Ll5mXIMbgfw6EZ1WT0DiacM/lHS/eNHxENgVg99iBiGQ1mz4PAG5Dq1BxPagoyqVfKS9yJm0erJ5zYyFA==",
       "requires": {
-        "react": "16.4.1",
+        "react": "16.4.2",
         "react-localization": "1.0.10"
       }
     },
@@ -10678,6 +10691,26 @@
       "requires": {
         "lodash.merge": "4.6.1",
         "react-native-animatable": "1.3.0"
+      }
+    },
+    "react-native-snap-carousel": {
+      "version": "3.7.2",
+      "resolved": "https://registry.npmjs.org/react-native-snap-carousel/-/react-native-snap-carousel-3.7.2.tgz",
+      "integrity": "sha512-/XHc6IYRgTcwtxkgJwYRLJHdVC7vy0Mu/3gJ6ydVFGH3AS3M2Yyr4OhfNpetQSMdZ8IND92ViKezqlwQVzRwqQ==",
+      "requires": {
+        "prop-types": "15.6.2",
+        "react-addons-shallow-compare": "15.6.2"
+      },
+      "dependencies": {
+        "prop-types": {
+          "version": "15.6.2",
+          "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.6.2.tgz",
+          "integrity": "sha512-3pboPvLiWD7dkI3qf3KbUe6hKFKa52w+AE0VCqECtf+QHAKgOL37tTaNCnuX1nAAQ4ZhyP+kYVKf8rLmJ/feDQ==",
+          "requires": {
+            "loose-envify": "1.3.1",
+            "object-assign": "4.1.1"
+          }
+        }
       }
     },
     "react-native-step-indicator": {
@@ -10737,9 +10770,9 @@
       }
     },
     "react-navigation": {
-      "version": "2.9.2",
-      "resolved": "https://registry.npmjs.org/react-navigation/-/react-navigation-2.9.2.tgz",
-      "integrity": "sha512-Y8TARPgY/1JbRNZl3c9Zixlzjnt0LfumkbCkJtvfOEgYUb++f2VgZqAe0loL54b24oAib8jF6tGd+ympLz7wnQ==",
+      "version": "2.11.2",
+      "resolved": "https://registry.npmjs.org/react-navigation/-/react-navigation-2.11.2.tgz",
+      "integrity": "sha512-K+nCEfyhxYhn4oyYf3CwygOhYob5ZIeoIXnBb9RVOzNxoAf62tTNd9EhfaLitAehlkH1tGDCt9FARBiqYUWR5g==",
       "requires": {
         "clamp": "1.0.1",
         "create-react-context": "0.2.2",
@@ -10749,8 +10782,8 @@
         "react-lifecycles-compat": "3.0.4",
         "react-native-safe-area-view": "0.8.0",
         "react-navigation-deprecated-tab-navigator": "1.3.0",
-        "react-navigation-drawer": "0.4.3",
-        "react-navigation-tabs": "0.5.1"
+        "react-navigation-drawer": "0.5.0",
+        "react-navigation-tabs": "0.6.0"
       },
       "dependencies": {
         "hoist-non-react-statics": {
@@ -10769,17 +10802,17 @@
       }
     },
     "react-navigation-drawer": {
-      "version": "0.4.3",
-      "resolved": "https://registry.npmjs.org/react-navigation-drawer/-/react-navigation-drawer-0.4.3.tgz",
-      "integrity": "sha512-ShPAnq2a7gfNl7O4SAPhP54Z6QNbd9KJ+NQgk5Q1llZFcrsQZ886iUb9KieGestft34c5VOVLrrPDjo8+hCJPQ==",
+      "version": "0.5.0",
+      "resolved": "https://registry.npmjs.org/react-navigation-drawer/-/react-navigation-drawer-0.5.0.tgz",
+      "integrity": "sha512-F1y593uC6pqBMGH+Omz75oNODEbxB/s0EGO8QtYwu1NmOOEUuuLA+c14zm+pgMsI4HlDabiHxPkWqsgGz25xVQ==",
       "requires": {
         "react-native-drawer-layout-polyfill": "1.3.2"
       }
     },
     "react-navigation-tabs": {
-      "version": "0.5.1",
-      "resolved": "https://registry.npmjs.org/react-navigation-tabs/-/react-navigation-tabs-0.5.1.tgz",
-      "integrity": "sha512-VwStdeQm5OcAW0n94CxL7qL0zgmnyBCXcgdBRf5hYpw4tWcVUIedgRF+rAWa1v3ftY6H0CXbnT2OKdbod5QJXA==",
+      "version": "0.6.0",
+      "resolved": "https://registry.npmjs.org/react-navigation-tabs/-/react-navigation-tabs-0.6.0.tgz",
+      "integrity": "sha512-Ax1rujJ51R1Jrz7b5bHUAIgsYC1VrFws+d3hxlPy5dXG84iJdV5dnDFRvdQMDDfDZc+NDx2a223lAYsc3p2+XA==",
       "requires": {
         "hoist-non-react-statics": "2.5.5",
         "prop-types": "15.6.2",
